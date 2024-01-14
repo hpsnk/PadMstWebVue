@@ -39,15 +39,15 @@
       </span>
     </div>
     <div class="skill">
-      <div class="name">BEAMSビーム</div>
-      <div class="turn">11</div>
+      <div class="name">{{monster.skill != undefined ?  monster.skill.name : ''}}</div>
+      <div class="turn">{{monster.skill != undefined ?  monster.skill.initTurn - monster.skill.maxLv : ''}}</div>
       <div class="desc">
-        敵1体に攻撃力×10倍の攻撃。1ターンの間、神タイプの攻撃力が1.5倍。
+        {{monster.skill != undefined ?  monster.skill.gameDesc : ''}}
       </div>
     </div>
     <div class="leaderskill">
-      <div class="name">ワンダーベア</div>
-      <div class="desc">火、水、光の同時攻撃で攻撃力が2.5倍。</div>
+      <div class="name">{{monster.leaderskill != undefined ?  monster.leaderskill.name : ''}}</div>
+      <div class="desc">{{monster.leaderskill != undefined ?  monster.leaderskill.gameDesc : ''}}</div>
     </div>
   </div>
 </template>

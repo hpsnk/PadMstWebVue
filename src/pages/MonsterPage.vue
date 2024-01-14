@@ -51,13 +51,13 @@
                   </div>
 
                   <!-- 属性 -->
-                  <CompMonsterSearchAttr />
+                  <CompMonsterSearchAttr label="主属性" hasExtAttr='true' />
 
                   <!-- サブ属性 -->
-                  <CompMonsterSearchAttr />
+                  <CompMonsterSearchAttr label="副属性" hasExtAttr='false' />
 
                   <!-- 第三属性 -->
-                  <CompMonsterSearchAttr />
+                  <CompMonsterSearchAttr label="第三属性" hasExtAttr='false' />
 
                   <!-- タイプ 1行目-->
                   <div class="form-group row">
