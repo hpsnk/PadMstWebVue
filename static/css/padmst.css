@@ -1,0 +1,54 @@
+/*属性图片*/
+.icon.icon-attr
+{
+	display: inline-block;
+	width: 36px;
+	height: 36px;
+	line-height: 36px;
+	background-image: url('../images/attr/attrs.png');
+	background-position-y:calc(36px);
+	background-repeat: no-repeat;
+	vertical-align: bottom;
+}
+.attr[data-attr-icon='any'],
+.attr[data-attr-icon='self']
+{
+	background-position-x: -36px;
+	background-position-y:calc(-36px * 0);
+}
+.attr[data-attr-icon='fixed']
+{
+	background-position-x: -36px;
+	background-position-y:calc(-36px * 1);
+}
+
+.attr[data-attr-icon='-1']
+{
+	width: auto;
+}
+.icon.icon-attr[data-attr-icon='0'] {
+	background-position-y:calc(-36px * 0);
+}
+.icon.icon-attr[data-attr-icon='1'] {
+	background-position-y:calc(-36px * 1);
+}
+.icon.icon-attr[data-attr-icon='2']
+{
+	background-position-y:calc(-36px * 2);
+}
+.icon.icon-attr[data-attr-icon='3']
+{
+	background-position-y:calc(-36px * 3);
+}
+.icon.icon-attr[data-attr-icon='4']
+{
+	background-position-y:calc(-36px * 4);
+}
+.icon.icon-attr[data-attr-icon='5']
+{
+	background-position-y:calc(-36px * 5);
+}
+.icon.icon-attr[data-attr-icon='6']
+{
+	background-position-y:calc(-36px * 6);
+}

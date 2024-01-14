@@ -1,0 +1,8 @@
+.table-monster {
+    height: 500px;
+    overflow: auto;
+}
+
+div.monster-template,span.template {
+    display: none;
+}
