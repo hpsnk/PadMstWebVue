@@ -111,7 +111,7 @@
                       <el-option
                         v-for="collabo in displayData.collabos"
                         :key="collabo.collaboId"
-                        :label="collabo.collaboId"
+                        :label="collabo.name ? collabo.collaboId + ' : ' + collabo.name : collabo.collaboId"
                         :value="collabo.collaboId"
                       />
                     </el-select>
