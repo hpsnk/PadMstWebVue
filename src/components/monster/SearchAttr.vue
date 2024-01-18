@@ -1,4 +1,5 @@
 <template>
+<div>
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">{{label}}</label>
     <div id="mainAttr" class="col-sm-10">
@@ -10,6 +11,13 @@
       <span v-if='hasNoneAttr' class="mask icon icon-attr icon-mainAttr" data-attr-icon="6" @click="setActiveAttr($event)" /><!-- 無 -->
     </div>
   </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">{{label}}</label>
+    <div id="mainAttr" class="col-sm-10">
+      <span v-for="(attr, index) in attrs" class="icon icon-attr" :data-attr-icon="attr.id" :key="index">{{attr.name}}</span>
+    </div>
+  </div>
+</div>
 </template>
 
 <script>
@@ -20,6 +28,14 @@ export default {
   },
   data() {
     return {
+      attrs: [
+        {id:0,name:'火'},
+        {id:1,name:'水'},
+        {id:2,name:'木'},
+        {id:3,name:'光'},
+        {id:4,name:'闇'},
+        {id:6,name:'無'}
+      ],
       activeAttrs: [],
     };
   },
