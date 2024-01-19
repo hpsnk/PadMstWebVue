@@ -1,5 +1,17 @@
 <template>
 <div>
+  <div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">{{label}}</label>
+      <div id="mainAttr" class="col-sm-10">
+        <span v-for="(attr, index) in attrs" :key="index"
+          @click="switchActive($event, attr)"
+          class="icon icon-attr" 
+          :class="[attr.active?'':'mask']" 
+          :data-attr-icon="attr.id"></span>
+      </div>
+    </div>
+  </div>
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">{{label}}</label>
     <div id="mainAttr" class="col-sm-10">
@@ -40,6 +52,16 @@ export default {
     };
   },
   methods: {
+    switchActive(event, attr) {
+      console.log("switchActive");
+      if (attr.active) {
+        attr.active = false;
+      } else {
+        attr.active = true;
+      }
+      console.log('---->' + attr.active);
+      // this.$emit("attrClick");
+    },
     isActive(object) {
       return this.activeAttrs.includes(object.target.dataset.attrIcon);
     },
