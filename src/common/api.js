@@ -43,6 +43,10 @@ export default {
         console.log(" api.js->listCollabo");
         return _axios.get("/collabo/list", params)
     },
+    listAttr: function(params) {
+        console.log(" api.js->listAttr");
+        return _axios.get("/attr/list", params)
+    },
 
 
 

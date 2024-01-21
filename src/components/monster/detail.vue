@@ -1,7 +1,12 @@
 <template>
-  <div class="monster-detail">
+  <div class="monster monster-detail">
     <div class="monster-icon">
       <div class="icon">
+        <div class="attrs">
+          <div class="attr" :data-attr="monster.attr" />
+          <div class="attr" :data-attr="monster.subAttr" />
+          <div class="attr" :data-attr="monster.thirdAttr" />
+        </div>
         <div class="id">{{ monster.monsterId }}</div>
       </div>
     </div>
