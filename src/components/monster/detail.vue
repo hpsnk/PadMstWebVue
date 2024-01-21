@@ -10,8 +10,10 @@
         <div class="id">{{ monster.monsterId }}</div>
       </div>
     </div>
-    <div class="monster-name">{{ monster.name }}</div>
-    <div class="monster-info">
+    <div class="monster-name" v-show="false">
+      {{ monster.name }}
+    </div>
+    <div class="monster-info" v-show="false">
       <div class="hp">
         <div class="tag">HP:</div>
         <div class="value">{{ monster.maxHP }}</div>
@@ -43,14 +45,14 @@
         <img class="icon" />
       </span>
     </div>
-    <div class="skill">
+    <div class="skill" v-show="false">
       <div class="name">{{monster.skill != undefined ?  monster.skill.name : ''}}</div>
       <div class="turn">{{monster.skill != undefined ?  monster.skill.initTurn - monster.skill.maxLv : ''}}</div>
       <div class="desc">
         {{monster.skill != undefined ?  monster.skill.gameDesc : ''}}
       </div>
     </div>
-    <div class="leaderskill">
+    <div class="leaderskill" v-show="false">
       <div class="name">{{monster.leaderskill != undefined ?  monster.leaderskill.name : ''}}</div>
       <div class="desc">{{monster.leaderskill != undefined ?  monster.leaderskill.gameDesc : ''}}</div>
     </div>

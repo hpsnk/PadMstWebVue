@@ -63,10 +63,14 @@
                   @click="setSubAttr" />
 
                 <!-- 第三属性 -->
-                <CompMonsterSearchAttr label="第三属性" :hasNoneAttr="false" />
+                <CompMonsterSearchAttr ref="compThirdAttr" 
+                  name="MonsterPage.thirdAttr"
+                  label="第三属性" 
+                  :hasNoneAttr="false" 
+                  @click="setThirdAttr" />
 
                 <!-- タイプ 1行目-->
-                <div class="form-group row">
+                <div class="form-group row" v-show="false">
                   <label class="col-sm-2 col-form-label">タイプ</label>
                   <div class="col-sm-10">
                     <span>
@@ -76,14 +80,14 @@
                 </div>
                 
                 <!-- タイプ 2行目-->
-                <div class="form-group row">
+                <div class="form-group row" v-show="false">
                   <div class="col-sm-2 col-form-label"></div>
                   <div id="type" class="col-sm-10">
                   </div>
                 </div>
 
                 <!-- 覚醒スキル 1行目-->
-                <div class="form-group row">
+                <div class="form-group row" v-show="false">
                   <label class="col-sm-2 col-form-label">覚醒スキル</label>
                   <div class="col-sm-10">
                     <span>
@@ -99,7 +103,7 @@
                 </div>
 
                 <!-- 覚醒スキル 2行目-->
-                <div class="form-group row">
+                <div class="form-group row" v-show="false">
                   <div class="col-sm-2"></div>
                   <div id="awakenSkill" class="col-sm-10"></div>
                 </div>
@@ -124,7 +128,7 @@
                 </div>
 
                 <!-- スキルカテゴリ -->
-                <div class="form-group row">
+                <div class="form-group row" v-show="false">
                   <label class="col-sm-2 col-form-label">スキル</label>
                   <div class="col-sm-10">
                     <select id="skillcategory" class="form-control select2bs4" multiple="multiple" data-placeholder="Select a State">
@@ -135,7 +139,7 @@
                 </div>
 
                 <!-- スキルターン -->
-                <div class="form-group row">
+                <div class="form-group row" v-show="false">
                   <label for="skillturn" class="col-sm-2 col-form-label">スキルターン</label>
                   <div class="col-sm-10">
                     <input class="form-control" id="skillturn" placeholder="7">
@@ -144,16 +148,13 @@
 
                 <!--ボタン-->
                 <div class="form-group row">
-                  
-          
-          <el-form-item>
-            <el-button type="primary" round @click="searchMonster">
-              検索
-            </el-button>
-            <el-button type="info" round @click="handleResetSearchMonster"
-              >クリア</el-button>
-          </el-form-item>
-
+                  <el-form-item>
+                    <el-button type="primary" round @click="searchMonster">
+                      検索
+                    </el-button>
+                    <el-button type="info" round @click="handleResetSearchMonster"
+                      >クリア</el-button>
+                  </el-form-item>
                 </div>
 
               </div>
@@ -172,21 +173,21 @@
               <!-- /.card-header -->
               <div class="card-body">
                 
-    <!--検索結果-->
-    <el-row v-if="searched">
-      <el-col>
-        <el-pagination
-          layout="sizes, -> ,prev, pager, next"
-          :page-sizes="[10, 30, 50, 100]"
-          :page-size="displayData.pageSize"
-          :total="displayData.total"
-          :current-page="displayData.currentPage"
-          @current-change="handleCurrentChange"
-          @size-change="handlePageSizeChange"
-        >
-        </el-pagination>
-      </el-col>
-    </el-row>
+                <!--検索結果-->
+                <el-row v-if="searched">
+                  <el-col>
+                    <el-pagination
+                      layout="sizes, -> ,prev, pager, next"
+                      :page-sizes="[10, 30, 50, 100]"
+                      :page-size="displayData.pageSize"
+                      :total="displayData.total"
+                      :current-page="displayData.currentPage"
+                      @current-change="handleCurrentChange"
+                      @size-change="handlePageSizeChange"
+                    >
+                    </el-pagination>
+                  </el-col>
+                </el-row>
 
                 <table id="datatables_monster" class="table table-bordered table-hover table-monster">
                   <thead>
@@ -244,6 +245,7 @@ export default {
       searchMonsterParam: {
         mainAttr: [],
         subAttr: [],
+        thirdAttr: [],
         collabo: '',
         start: 0,
         length: 10,
@@ -279,6 +281,11 @@ export default {
     setSubAttr() {
       console.log("MonsterSearch.setSubAttr!");
       this.searchMonsterParam.subAttr = this.$refs.compSubAttr.getActiveValue();
+      this.resetPageAndSearch();
+    },
+    setThirdAttr() {
+      console.log("MonsterSearch.setThirdAttr!");
+      this.searchMonsterParam.thirdAttr = this.$refs.compThirdAttr.getActiveValue();
       this.resetPageAndSearch();
     },
     loadCollabo() {
@@ -321,6 +328,8 @@ export default {
       // サブ属性
       this.$refs.compSubAttr.reset();
       this.searchMonsterParam.subAttr = [];
+
+      // 第三属性
 
       // this.refs["searchMonsterForm"].resetFields();
       this.searched = false;
