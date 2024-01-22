@@ -44,7 +44,9 @@
                 <div class="form-group row">
                   <label for="condFreeword" class="col-sm-2 col-form-label">Freeword</label>
                   <div class="col-sm-10">
-                    <input class="form-control" id="condFreeword" placeholder="No, 名前">
+                    <el-input ref="freeword" 
+                      v-model="searchMonsterParam.freeword" placeholder="No, 名前" 
+                      @change="setFreeword"/>
                   </div>
                 </div>
 
@@ -243,6 +245,7 @@ export default {
       },
       searched: false,
       searchMonsterParam: {
+        freeword: "",
         mainAttr: [],
         subAttr: [],
         thirdAttr: [],
@@ -272,6 +275,11 @@ export default {
       this.searchMonsterParam.start = 0;
       this.displayData.currentPage = 1;
       this.searchMonster();
+    },
+    setFreeword() {
+      console.log("MonsterSearch.setFreeword!");
+      console.log("  " + this.searchMonsterParam.freeword);
+      this.resetPageAndSearch();
     },
     setMainAttr() {
       console.log("MonsterSearch.setMainAttr!");
