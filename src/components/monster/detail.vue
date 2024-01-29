@@ -1,7 +1,12 @@
 <template>
   <div class="monster monster-detail">
     <div class="monster-icon">
-      <div class="icon">
+      <div class="icon monster" 
+        :data-cardid="monster.monsterId" 
+        :data-cards-pic-idx="1"
+        :data-cards-pic-x="1"
+        :data-cards-pic-y="1"
+      >
         <div class="attrs">
           <div class="attr" :data-attr="monster.attr" />
           <div class="attr" :data-attr="monster.subAttr" />
@@ -45,8 +50,8 @@
         <img class="icon" />
       </span>
     </div>
-    <div class="skill" v-show="false">
-      <div class="name">{{monster.skill != undefined ?  monster.skill.name : ''}}</div>
+    <div class="skill">
+      <div class="name" @click="findBySkill">{{monster.skill != undefined ?  monster.skill.name : ''}}</div>
       <div class="turn">{{monster.skill != undefined ?  monster.skill.initTurn - monster.skill.maxLv : ''}}</div>
       <div class="desc">
         {{monster.skill != undefined ?  monster.skill.gameDesc : ''}}
@@ -69,6 +74,12 @@ export default {
     return {
       msg: "Welcome to Your MonsterDetail",
     };
+  },
+  methods: {
+    findBySkill(skillId) {
+      console.log('Find by Id:' + skillId);
+    }
+
   },
 };
 </script>

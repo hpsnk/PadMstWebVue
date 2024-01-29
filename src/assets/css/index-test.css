@@ -108,6 +108,11 @@ div.monster-detail {
 	height: 20px;
 }
 
+.monster-detail .skill {
+	margin-top: 5px;
+	padding-top: 20px;
+}
+
 .monster-detail .skill .name::before {
 	content: "スキル";
 	background-color: rgba(199, 68, 51, 100);
