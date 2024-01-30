@@ -3,9 +3,9 @@
     <div class="monster-icon">
       <div class="icon monster" 
         :data-cardid="monster.monsterId" 
-        :data-cards-pic-idx="1"
-        :data-cards-pic-x="1"
-        :data-cards-pic-y="1"
+        :data-cards-pic-idx="Math.ceil(monster.monsterId/100)"
+        :data-cards-pic-x="(monster.monsterId-1)%10"
+        :data-cards-pic-y="Math.floor((monster.monsterId-1)/10)"
       >
         <div class="attrs">
           <div class="attr" :data-attr="monster.attr" />
@@ -32,7 +32,7 @@
         <div class="value">{{ monster.maxRCV }}</div>
       </div>
     </div>
-    <div class="askill-info">
+    <div class="askill-info" v-show="false">
       <span
         class="askill template"
         v-for="(awakenskill, index) in monster.awakenskillIds"
@@ -41,7 +41,7 @@
         <img class="icon" :alt="awakenskill.awakenskillId" />
       </span>
     </div>
-    <div class="super-askill-info">
+    <div class="super-askill-info" v-show="false">
       <span
         class="askill template"
         v-for="(superawakenskill, index) in monster.superawakenskillIds"
@@ -50,7 +50,7 @@
         <img class="icon" />
       </span>
     </div>
-    <div class="skill">
+    <div class="skill" v-show="false">
       <div class="name" @click="findBySkill">{{monster.skill != undefined ?  monster.skill.name : ''}}</div>
       <div class="turn">{{monster.skill != undefined ?  monster.skill.initTurn - monster.skill.maxLv : ''}}</div>
       <div class="desc">
@@ -86,5 +86,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import "../../assets/css/index-test.css";
+@import "../../assets/css/monster-detail.css";
 </style>

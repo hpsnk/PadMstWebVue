@@ -318,6 +318,10 @@ export default {
 
       api.listMonster(this.searchMonsterParam).then((resData) => {
           this.displayData.monsters = resData.data.data;
+          // console.log(this.displayData.monsters);
+          this.displayData.monsters.forEach(monster=> {
+            console.log(monster.monsterId + "-->" + Math.ceil(monster.monsterId/100) + ":" + (monster.monsterId-1)%10 + "," + Math.floor((monster.monsterId-1)/10));
+          });
           this.displayData.total = resData.data.recordsFiltered;
           this.loading.monster = false;
         })
