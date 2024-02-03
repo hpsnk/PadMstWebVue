@@ -5,7 +5,7 @@
         :data-cardid="monster.monsterId" 
         :data-cards-pic-idx="Math.ceil(monster.monsterId/100)"
         :data-cards-pic-x="(monster.monsterId-1)%10"
-        :data-cards-pic-y="Math.floor((monster.monsterId-1)/10)"
+        :data-cards-pic-y="Math.floor((monster.monsterId-1)%100/10)"
       >
         <div class="attrs">
           <div class="attr" :data-attr="monster.attr" />
@@ -50,7 +50,7 @@
         <img class="icon" />
       </span>
     </div>
-    <div class="skill" v-show="false">
+    <div class="skill">
       <div class="name" @click="findBySkill">{{monster.skill != undefined ?  monster.skill.name : ''}}</div>
       <div class="turn">{{monster.skill != undefined ?  monster.skill.initTurn - monster.skill.maxLv : ''}}</div>
       <div class="desc">

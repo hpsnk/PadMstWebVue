@@ -4,7 +4,19 @@
  *-------------------------------
  */
 
-/* monster icon */
+ .table-monster {
+    height: 500px;
+    overflow: auto;
+}
+
+div.monster-template,span.template {
+    display: none;
+}
+
+
+/*----------------------------
+ * monster icon 
+ */
 .monster-detail .monster-icon {
 	display: block;
 	height: 100px;
@@ -13,11 +25,10 @@
 
 .monster-detail .monster-icon .icon {
 	position: relative;
-	/* background-image: url(../img/monster/1319.jpg); */
-	width: 80px;
-	height: 80px;
+	width:  100px;
+	height: 100px;
 	display: block;
-	/* background-size: 800px 800px; */
+	/* background-color: blue; */
 }
 
 .monster-detail .monster-icon .icon .id {
@@ -36,6 +47,12 @@
 .monster-detail .monster-icon .icon .id::before {
 	content: "No.";
 }
+
+/*----------------------------
+ * monster attr
+ */
+
+
 
 /* ---------------------------------------------------------------- */
 /* .monster-detail                                                  */
@@ -113,8 +130,13 @@ div.monster-detail {
 }
 
 .monster-detail .skill {
-	margin-top: 5px;
-	padding-top: 20px;
+	position: relative;
+	left: 0px;
+	top: 125px;
+	/* height: 40px; */
+	/* margin-top: 5px; */
+	/* padding-top: 20px; */
+	
 }
 
 .monster-detail .skill .name::before {

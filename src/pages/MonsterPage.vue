@@ -165,7 +165,8 @@
             </el-form>
           </div>
 
-          <div class="col-md-6 col-sm-12">
+          <!--検索結果-->
+          <div class="col-md-6 col-sm-12"  v-if="searched">
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">
@@ -173,9 +174,8 @@
                 </h3>
               </div>
               <!-- /.card-header -->
-              <div class="card-body">
+              <div class="card-body" v-if="searched">
                 
-                <!--検索結果-->
                 <el-row v-if="searched">
                   <el-col>
                     <el-pagination
@@ -191,7 +191,7 @@
                   </el-col>
                 </el-row>
 
-                <table id="datatables_monster" class="table table-bordered table-hover table-monster">
+                <table id="datatables_monster" class="table table-bordered table-hover table-monster" v-if="searched">
                   <thead>
                     <tr>
                       <!--0-->
@@ -344,6 +344,8 @@ export default {
       // 第三属性
 
       // this.refs["searchMonsterForm"].resetFields();
+
+      this.displayData.monsters = [];
       this.searched = false;
     },
     handlePageSizeChange(pageSize) {

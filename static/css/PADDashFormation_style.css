@@ -20,7 +20,7 @@
 	/*默认都不显示*/
 	background-position: 100px 100px;
 	/* background-size: 80%; */
-	transform: scale(0.80);
+	/* transform: scale(0.80); */
 	transform-origin: left top;
 }
 
