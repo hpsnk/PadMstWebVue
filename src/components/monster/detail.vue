@@ -15,32 +15,36 @@
         <div class="id">{{ monster.monsterId }}</div>
       </div>
     </div>
-    <div class="monster-name" v-show="false">
-      {{ monster.name }}
-    </div>
-    <div class="monster-info" v-show="false">
-      <div class="hp">
-        <div class="tag">HP:</div>
-        <div class="value">{{ monster.maxHP }}</div>
+    <div class="monster-basic-info">
+      <div class="monster-name">{{ monster.name }}</div>
+      <div class="monster-info">
+        <div class="hp">
+          <div class="tag">HP:</div>
+          <div class="value">{{ monster.maxHP }}</div>
+        </div>
+        <div class="attack">
+          <div class="tag">攻撃:</div>
+          <div class="value">{{ monster.maxATK }}</div>
+        </div>
+        <div class="recovery">
+          <div class="tag">回復:</div>
+          <div class="value">{{ monster.maxRCV }}</div>
+        </div>
       </div>
-      <div class="attack">
-        <div class="tag">攻撃:</div>
-        <div class="value">{{ monster.maxATK }}</div>
-      </div>
-      <div class="recovery">
-        <div class="tag">回復:</div>
-        <div class="value">{{ monster.maxRCV }}</div>
+      <!--覚醒スキル-->
+      <div class="askill-info">
+        <span
+          class="askill template"
+          v-for="(awakenskill, index) in monster.awakenskillIds"
+          :key="index"
+        >
+          <img class="icon" :alt="awakenskill.awakenskillId" />
+        </span>
       </div>
     </div>
-    <div class="askill-info" v-show="false">
-      <span
-        class="askill template"
-        v-for="(awakenskill, index) in monster.awakenskillIds"
-        :key="index"
-      >
-        <img class="icon" :alt="awakenskill.awakenskillId" />
-      </span>
-    </div>
+
+
+
     <div class="super-askill-info" v-show="false">
       <span
         class="askill template"
@@ -51,13 +55,13 @@
       </span>
     </div>
     <div class="skill">
-      <div class="name" @click="findBySkill">{{monster.skill != undefined ?  monster.skill.name : ''}}</div>
+      <div class="name" @click="findBySkill(monster)">{{monster.skill != undefined ?  monster.skill.name : ''}}</div>
       <div class="turn">{{monster.skill != undefined ?  monster.skill.initTurn - monster.skill.maxLv : ''}}</div>
       <div class="desc">
         {{monster.skill != undefined ?  monster.skill.gameDesc : ''}}
       </div>
     </div>
-    <div class="leaderskill" v-show="false">
+    <div class="leaderskill">
       <div class="name">{{monster.leaderskill != undefined ?  monster.leaderskill.name : ''}}</div>
       <div class="desc">{{monster.leaderskill != undefined ?  monster.leaderskill.gameDesc : ''}}</div>
     </div>
@@ -76,8 +80,9 @@ export default {
     };
   },
   methods: {
-    findBySkill(skillId) {
-      console.log('Find by Id:' + skillId);
+    findBySkill(objMonster) {
+      console.log('[findBySkill]');
+      console.log(objMonster.skill);
     }
 
   },

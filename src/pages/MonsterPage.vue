@@ -72,7 +72,7 @@
                   @click="setThirdAttr" />
 
                 <!-- タイプ 1行目-->
-                <div class="form-group row" v-show="false">
+                <div class="form-group row">
                   <label class="col-sm-2 col-form-label">タイプ</label>
                   <div class="col-sm-10">
                     <span>
@@ -82,9 +82,12 @@
                 </div>
                 
                 <!-- タイプ 2行目-->
-                <div class="form-group row" v-show="false">
+                <div class="form-group row">
                   <div class="col-sm-2 col-form-label"></div>
                   <div id="type" class="col-sm-10">
+                    <span v-for="(type, index) in displayData.types" :key="index">
+                      {{ type.typeId }}
+                    </span>
                   </div>
                 </div>
 
@@ -258,6 +261,7 @@ export default {
         pageSize: 10,
         currentPage: 1,
         total: 0,
+        types: [],
         collabos: [],
         monsters: [],
       },
@@ -266,7 +270,11 @@ export default {
   mounted() {
     console.log("MonsterPage.mounted-->start.");
 
+    // コラボ
     this.loadCollabo();
+
+    // タイプ
+    this.loadType();
 
     console.log("MonsterPage.mounted-->end.");
   },
@@ -295,6 +303,16 @@ export default {
       console.log("MonsterSearch.setThirdAttr!");
       this.searchMonsterParam.thirdAttr = this.$refs.compThirdAttr.getActiveValue();
       this.resetPageAndSearch();
+    },
+    loadType() {
+      api.listType().then((resData)=>{
+            console.log("  loadType success.");
+            console.log(resData.data);
+            this.displayData.types = resData.data;
+        }).catch((err)=>{
+            console.error("  loadType failed.");
+            console.log(err);
+        });
     },
     loadCollabo() {
       api.listCollabo().then((resData)=>{
@@ -336,14 +354,14 @@ export default {
       // メイン属性
       this.$refs.compMainAttr.reset();
       this.searchMonsterParam.mainAttr = [];
-
       // サブ属性
       this.$refs.compSubAttr.reset();
       this.searchMonsterParam.subAttr = [];
-
       // 第三属性
-
-      // this.refs["searchMonsterForm"].resetFields();
+      this.$refs.compThirdAttr.reset();
+      this.searchMonsterParam.thirdAttr = [];
+      // コラボ
+      this.searchMonsterParam.collabo = '';
 
       this.displayData.monsters = [];
       this.searched = false;
@@ -362,5 +380,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import "../assets/css/index-test.css";
+@import "../assets/css/monster-search.css";
 </style>

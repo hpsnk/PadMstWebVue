@@ -43,9 +43,15 @@ export default {
         console.log(" api.js->listCollabo");
         return _axios.get("/collabo/list", params)
     },
+    // 属性
     listAttr: function(params) {
         console.log(" api.js->listAttr");
         return _axios.get("/attr/list", params)
+    },
+    // タイプ
+    listType: function(params) {
+        console.log(" api.js->listType");
+        return _axios.get("/type/list", params)
     },
 
 

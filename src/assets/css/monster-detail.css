@@ -3,16 +3,22 @@
  * monster detail 
  *-------------------------------
  */
-
  .table-monster {
     height: 500px;
     overflow: auto;
 }
 
-div.monster-template,span.template {
-    display: none;
-}
 
+/* ---------------------------------------------------------------- */
+/* .monster-detail                                                  */
+/* ---------------------------------------------------------------- */
+div.monster-detail {
+	position: relative;
+	display: block;
+	height: 228px;
+	width: 100%;
+	background-color: rgba(121, 91, 51, 100);
+}
 
 /*----------------------------
  * monster icon 
@@ -20,6 +26,7 @@ div.monster-template,span.template {
 .monster-detail .monster-icon {
 	display: block;
 	height: 100px;
+	width: 100px;
 }
 
 
@@ -49,32 +56,27 @@ div.monster-template,span.template {
 }
 
 /*----------------------------
- * monster attr
+ * monster basic info
  */
-
-
-
-/* ---------------------------------------------------------------- */
-/* .monster-detail                                                  */
-/* ---------------------------------------------------------------- */
-div.monster-detail {
-	position: relative;
-	display: block;
-	height: 200px;
-	width: 100%;
-	background-color: rgba(121, 91, 51, 100);
-}
-
-.monster-detail .monster-name {
+ .monster-detail .monster-basic-info {
 	position: absolute;
-	color: aliceblue;
 	top: 0px;
-	left: 90px;
-}
+	left: 100px;
+	display: block;
+	width: calc(100% - 100px);
+	height: 100px;
+ }
 
-.monster-detail .monster-info {
+ .monster-detail .monster-name {
+	 position: absolute;
+	 color: aliceblue;
+	 top: 0px;
+	 left: 10px;
+ }
+
+ .monster-detail .monster-info {
 	position: absolute;
-	left: 90px;
+	left: 10px;
 	top: 20px;
 }
 
@@ -129,16 +131,28 @@ div.monster-detail {
 	height: 20px;
 }
 
+
+/*
+ * skill
+ */
 .monster-detail .skill {
-	position: relative;
+	position: absolute;
 	left: 0px;
-	top: 125px;
-	/* height: 40px; */
-	/* margin-top: 5px; */
-	/* padding-top: 20px; */
-	
+	top: 100px;
+	display: block;
+	height: 50px;
+	width: 100%;
+	/* debug用 */
+	background-color:aqua;
 }
 
+.monster-detail .skill .name {
+	position: relative;
+	width: 100%;
+	color: rgba(133, 188, 255, 100);
+	background-color: rgba(56, 23, 16, 100);
+	height: 24px;
+}
 .monster-detail .skill .name::before {
 	content: "スキル";
 	background-color: rgba(199, 68, 51, 100);
@@ -147,34 +161,26 @@ div.monster-detail {
 	border: 2px solid rgba(166, 132, 59, 100);
 }
 
-.monster-detail .skill .name {
-	position: absolute;
-	color: rgba(133, 188, 255, 100);
-	background-color: rgba(56, 23, 16, 100);
-	height: 24px;
-	width: 100%;
-	bottom: 100px;
-}
-
-.monster-detail .skill .desc {
-	position: absolute;
-	font-size: small;
-	background-color: rgba(177, 170, 160, 100);
-	height: 40px;
-	width: 100%;
-	bottom: 60px;
-}
-
 .monster-detail .skill .turn {
 	position: absolute;
+	top: 0px;
+	right: 0px;
 	color: aliceblue;
-	width: 100%;
+	width: 100px;
 	text-align: right;
-	bottom: 100px;
 }
 
 .monster-detail .skill .turn::before {
 	content: "ターン:";
+}
+
+.monster-detail .skill .desc {
+	position: absolute;
+	top: 24px;
+	font-size: small;
+	background-color: rgba(177, 170, 160, 100);
+	height: 40px;
+	width: 100%;
 }
 
 .monster-detail .leaderskill .name {
