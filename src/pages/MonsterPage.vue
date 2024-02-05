@@ -71,6 +71,11 @@
                   :hasNoneAttr="false" 
                   @click="setThirdAttr" />
 
+                <!-- タイプ -->
+                <CompMonsterSearchType ref="compSearchType" 
+                  name="MonsterPage.type"
+                  @click="setType" />
+
                 <!-- タイプ 1行目-->
                 <div class="form-group row">
                   <label class="col-sm-2 col-form-label">タイプ</label>
@@ -232,13 +237,15 @@
 <script>
 import api from "../common/api";
 import CompMonsterDetail from "../components/monster/detail.vue";
-import CompMonsterSearchAttr from "@/components/monster/SearchAttr.vue"
+import CompMonsterSearchAttr from "@/components/monster/SearchAttr.vue";
+import CompMonsterSearchType from "@/components/monster/SearchType.vue";
 
 export default {
   name: "MonsterPage",
   components: {
     CompMonsterDetail,
     CompMonsterSearchAttr,
+    CompMonsterSearchType,
   },
   data() {
     return {
@@ -301,7 +308,12 @@ export default {
     },
     setThirdAttr() {
       console.log("MonsterSearch.setThirdAttr!");
-      this.searchMonsterParam.thirdAttr = this.$refs.compThirdAttr.getActiveValue();
+      this.searchMonsterParam.thirdAttr = this.$refs.compSearchType.getActiveValue();
+      this.resetPageAndSearch();
+    },
+    setType() {
+      console.log("MonsterSearch.setType!");
+      this.searchMonsterParam.type = this.$refs.compSearchType.getActiveValue();
       this.resetPageAndSearch();
     },
     loadType() {

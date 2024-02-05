@@ -7,6 +7,24 @@
 	-moz-opacity: 0.5;
 }
 
+.type {
+	display: block;
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	align-content: center;
+	justify-content: center;
+	color: chartreuse;
+	background-color: mediumpurple;
+	border: 1px solid;
+	border-color: aqua;
+}
+
+
+/*
+ * ------------------------------
+ */
+
 .monster-detail .monster-icon .icon {
 	position: relative;
 	/* background-image: url(../img/monster/1319.jpg); */
