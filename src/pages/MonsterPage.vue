@@ -76,26 +76,6 @@
                   name="MonsterPage.type"
                   @click="setType" />
 
-                <!-- タイプ 1行目-->
-                <div class="form-group row">
-                  <label class="col-sm-2 col-form-label">タイプ</label>
-                  <div class="col-sm-10">
-                    <span>
-                      <input id="typeCondAnd" type="checkbox" name="my-checkbox" data-bootstrap-switch data-on-text="AND" data-off-text="OR" data-on-color="success" data-off-color="danger">
-                    </span>
-                  </div>
-                </div>
-                
-                <!-- タイプ 2行目-->
-                <div class="form-group row">
-                  <div class="col-sm-2 col-form-label"></div>
-                  <div id="type" class="col-sm-10">
-                    <span v-for="(type, index) in displayData.types" :key="index">
-                      {{ type.typeId }}
-                    </span>
-                  </div>
-                </div>
-
                 <!-- 覚醒スキル 1行目-->
                 <div class="form-group row" v-show="false">
                   <label class="col-sm-2 col-form-label">覚醒スキル</label>
@@ -259,6 +239,8 @@ export default {
         mainAttr: [],
         subAttr: [],
         thirdAttr: [],
+        type: [],
+        typeCondAnd: false,
         collabo: '',
         start: 0,
         length: 10,
@@ -279,9 +261,6 @@ export default {
 
     // コラボ
     this.loadCollabo();
-
-    // タイプ
-    this.loadType();
 
     console.log("MonsterPage.mounted-->end.");
   },
@@ -313,18 +292,10 @@ export default {
     },
     setType() {
       console.log("MonsterSearch.setType!");
-      this.searchMonsterParam.type = this.$refs.compSearchType.getActiveValue();
+      let valType = this.$refs.compSearchType.getActiveValue();
+      this.searchMonsterParam.type        = valType.type;
+      this.searchMonsterParam.typeCondAnd = valType.typeCondAnd;
       this.resetPageAndSearch();
-    },
-    loadType() {
-      api.listType().then((resData)=>{
-            console.log("  loadType success.");
-            console.log(resData.data);
-            this.displayData.types = resData.data;
-        }).catch((err)=>{
-            console.error("  loadType failed.");
-            console.log(err);
-        });
     },
     loadCollabo() {
       api.listCollabo().then((resData)=>{
@@ -349,9 +320,9 @@ export default {
       api.listMonster(this.searchMonsterParam).then((resData) => {
           this.displayData.monsters = resData.data.data;
           // console.log(this.displayData.monsters);
-          this.displayData.monsters.forEach(monster=> {
-            console.log(monster.monsterId + "-->" + Math.ceil(monster.monsterId/100) + ":" + (monster.monsterId-1)%10 + "," + Math.floor((monster.monsterId-1)/10));
-          });
+          // this.displayData.monsters.forEach(monster=> {
+          //   console.log(monster.monsterId + "-->" + Math.ceil(monster.monsterId/100) + ":" + (monster.monsterId-1)%10 + "," + Math.floor((monster.monsterId-1)/10));
+          // });
           this.displayData.total = resData.data.recordsFiltered;
           this.loading.monster = false;
         })
@@ -372,6 +343,10 @@ export default {
       // 第三属性
       this.$refs.compThirdAttr.reset();
       this.searchMonsterParam.thirdAttr = [];
+      // タイプ
+      this.$refs.compSearchType.reset();
+      this.searchMonsterParam.type = [];
+      this.searchMonsterParam.typeCondAnd = false;
       // コラボ
       this.searchMonsterParam.collabo = '';
 

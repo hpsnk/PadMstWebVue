@@ -13,30 +13,20 @@
         </el-switch>
       </div>
       <div class="row">
-        <span v-for="(type, index) in types" :key="index" 
-        @click="switchActive($event, type)"
-          class="type"          
-          :class="{'mask' : !type.active}"
-        >
-          {{ type.typeId }}
-        </span>
+        <el-tooltip 
+          v-for="(type, index) in types" :key="index"
+          :content="type.name" 
+          placement="top">
+          <span  
+            class="type type-icon"
+            :class="{'mask' : !type.active}"
+            :data-type-icon="type.typeId"
+            @click="switchActive($event, type)"
+          >
+          </span>
+        </el-tooltip>
       </div>
     </div>
-
-
-    <!-- 
-    <label class="col-sm-2 col-form-label">{{ label }}</label>
-    <div id="mainAttr" class="col-sm-10" v-loading="loading.attr">
-      <span v-for="(attr, index) in attrs" :key="index">
-        <span @click="switchActive($event, attr)"
-          class="icon icon-attr"
-          :class="{'mask' : !attr.active}"
-          :data-attr-icon="attr.id"
-          v-if="!attr.special || (hasNoneAttr && attr.special)"
-        />
-      </span>
-    </div>
-    -->
   </div>
 </template>
 
@@ -50,8 +40,8 @@ export default {
   data() {
     return {
       types: [],
-      loading: true,
       typeCondAnd: false,
+      loading: true,
     };
   },
   created() {
@@ -70,7 +60,6 @@ export default {
   },
   methods: {
     switchActive(event, type) {
-      // console.log("switchActive");
       if (type.active) {
         type.active = false;
       } else {
@@ -80,26 +69,32 @@ export default {
       //强制渲染
       this.$forceUpdate();
 
-      // console.log("---->" + attr.active);
-      // console.log(this.attrs);
-
       this.$emit("click");
     },
-    // reset() {
-    //   this.attrs.forEach((attr) => {
-    //     attr.active = false;
-    //   });
-    //   // this.attrCondAnd = false;
-      
-    //   //强制渲染
-    //   this.$forceUpdate();
-    // },
-    getActiveValue() {
-      return this.types.filter(elem => {
-        return elem.active;
-      }).map(elem => {
-        return elem.typeId;
+    reset() {
+      this.types.forEach((type) => {
+        type.active = false;
       });
+      this.typeCondAnd = false;
+      
+      //强制渲染
+      this.$forceUpdate();
+    },
+    getActiveValue() {
+      // let activeTypes = this.types.filter(elem => {
+      //   return elem.active;
+      // }).map(elem => {
+      //   return elem.typeId;
+      // });
+
+      return {
+        type: this.types.filter(elem => {
+          return elem.active;
+        }).map(elem => {
+          return elem.typeId;
+        }),
+        typeCondAnd: this.typeCondAnd,
+      }
     },
   },
 };

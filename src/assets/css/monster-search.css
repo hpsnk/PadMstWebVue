@@ -9,15 +9,16 @@
 
 .type {
 	display: block;
-	width: 40px;
-	height: 40px;
+	width: 32px;
+	height: 32px;
 	text-align: center;
 	align-content: center;
 	justify-content: center;
-	color: chartreuse;
-	background-color: mediumpurple;
-	border: 1px solid;
-	border-color: aqua;
+	/* color: chartreuse;
+	background-color: mediumpurple; */
+	/* border: 1px solid; */
+	/* border-color: aqua; */
+	margin-right: 5px;
 }
 
 

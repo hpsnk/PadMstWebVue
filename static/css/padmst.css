@@ -1,5 +1,10 @@
-/*属性图片*/
-.icon.icon-attr
+ /*#region icon 属性 */
+/*
+ *----------------------------
+ * 属性图片
+ *----------------------------
+ */
+ .icon.icon-attr
 {
 	display: inline-block;
 	width: 36px;
@@ -52,3 +57,70 @@
 {
 	background-position-y:calc(-36px * 6);
 }
+/*#endregion*/
+
+ /*#region icon タイプ */
+ /*
+ *----------------------------
+ * タイプ
+ *----------------------------
+ */
+ .type-icon
+ {
+	 background-image: url(../images/type.png);
+	 background-position-x: 0;
+	 background-position-y: 32px; /*默认不显示*/
+ }
+ .type-icon[data-type-icon='0']
+ {/*进化用*/
+	 background-position-y:calc(-32px * 0);
+ }
+ .type-icon[data-type-icon='1']
+ {/*平衡*/
+	 background-position-y:calc(-32px * 1);
+ }
+ .type-icon[data-type-icon='2']
+ {/*体力*/
+	 background-position-y:calc(-32px * 2);
+ }
+ .type-icon[data-type-icon='3']
+ {/*回复*/
+	 background-position-y:calc(-32px * 3);
+ }
+ .type-icon[data-type-icon='4']
+ {/*龙*/
+	 background-position-y:calc(-32px * 4);
+ }
+ .type-icon[data-type-icon='5']
+ {/*神*/
+	 background-position-y:calc(-32px * 5);
+ }
+ .type-icon[data-type-icon='6']
+ {/*攻击*/
+	 background-position-y:calc(-32px * 6);
+ }
+ .type-icon[data-type-icon='7']
+ {/*恶魔*/
+	 background-position-y:calc(-32px * 7);
+ }
+ .type-icon[data-type-icon='8']
+ {/*机械*/
+	 background-position-y:calc(-32px * 8);
+ }
+ .type-icon[data-type-icon='9']
+ {/*特别保护*/
+	 background-position-y:calc(-32px * 9);
+ }
+ .type-icon[data-type-icon='12']
+ {/*能力觉醒用*/
+	 background-position-y:calc(-32px * 12);
+ }
+ .type-icon[data-type-icon='14']
+ {/*强化合成用*/
+	 background-position-y:calc(-32px * 14);
+ }
+ .type-icon[data-type-icon='15']
+ {/*贩卖用*/
+	 background-position-y:calc(-32px * 15);
+ }
+/*#endregion*/
