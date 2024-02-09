@@ -20,7 +20,7 @@ export default {
     }
   },
     mounted() {
-        console.log("AwakenSkillPage.mounted");
+        console.log("AwakenSkillPage.mounted.start");
         
         api.listAwakenSkill().then((resData)=>{
             console.log("success");
@@ -31,7 +31,8 @@ export default {
             console.log("error");
             console.log(err);
         });
-        console.log(abc);
+
+        console.log("AwakenSkillPage.mounted.end");
     },
 }
 </script>

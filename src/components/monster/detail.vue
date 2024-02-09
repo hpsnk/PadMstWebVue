@@ -18,6 +18,19 @@
     <div class="monster-basic-info">
       <div class="monster-name">{{ monster.name }}</div>
       <div class="monster-info">
+        <span v-if="monster.typeId!=-1"
+          class="type type-icon"
+          :data-type-icon="monster.typeId"
+        />
+        <span v-if="monster.subTypeId!=-1"
+          class="type type-icon"
+          :data-type-icon="monster.subTypeId"
+        />
+        <span v-if="monster.extraTypeId!=-1"
+          class="type type-icon"
+          :data-type-icon="monster.extraTypeId"
+        />
+        
         <div class="hp">
           <div class="tag">HP:</div>
           <div class="value">{{ monster.maxHP }}</div>
@@ -29,30 +42,27 @@
         <div class="recovery">
           <div class="tag">回復:</div>
           <div class="value">{{ monster.maxRCV }}</div>
-        </div>
-      </div>
-      <!--覚醒スキル-->
-      <div class="askill-info">
-        <span
-          class="askill template"
-          v-for="(awakenskill, index) in monster.awakenskillIds"
-          :key="index"
-        >
-          <img class="icon" :alt="awakenskill.awakenskillId" />
-        </span>
+        </div> 
+       
       </div>
     </div>
 
+    <!--覚醒-->
+    <div class="askill-info">
+      <comp-icon-awaken v-for="(awakenskillId, index) in monster.awakenskillIds"
+        name="MonsterDetail.awakenskill"
+        :awakenskillId="awakenskillId"
+        :key="monster.monsterId + '.' + index"
+        />
+    </div>
 
-
-    <div class="super-askill-info" v-show="false">
-      <span
-        class="askill template"
-        v-for="(superawakenskill, index) in monster.superawakenskillIds"
-        :key="index"
-      >
-        <img class="icon" />
-      </span>
+    <!--超覚醒-->
+    <div class="super-askill-info">
+      <comp-icon-awaken v-for="(superawakenskillId, index) in monster.superawakenskillIds"
+        name="MonsterDetail.superawakenskillId"
+        :awakenskillId="superawakenskillId"
+        :key="monster.monsterId + '.' + index"
+        />
     </div>
     <div class="skill">
       <div class="name" @click="findBySkill(monster)">{{monster.skill != undefined ?  monster.skill.name : ''}}</div>
@@ -69,11 +79,16 @@
 </template>
 
 <script>
+import CompIconAwaken from "./IconAwaken.vue";
+
 export default {
   name: "component.monster.detail",
-  props: [
-    'monster',
-  ],
+  components: {
+    CompIconAwaken,
+  },
+  props: {
+    monster: Object,
+  },
   data() {
     return {
       msg: "Welcome to Your MonsterDetail",

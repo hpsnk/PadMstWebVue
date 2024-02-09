@@ -217,7 +217,7 @@
             </li>
             <!---->
             <li class="nav-item">
-              <a href="#awakenskill" class="nav-link">
+              <a href="#/awakenskill" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Awaken Skill</p>
               </a>
