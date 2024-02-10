@@ -77,7 +77,10 @@
                   @click="setType" />
 
                 <!-- 覚醒スキル -->
-                <CompMonsterSearchAwakenSkill />
+                <CompMonsterSearchAwakenSkill  ref="compSearchAwakenSkill" 
+                  name="MonsterPage.AwakenSkill"
+                  @click="setAwakenSkill"
+                />
 
                 <!-- 覚醒スキル 1行目-->
                 <div class="form-group row" v-show="false">
@@ -247,6 +250,8 @@ export default {
         thirdAttr: [],
         type: [],
         typeCondAnd: false,
+        awakenSkill: [],
+        awakenSkillCondAnd: false,
         collabo: '',
         start: 0,
         length: 10,
@@ -293,7 +298,16 @@ export default {
     },
     setThirdAttr() {
       console.log("MonsterSearch.setThirdAttr!");
-      this.searchMonsterParam.thirdAttr = this.$refs.compSearchType.getActiveValue();
+      this.searchMonsterParam.thirdAttr = this.$refs.compThirdAttr.getActiveValue();
+      this.resetPageAndSearch();
+    },
+    setAwakenSkill() {
+      console.log("MonsterSearch.setAwakenSkill!");
+      let valAwakenSkill = this.$refs.compSearchAwakenSkill.getActiveValue();
+      
+      this.searchMonsterParam.awakenSkill        = valAwakenSkill.awakenSkill;
+      this.searchMonsterParam.awakenSkillCondAnd = valAwakenSkill.condAnd;
+
       this.resetPageAndSearch();
     },
     setType() {
@@ -353,6 +367,10 @@ export default {
       this.$refs.compSearchType.reset();
       this.searchMonsterParam.type = [];
       this.searchMonsterParam.typeCondAnd = false;
+      // 覚醒
+      this.$refs.compSearchAwakenSkill.reset();
+      this.searchMonsterParam.awakenSkill = [];
+      this.searchMonsterParam.awakenSkillCondAnd = false;
       // コラボ
       this.searchMonsterParam.collabo = '';
 

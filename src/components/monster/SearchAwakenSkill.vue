@@ -88,12 +88,12 @@ export default {
     },
     getActiveValue() {
       return {
-        type: this.awakenSkills.filter(elem => {
+        awakenSkill: this.awakenSkills.filter(elem => {
           return elem.active;
         }).map(elem => {
           return elem.awakenskillId;
         }),
-        awakenSkillCondAnd: this.condAnd,
+        condAnd: this.condAnd,
       }
     },
   },

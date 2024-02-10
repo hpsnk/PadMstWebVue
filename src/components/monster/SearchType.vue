@@ -17,7 +17,7 @@
           v-for="(type, index) in types" :key="index"
           :content="type.name" 
           placement="top">
-          <span  
+          <span 
             class="type type-icon"
             :class="{'mask' : !type.active}"
             :data-type-icon="type.typeId"
@@ -81,12 +81,6 @@ export default {
       this.$forceUpdate();
     },
     getActiveValue() {
-      // let activeTypes = this.types.filter(elem => {
-      //   return elem.active;
-      // }).map(elem => {
-      //   return elem.typeId;
-      // });
-
       return {
         type: this.types.filter(elem => {
           return elem.active;
