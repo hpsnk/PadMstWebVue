@@ -4,7 +4,7 @@
 <template>
   <span 
     class="awakenSkill awoken-icon"
-    :class="{'mask' : !active}"
+    :class="{'mask' : isSearchMode && !active}"
     :data-awoken-icon="awakenskillId"
   />
 </template>
@@ -14,6 +14,10 @@ export default {
   props: {
     name: String,
     awakenskillId: Object,
+    isSearchMode: {
+      type:    Boolean,
+      default: false,
+    },
   },
   data() {
     return {

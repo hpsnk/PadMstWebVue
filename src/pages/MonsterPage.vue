@@ -77,32 +77,11 @@
                   @click="setType" />
 
                 <!-- 覚醒スキル -->
-                <CompMonsterSearchAwakenSkill  ref="compSearchAwakenSkill" 
+                <CompMonsterSearchAwakenSkill 
+                  ref="compSearchAwakenSkill" 
                   name="MonsterPage.AwakenSkill"
                   @click="setAwakenSkill"
                 />
-
-                <!-- 覚醒スキル 1行目-->
-                <div class="form-group row" v-show="false">
-                  <label class="col-sm-2 col-form-label">覚醒スキル</label>
-                  <div class="col-sm-10">
-                    <span>
-                      <input id="awakenSkillCondAnd" type="checkbox" name="my-checkbox" data-bootstrap-switch data-on-text="AND" data-off-text="OR" data-on-color="success" data-off-color="danger">
-                    </span>
-                    <span class="float-right">
-                      <div class="icheck-danger d-inline">
-                        <input id="sortByCount" type="checkbox">
-                        <label for="sortByCount">多い順</label>
-                      </div>
-                    </span>
-                  </div>
-                </div>
-
-                <!-- 覚醒スキル 2行目-->
-                <div class="form-group row" v-show="false">
-                  <div class="col-sm-2"></div>
-                  <div id="awakenSkill" class="col-sm-10"></div>
-                </div>
 
                 <!-- コラボ(element-ui) -->
                 <div class="form-group row">
@@ -353,6 +332,10 @@ export default {
     },
     handleResetSearchMonster() {
       console.log("  clear search form!");
+
+      // freeword
+      this.$refs.freeword = "";
+      this.searchMonsterParam.freeword = "";
       
       // メイン属性
       this.$refs.compMainAttr.reset();
