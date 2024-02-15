@@ -71,6 +71,10 @@
                   :hasNoneAttr="false" 
                   @click="setThirdAttr" />
 
+                <!-- レア -->
+                <CompMonsterSearchRare ref="compSearchRare"
+                  name="MonsterPage.rare" />
+
                 <!-- タイプ -->
                 <CompMonsterSearchType ref="compSearchType" 
                   name="MonsterPage.type"
@@ -203,6 +207,7 @@
 import api from "../common/api";
 import CompMonsterDetail from "../components/monster/detail.vue";
 import CompMonsterSearchAttr from "@/components/monster/SearchAttr.vue";
+import CompMonsterSearchRare from "@/components/monster/SearchRare.vue";
 import CompMonsterSearchType from "@/components/monster/SearchType.vue";
 import CompMonsterSearchAwakenSkill from "@/components/monster/SearchAwakenSkill.vue";
 
@@ -212,6 +217,7 @@ export default {
   components: {
     CompMonsterDetail,
     CompMonsterSearchAttr,
+    CompMonsterSearchRare,
     CompMonsterSearchType,
     CompMonsterSearchAwakenSkill,
   },
