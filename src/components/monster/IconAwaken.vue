@@ -13,7 +13,7 @@
 export default {
   props: {
     name: String,
-    awakenskillId: Object,
+    awakenskillId: Number,
     isSearchMode: {
       type:    Boolean,
       default: false,

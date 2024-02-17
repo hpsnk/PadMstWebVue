@@ -73,7 +73,8 @@
 
                 <!-- レア -->
                 <CompMonsterSearchRare ref="compSearchRare"
-                  name="MonsterPage.rare" />
+                  name="MonsterPage.rare" 
+                  @click="setRare" />
 
                 <!-- タイプ -->
                 <CompMonsterSearchType ref="compSearchType" 
@@ -233,6 +234,7 @@ export default {
         mainAttr: [],
         subAttr: [],
         thirdAttr: [],
+        rare: undefined,
         type: [],
         typeCondAnd: false,
         awakenSkill: [],
@@ -295,6 +297,11 @@ export default {
 
       this.resetPageAndSearch();
     },
+    setRare() {
+      console.log("MonsterSearch.setRare!");
+      this.searchMonsterParam.rare = this.$refs.compSearchRare.getActiveValue();
+      this.resetPageAndSearch();
+    },
     setType() {
       console.log("MonsterSearch.setType!");
       let valType = this.$refs.compSearchType.getActiveValue();
@@ -352,6 +359,9 @@ export default {
       // 第三属性
       this.$refs.compThirdAttr.reset();
       this.searchMonsterParam.thirdAttr = [];
+      // レア
+      this.$refs.compSearchRare.reset();
+      this.searchMonsterParam.rare = undefined;
       // タイプ
       this.$refs.compSearchType.reset();
       this.searchMonsterParam.type = [];

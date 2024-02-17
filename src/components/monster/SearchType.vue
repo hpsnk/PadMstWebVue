@@ -9,7 +9,8 @@
         <el-switch
           v-model="typeCondAnd"
           active-text="AND"
-          inactive-text="OR">
+          inactive-text="OR"
+          @change="updateValue">
         </el-switch>
       </div>
       <div class="row">
@@ -59,6 +60,9 @@ export default {
     console.log("mounted.");
   },
   methods: {
+    updateValue() {
+      this.$emit("click");
+    },
     switchActive(event, type) {
       if (type.active) {
         type.active = false;

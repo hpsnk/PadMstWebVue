@@ -10,7 +10,9 @@
         :min="0"
         :max="10"
         :step="1"
-        show-stops>
+        show-stops
+        @change="switchActive"
+        >
       </el-slider>
     </div>
   </div>
@@ -25,61 +27,24 @@ export default {
   },
   data() {
     return {
-      rare: -1,
+      rare: 0,
     };
   },
-  created() {
-    // console.log("created.");
-    // api.listType().then((resData)=>{
-    //       console.log("  loadType success.");
-    //       // console.log(resData.data);
-    //       this.types = resData.data;
-    //   }).catch((err)=>{
-    //       console.error("  loadType failed.");
-    //       console.log(err);
-    //   });
-  },
-  mounted() {
-    // console.log("mounted.");
-  },
   methods: {
-    // switchActive(event, type) {
-    //   if (type.active) {
-    //     type.active = false;
-    //   } else {
-    //     type.active = true;
-    //   }
-      
-    //   //强制渲染
-    //   this.$forceUpdate();
+    switchActive(event, type) {
 
-    //   this.$emit("click");
-    // },
-    // reset() {
-    //   this.types.forEach((type) => {
-    //     type.active = false;
-    //   });
-    //   this.typeCondAnd = false;
-      
-    //   //强制渲染
-    //   this.$forceUpdate();
-    // },
-    // getActiveValue() {
-    //   // let activeTypes = this.types.filter(elem => {
-    //   //   return elem.active;
-    //   // }).map(elem => {
-    //   //   return elem.typeId;
-    //   // });
+      if (this.rare == 0) {
+        this.rare = undefined;
+      }
 
-    //   return {
-    //     type: this.types.filter(elem => {
-    //       return elem.active;
-    //     }).map(elem => {
-    //       return elem.typeId;
-    //     }),
-    //     typeCondAnd: this.typeCondAnd,
-    //   }
-    // },
+      this.$emit("click");
+    },
+    reset() {
+      this.rare = 0;
+    },
+    getActiveValue() {
+      return this.rare;
+    },
   },
 };
 </script>

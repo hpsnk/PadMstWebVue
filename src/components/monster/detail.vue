@@ -52,7 +52,8 @@
       <comp-icon-awaken v-for="(awakenskillId, index) in monster.awakenskillIds"
         name="MonsterDetail.awakenskill"
         :awakenskillId="awakenskillId"
-        :key="monster.monsterId + '.' + index"
+        :isSearchMode="false"
+        :key="monster.monsterId + '.awakenskill.' + index"
         />
     </div>
 
@@ -61,7 +62,8 @@
       <comp-icon-awaken v-for="(superawakenskillId, index) in monster.superawakenskillIds"
         name="MonsterDetail.superawakenskillId"
         :awakenskillId="superawakenskillId"
-        :key="monster.monsterId + '.' + index"
+        :isSearchMode="false"
+        :key="monster.monsterId + '.superawakenskill.' + index"
         />
     </div>
     <div class="skill">

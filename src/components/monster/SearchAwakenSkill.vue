@@ -9,7 +9,8 @@
         <el-switch
           v-model="condAnd"
           active-text="AND"
-          inactive-text="OR">
+          inactive-text="OR"
+          @change="updateValue()">
         </el-switch>
       </div>
       <div class="row">
@@ -65,6 +66,10 @@ export default {
     console.log("mounted.");
   },
   methods: {
+    updateValue() {
+      console.log("updateValue.");
+      this.$emit("click");
+    },
     switchActive(event, awakenSkill) {
       if (awakenSkill.active) {
         awakenSkill.active = false;
@@ -74,6 +79,8 @@ export default {
       
       //强制渲染
       this.$forceUpdate();
+
+      // console.log(this.getActiveValue());
 
       this.$emit("click");
     },
