@@ -5,6 +5,8 @@
   "author": "happysonic <archer03371@163.com>",
   "private": true,
   "scripts": {
+    "trace": "",
+    "debug": "",
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js --host 0.0.0.0",
     "start": "npm run dev",
     "build": "node build/build.js"

@@ -107,6 +107,12 @@
                   </el-select>
                 </div>
 
+                <CompMonsterSearchCollabo 
+                  ref="compSearchCollabo" 
+                  name="MonsterPage.SearchCollabo"
+                  @click="setCollabo"
+                />
+
                 <!-- スキルカテゴリ -->
                 <div class="form-group row" v-show="false">
                   <label class="col-sm-2 col-form-label">スキル</label>
@@ -205,13 +211,14 @@
 </template>
 
 <script>
-import api from "../common/api";
+import api    from "../common/api";
+import logger from "../common/logger";
 import CompMonsterDetail from "../components/monster/detail.vue";
 import CompMonsterSearchAttr from "@/components/monster/SearchAttr.vue";
 import CompMonsterSearchRare from "@/components/monster/SearchRare.vue";
 import CompMonsterSearchType from "@/components/monster/SearchType.vue";
 import CompMonsterSearchAwakenSkill from "@/components/monster/SearchAwakenSkill.vue";
-
+import CompMonsterSearchCollabo     from "@/components/monster/SearchCollabo.vue";
 
 export default {
   name: "MonsterPage",
@@ -221,6 +228,7 @@ export default {
     CompMonsterSearchRare,
     CompMonsterSearchType,
     CompMonsterSearchAwakenSkill,
+    CompMonsterSearchCollabo,
   },
   data() {
     return {
@@ -255,12 +263,16 @@ export default {
     };
   },
   mounted() {
-    console.log("MonsterPage.mounted-->start.");
+    logger.trace("mounted start.", this);
+    // console.log("[%s][%s]mounted start.", this.$options.name, this.name);
+    // console.log("MonsterPage.mounted-->start.");
 
     // コラボ
     this.loadCollabo();
 
-    console.log("MonsterPage.mounted-->end.");
+    // console.log("MonsterPage.mounted-->end.");
+    // console.log("[%s]mounted end.", this.name);
+    logger.trace("mounted end.", this);
   },
   methods: {
     resetPageAndSearch() {
@@ -269,27 +281,32 @@ export default {
       this.searchMonster();
     },
     setFreeword() {
-      console.log("MonsterSearch.setFreeword!");
-      console.log("  " + this.searchMonsterParam.freeword);
+      logger.trace("setFreeword.", this);
+      // console.log("MonsterSearch.setFreeword!");
+      // console.log("  " + this.searchMonsterParam.freeword);
       this.resetPageAndSearch();
     },
     setMainAttr() {
-      console.log("MonsterSearch.setMainAttr!");
+      logger.trace("setMainAttr.", this);
+      // console.log("MonsterSearch.setMainAttr!");
       this.searchMonsterParam.mainAttr = this.$refs.compMainAttr.getActiveValue();
       this.resetPageAndSearch();
     },
     setSubAttr() {
-      console.log("MonsterSearch.setSubAttr!");
+      logger.trace("setSubAttr.", this);
+      // console.log("MonsterSearch.setSubAttr!");
       this.searchMonsterParam.subAttr = this.$refs.compSubAttr.getActiveValue();
       this.resetPageAndSearch();
     },
     setThirdAttr() {
-      console.log("MonsterSearch.setThirdAttr!");
+      logger.trace("setThirdAttr.", this);
+      // console.log("MonsterSearch.setThirdAttr!");
       this.searchMonsterParam.thirdAttr = this.$refs.compThirdAttr.getActiveValue();
       this.resetPageAndSearch();
     },
     setAwakenSkill() {
-      console.log("MonsterSearch.setAwakenSkill!");
+      logger.trace("setAwakenSkill.", this);
+      // console.log("MonsterSearch.setAwakenSkill!");
       let valAwakenSkill = this.$refs.compSearchAwakenSkill.getActiveValue();
       
       this.searchMonsterParam.awakenSkill        = valAwakenSkill.awakenSkill;
@@ -298,20 +315,28 @@ export default {
       this.resetPageAndSearch();
     },
     setRare() {
-      console.log("MonsterSearch.setRare!");
+      logger.trace("setRare.", this);
+      // console.log("MonsterSearch.setRare!");
       this.searchMonsterParam.rare = this.$refs.compSearchRare.getActiveValue();
       this.resetPageAndSearch();
     },
     setType() {
-      console.log("MonsterSearch.setType!");
+      logger.trace("setType.", this);
+      // console.log("MonsterSearch.setType!");
       let valType = this.$refs.compSearchType.getActiveValue();
       this.searchMonsterParam.type        = valType.type;
       this.searchMonsterParam.typeCondAnd = valType.typeCondAnd;
       this.resetPageAndSearch();
     },
+    setCollabo() {
+      logger.trace("setCollabo.", this);
+      // console.log("MonsterSearch.setCollabo!");
+      this.searchMonsterParam.collabo = this.$refs.compSearchCollabo.getActiveValue();
+      this.resetPageAndSearch();
+    },
     loadCollabo() {
       api.listCollabo().then((resData)=>{
-            console.log("  loadCollabo success.");
+            // console.log("  loadCollabo success.");
             // console.log(resData.data);
             this.displayData.collabos = resData.data;
             this.loading.collabo = false;
@@ -344,7 +369,8 @@ export default {
         });
     },
     handleResetSearchMonster() {
-      console.log("  clear search form!");
+      logger.trace("handleResetSearchMonster.", this);
+      // console.log("  clear search form!");
 
       // freeword
       this.$refs.freeword = "";

@@ -32,7 +32,8 @@
 </template>
 
 <script>
-import api from "../../common/api";
+import api    from "../../common/api";
+import logger from "../../common/logger";
 
 export default {
   props: {
@@ -46,28 +47,30 @@ export default {
     };
   },
   created() {
-    console.log("created.");
+    logger.trace("created start.", this);
 
     api.listAwakenSkill().then((resData)=>{
-          console.log("  load AwakenSkill success.");
+          // console.log("  load AwakenSkill success.");
           // console.log(resData.data);
           this.awakenSkills = resData.data.data;
 
-          console.log(this.awakenSkills);
+          // console.log(this.awakenSkills);
 
-          console.log(this.awakenSkills.length);
+          // console.log(this.awakenSkills.length);
       }).catch((err)=>{
           console.error("  load AwakenSkill failed.");
           console.log(err);
       });
 
+    logger.trace("created end.", this);
   },
-  mounted() {
-    console.log("mounted.");
-  },
+  // mounted() {
+  //   console.log("mounted.");
+  // },
   methods: {
     updateValue() {
-      console.log("updateValue.");
+      logger.trace("updateValue.", this);
+      // console.log("updateValue.");
       this.$emit("click");
     },
     switchActive(event, awakenSkill) {

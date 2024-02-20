@@ -3,6 +3,7 @@
 //----------------------------------------------------
 
 import Config from './config.js'
+import logger from './logger.js'
 
 import axios from "axios";
 import qs from 'qs';
@@ -17,17 +18,21 @@ let _axios = axios.create({
 });
 
 export default {
+    name: "api.js",
     //
     listAwakenSkill: function(params) {
-        console.log(" api.js->listAwakenSkill");
+        logger.trace("listAwakenSkill", this);
+        // console.log(" api.js->listAwakenSkill");
         return _axios.get("/awakenskill/list", params)
     },
     //
     listMonster: function(params) {
-        console.log(" api.js->listMonster");
-        console.log(params);
-        console.log(" params format");
-        console.log(qs.stringify(params, { indices: true }));
+        logger.trace("listMonster", this);
+        // console.log(" api.js->listMonster");
+        // console.log(params);
+        // console.log(" params format");
+        // logger.debug("params", this);
+        logger.debug(qs.stringify(params, { indices: true }), this);
 
         return _axios.get("/monster/list", {
             params,
@@ -40,17 +45,20 @@ export default {
     },
     //
     listCollabo: function(params) {
-        console.log(" api.js->listCollabo");
+        logger.trace("listCollabo", this);
+        // console.log(" api.js->listCollabo");
         return _axios.get("/collabo/list", params)
     },
     // 属性
     listAttr: function(params) {
-        console.log(" api.js->listAttr");
+        logger.trace("listAttr", this);
+        // console.log(" api.js->listAttr");
         return _axios.get("/attr/list", params)
     },
     // タイプ
     listType: function(params) {
-        console.log(" api.js->listType");
+        logger.trace("listType", this);
+        // console.log(" api.js->listType");
         return _axios.get("/type/list", params)
     },
 

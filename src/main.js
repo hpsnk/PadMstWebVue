@@ -10,7 +10,6 @@ import 'element-ui/lib/theme-chalk/index.css'
 import Config from './common/config.js'
 Vue.prototype.Config = Config
 
-//import * as Api from './common/ApiFunction'
 import api from './common/api'
 Vue.prototype.PadMstApi = api
 

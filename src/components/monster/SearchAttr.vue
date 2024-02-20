@@ -15,9 +15,11 @@
 </template>
 
 <script>
-import api from "../../common/api";
+import api    from "../../common/api";
+import logger from "../../common/logger";
 
 export default {
+  name: "SearchAttr.vue",
   props: {
     name: String,
     label: String,
@@ -32,7 +34,8 @@ export default {
     };
   },
   created() {
-    console.log("created.");
+    logger.trace("created start.", this);
+    
     api.listAttr().then((resData) => {
         this.attrs = resData.data;
         this.loading.attr = false;
@@ -40,12 +43,13 @@ export default {
         console.log("error");
         console.log(err);
       });
-  },
-  mounted() {
-    console.log("mounted.");
+
+    logger.trace("created end.", this);
   },
   methods: {
     switchActive(event, attr) {
+      logger.trace("switchActive.", this);
+
       // console.log("switchActive");
       if (attr.active) {
         attr.active = false;
@@ -57,11 +61,13 @@ export default {
       this.$forceUpdate();
 
       // console.log("---->" + attr.active);
-      console.log(this.attrs);
+      // console.log(this.attrs);
 
       this.$emit("click");
     },
     reset() {
+      logger.trace("reset.", this);
+
       this.attrs.forEach((attr) => {
         attr.active = false;
       });
@@ -71,6 +77,8 @@ export default {
       this.$forceUpdate();
     },
     getActiveValue() {
+      logger.trace("getActiveValue.", this);
+
       return this.attrs.filter(elem => {
         return elem.active;
       }).map(elem => {

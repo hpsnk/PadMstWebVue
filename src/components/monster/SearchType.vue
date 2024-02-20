@@ -32,7 +32,8 @@
 </template>
 
 <script>
-import api from "../../common/api";
+import api    from "../../common/api";
+import logger from "../../common/logger";
 
 export default {
   props: {
@@ -46,18 +47,18 @@ export default {
     };
   },
   created() {
-    console.log("created.");
+    logger.trace("created start.", this);
+
     api.listType().then((resData)=>{
-          console.log("  loadType success.");
+          // console.log("  loadType success.");
           // console.log(resData.data);
           this.types = resData.data;
       }).catch((err)=>{
           console.error("  loadType failed.");
           console.log(err);
       });
-  },
-  mounted() {
-    console.log("mounted.");
+
+    logger.trace("created end.", this);
   },
   methods: {
     updateValue() {
