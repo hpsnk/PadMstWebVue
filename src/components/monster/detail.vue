@@ -68,7 +68,9 @@
     </div>
     <div class="skill">
       <div class="name" @click="findBySkill(monster)">{{monster.skill != undefined ?  monster.skill.name : ''}}</div>
-      <div class="turn">{{monster.skill != undefined ?  monster.skill.turn : ''}}</div>
+      <div class="turn" v-if="monster.skill != undefined && monster.skill.turn != undefined">
+        {{monster.skill != undefined ?  monster.skill.turn : ''}}
+      </div>
       <div class="desc">
         {{monster.skill != undefined ?  monster.skill.gameDesc : ''}}
       </div>
