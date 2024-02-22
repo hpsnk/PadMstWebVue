@@ -88,7 +88,7 @@
 
 <script>
 export default {
-  name: "LeaderSkillSearch",
+  name: "LeaderSkillPage.vue",
   mounted: function () {
     console.log("  mounted");
   },

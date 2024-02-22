@@ -75,11 +75,10 @@
 </template>
 
 <script>
-import api from '../common/api'
 import CompIconAwaken from "../components/monster/IconAwaken.vue";
 
 export default {
-  name: "AwakenSkillPage",
+  name: "AwakenSkill.vue",
   components: {
     CompIconAwaken,
   },
@@ -91,7 +90,7 @@ export default {
     mounted() {
         console.log("AwakenSkillPage.mounted.start");
         
-        api.listAwakenSkill().then((resData)=>{
+        this.PadMstApi.listAwakenSkill().then((resData)=>{
             console.log("success");
             console.log(resData.data);
             console.log(resData.data.data);

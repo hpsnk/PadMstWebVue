@@ -32,10 +32,8 @@
 </template>
 
 <script>
-import api    from "../../common/api";
-import logger from "../../common/logger";
-
 export default {
+  name: "SearchType.vue",
   props: {
     name: String,
   },
@@ -47,9 +45,9 @@ export default {
     };
   },
   created() {
-    logger.trace("created start.", this);
+    this.logger.trace("created start.", this);
 
-    api.listType().then((resData)=>{
+    this.PadMstApi.listType().then((resData)=>{
           // console.log("  loadType success.");
           // console.log(resData.data);
           this.types = resData.data;
@@ -58,7 +56,7 @@ export default {
           console.log(err);
       });
 
-    logger.trace("created end.", this);
+    this.logger.trace("created end.", this);
   },
   methods: {
     updateValue() {

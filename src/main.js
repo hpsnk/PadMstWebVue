@@ -10,8 +10,13 @@ import 'element-ui/lib/theme-chalk/index.css'
 import Config from './common/config.js'
 Vue.prototype.Config = Config
 
-import api from './common/api'
+// api
+import api from './common/api';
 Vue.prototype.PadMstApi = api
+
+// logger
+import logger from './common/logger';
+Vue.prototype.logger = logger;
 
 Vue.config.productionTip = false
 

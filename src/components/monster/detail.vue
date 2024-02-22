@@ -86,7 +86,7 @@
 import CompIconAwaken from "./IconAwaken.vue";
 
 export default {
-  name: "component.monster.detail",
+  name: "detail.vue",
   components: {
     CompIconAwaken,
   },

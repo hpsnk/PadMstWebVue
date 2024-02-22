@@ -211,8 +211,6 @@
 </template>
 
 <script>
-import api    from "../common/api";
-import logger from "../common/logger";
 import CompMonsterDetail from "../components/monster/detail.vue";
 import CompMonsterSearchAttr from "@/components/monster/SearchAttr.vue";
 import CompMonsterSearchRare from "@/components/monster/SearchRare.vue";
@@ -221,7 +219,7 @@ import CompMonsterSearchAwakenSkill from "@/components/monster/SearchAwakenSkill
 import CompMonsterSearchCollabo     from "@/components/monster/SearchCollabo.vue";
 
 export default {
-  name: "MonsterPage",
+  name: "MonsterPage.vue",
   components: {
     CompMonsterDetail,
     CompMonsterSearchAttr,
@@ -263,7 +261,7 @@ export default {
     };
   },
   mounted() {
-    logger.trace("mounted start.", this);
+    this.logger.trace("mounted start.", this);
     // console.log("[%s][%s]mounted start.", this.$options.name, this.name);
     // console.log("MonsterPage.mounted-->start.");
 
@@ -272,7 +270,7 @@ export default {
 
     // console.log("MonsterPage.mounted-->end.");
     // console.log("[%s]mounted end.", this.name);
-    logger.trace("mounted end.", this);
+    this.logger.trace("mounted end.", this);
   },
   methods: {
     resetPageAndSearch() {
@@ -281,31 +279,31 @@ export default {
       this.searchMonster();
     },
     setFreeword() {
-      logger.trace("setFreeword.", this);
+      this.logger.trace("setFreeword.", this);
       // console.log("MonsterSearch.setFreeword!");
       // console.log("  " + this.searchMonsterParam.freeword);
       this.resetPageAndSearch();
     },
     setMainAttr() {
-      logger.trace("setMainAttr.", this);
+      this.logger.trace("setMainAttr.", this);
       // console.log("MonsterSearch.setMainAttr!");
       this.searchMonsterParam.mainAttr = this.$refs.compMainAttr.getActiveValue();
       this.resetPageAndSearch();
     },
     setSubAttr() {
-      logger.trace("setSubAttr.", this);
+      this.logger.trace("setSubAttr.", this);
       // console.log("MonsterSearch.setSubAttr!");
       this.searchMonsterParam.subAttr = this.$refs.compSubAttr.getActiveValue();
       this.resetPageAndSearch();
     },
     setThirdAttr() {
-      logger.trace("setThirdAttr.", this);
+      this.logger.trace("setThirdAttr.", this);
       // console.log("MonsterSearch.setThirdAttr!");
       this.searchMonsterParam.thirdAttr = this.$refs.compThirdAttr.getActiveValue();
       this.resetPageAndSearch();
     },
     setAwakenSkill() {
-      logger.trace("setAwakenSkill.", this);
+      this.logger.trace("setAwakenSkill.", this);
       // console.log("MonsterSearch.setAwakenSkill!");
       let valAwakenSkill = this.$refs.compSearchAwakenSkill.getActiveValue();
       
@@ -315,13 +313,13 @@ export default {
       this.resetPageAndSearch();
     },
     setRare() {
-      logger.trace("setRare.", this);
+      this.logger.trace("setRare.", this);
       // console.log("MonsterSearch.setRare!");
       this.searchMonsterParam.rare = this.$refs.compSearchRare.getActiveValue();
       this.resetPageAndSearch();
     },
     setType() {
-      logger.trace("setType.", this);
+      this.logger.trace("setType.", this);
       // console.log("MonsterSearch.setType!");
       let valType = this.$refs.compSearchType.getActiveValue();
       this.searchMonsterParam.type        = valType.type;
@@ -329,13 +327,13 @@ export default {
       this.resetPageAndSearch();
     },
     setCollabo() {
-      logger.trace("setCollabo.", this);
+      this.logger.trace("setCollabo.", this);
       // console.log("MonsterSearch.setCollabo!");
       this.searchMonsterParam.collabo = this.$refs.compSearchCollabo.getActiveValue();
       this.resetPageAndSearch();
     },
     loadCollabo() {
-      api.listCollabo().then((resData)=>{
+      this.PadMstApi.listCollabo().then((resData)=>{
             // console.log("  loadCollabo success.");
             // console.log(resData.data);
             this.displayData.collabos = resData.data;
@@ -354,7 +352,7 @@ export default {
       this.searched = true;
       this.loading.monster = true;
 
-      api.listMonster(this.searchMonsterParam).then((resData) => {
+      this.PadMstApi.listMonster(this.searchMonsterParam).then((resData) => {
           this.displayData.monsters = resData.data.data;
           console.log(this.displayData.monsters);
           // this.displayData.monsters.forEach(monster=> {
@@ -369,7 +367,7 @@ export default {
         });
     },
     handleResetSearchMonster() {
-      logger.trace("handleResetSearchMonster.", this);
+      this.logger.trace("handleResetSearchMonster.", this);
       // console.log("  clear search form!");
 
       // freeword
