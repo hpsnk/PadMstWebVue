@@ -83,13 +83,13 @@
 </template>
 
 <script>
-import CompIconAwaken from "./IconAwaken.vue";
+// import CompIconAwaken from "./IconAwaken.vue";
 
 export default {
   name: "detail.vue",
-  components: {
-    CompIconAwaken,
-  },
+  // components: {
+  //   CompIconAwaken,
+  // },
   props: {
     monster: Object,
   },

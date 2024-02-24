@@ -106,9 +106,9 @@ export default {
         // console.log(error);
       });
   },
-  components: {
-    // ComponentSearchAttr,
-  },
+  // components: {
+  //   ComponentSearchAttr,
+  // },
   methods: {
     dispTypes(row, col, value, index) {
       console.log(value);

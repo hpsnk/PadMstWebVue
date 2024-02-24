@@ -51,21 +51,21 @@
                 </div>
 
                 <!-- 主属性 -->
-                <CompMonsterSearchAttr ref="compMainAttr"
+                <CompSearchAttr ref="compMainAttr"
                   name="MonsterPage.mainAttr"
                   label="主属性" 
                   :hasNoneAttr="true"
                   @click="setMainAttr" />
 
                 <!-- サブ属性 -->
-                <CompMonsterSearchAttr ref="compSubAttr"
+                <CompSearchAttr ref="compSubAttr"
                   name="MonsterPage.subAttr"
                   label="副属性" 
                   :hasNoneAttr="false" 
                   @click="setSubAttr" />
 
                 <!-- 第三属性 -->
-                <CompMonsterSearchAttr ref="compThirdAttr" 
+                <CompSearchAttr ref="compThirdAttr" 
                   name="MonsterPage.thirdAttr"
                   label="第三属性" 
                   :hasNoneAttr="false" 
@@ -82,7 +82,7 @@
                   @click="setType" />
 
                 <!-- 覚醒スキル -->
-                <CompMonsterSearchAwakenSkill 
+                <comp-search-awaken-skill 
                   ref="compSearchAwakenSkill" 
                   name="MonsterPage.AwakenSkill"
                   @click="setAwakenSkill"
@@ -212,20 +212,20 @@
 
 <script>
 import CompMonsterDetail from "../components/monster/detail.vue";
-import CompMonsterSearchAttr from "@/components/monster/SearchAttr.vue";
+// import CompMonsterSearchAttr from "@/components/monster/SearchAttr.vue";
 import CompMonsterSearchRare from "@/components/monster/SearchRare.vue";
 import CompMonsterSearchType from "@/components/monster/SearchType.vue";
-import CompMonsterSearchAwakenSkill from "@/components/monster/SearchAwakenSkill.vue";
+// import CompMonsterSearchAwakenSkill from "@/components/monster/SearchAwakenSkill.vue";
 import CompMonsterSearchCollabo     from "@/components/monster/SearchCollabo.vue";
 
 export default {
   name: "MonsterPage.vue",
   components: {
     CompMonsterDetail,
-    CompMonsterSearchAttr,
+    // CompMonsterSearchAttr,
     CompMonsterSearchRare,
     CompMonsterSearchType,
-    CompMonsterSearchAwakenSkill,
+    // CompMonsterSearchAwakenSkill,
     CompMonsterSearchCollabo,
   },
   data() {
