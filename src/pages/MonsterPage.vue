@@ -51,33 +51,33 @@
                 </div>
 
                 <!-- 主属性 -->
-                <CompSearchAttr ref="compMainAttr"
+                <comp-search-attr ref="compMainAttr"
                   name="MonsterPage.mainAttr"
                   label="主属性" 
                   :hasNoneAttr="true"
                   @click="setMainAttr" />
 
                 <!-- サブ属性 -->
-                <CompSearchAttr ref="compSubAttr"
+                <comp-search-attr ref="compSubAttr"
                   name="MonsterPage.subAttr"
                   label="副属性" 
                   :hasNoneAttr="false" 
                   @click="setSubAttr" />
 
                 <!-- 第三属性 -->
-                <CompSearchAttr ref="compThirdAttr" 
+                <comp-search-attr ref="compThirdAttr" 
                   name="MonsterPage.thirdAttr"
                   label="第三属性" 
                   :hasNoneAttr="false" 
                   @click="setThirdAttr" />
 
                 <!-- レア -->
-                <CompMonsterSearchRare ref="compSearchRare"
+                <comp-search-rare ref="compSearchRare"
                   name="MonsterPage.rare" 
                   @click="setRare" />
 
                 <!-- タイプ -->
-                <CompMonsterSearchType ref="compSearchType" 
+                <comp-search-type ref="compSearchType" 
                   name="MonsterPage.type"
                   @click="setType" />
 
@@ -107,12 +107,23 @@
                   </el-select>
                 </div>
 
-                <CompMonsterSearchCollabo 
+                <comp-search-collabo 
                   ref="compSearchCollabo" 
                   name="MonsterPage.SearchCollabo"
                   @click="setCollabo"
                 />
 
+                <!-- スキル -->
+                <el-collapse>
+                  <el-collapse-item title="スキル" name="skill">
+                    <div class="form-group row">
+                      <label for="condFreeword" class="col-sm-2 col-form-label">キー</label>
+                      <div class="col-sm-10">
+                        <el-input ref="freeword" 
+                          v-model="searchMonsterParam.skill" placeholder="スキル キーワード" 
+                          @change="setFreeword"/>
+                      </div>
+                    </div>
                 <!-- スキルカテゴリ -->
                 <div class="form-group row" v-show="false">
                   <label class="col-sm-2 col-form-label">スキル</label>
@@ -125,12 +136,17 @@
                 </div>
 
                 <!-- スキルターン -->
-                <div class="form-group row" v-show="false">
+                <div class="form-group row">
                   <label for="skillturn" class="col-sm-2 col-form-label">スキルターン</label>
                   <div class="col-sm-10">
                     <input class="form-control" id="skillturn" placeholder="7">
                   </div>
                 </div>
+
+                  </el-collapse-item>
+                </el-collapse>
+
+
 
                 <!--ボタン-->
                 <div class="form-group row">
@@ -213,20 +229,20 @@
 <script>
 import CompMonsterDetail from "../components/monster/detail.vue";
 // import CompMonsterSearchAttr from "@/components/monster/SearchAttr.vue";
-import CompMonsterSearchRare from "@/components/monster/SearchRare.vue";
-import CompMonsterSearchType from "@/components/monster/SearchType.vue";
+// import CompMonsterSearchRare from "@/components/monster/SearchRare.vue";
+// import CompMonsterSearchType from "@/components/monster/SearchType.vue";
 // import CompMonsterSearchAwakenSkill from "@/components/monster/SearchAwakenSkill.vue";
-import CompMonsterSearchCollabo     from "@/components/monster/SearchCollabo.vue";
+// import CompMonsterSearchCollabo     from "@/components/monster/SearchCollabo.vue";
 
 export default {
   name: "MonsterPage.vue",
   components: {
     CompMonsterDetail,
     // CompMonsterSearchAttr,
-    CompMonsterSearchRare,
-    CompMonsterSearchType,
+    // CompMonsterSearchRare,
+    // CompMonsterSearchType,
     // CompMonsterSearchAwakenSkill,
-    CompMonsterSearchCollabo,
+    // CompMonsterSearchCollabo,
   },
   data() {
     return {

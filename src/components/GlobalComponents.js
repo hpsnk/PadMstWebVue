@@ -1,0 +1,27 @@
+// ------------------------------------
+// GlobalComponents
+// ------------------------------------
+
+import CompIconMonster         from './monster/IconMonster.vue';
+import CompIconAwaken          from './monster/IconAwaken.vue';
+
+import CompSearchAttr          from './search/SearchAttr.vue';
+import CompSearchAwakenSkill   from './search/SearchAwakenSkill.vue';
+import CompSearchCollabo       from './search/SearchCollabo.vue';
+import CompSearchRare          from './search/SearchRare.vue';
+import CompSearchType          from './search/SearchType.vue';
+
+export default {
+    install(Vue) {
+
+        Vue.component('CompIconMonster', CompIconMonster);
+        Vue.component('CompIconAwaken', CompIconAwaken);
+
+        Vue.component('CompSearchAttr', CompSearchAttr);
+        Vue.component('CompSearchAwakenSkill', CompSearchAwakenSkill);
+        Vue.component('CompSearchCollabo', CompSearchCollabo);
+        Vue.component('CompSearchRare', CompSearchRare);
+        Vue.component('CompSearchType', CompSearchType);
+      
+    }
+}

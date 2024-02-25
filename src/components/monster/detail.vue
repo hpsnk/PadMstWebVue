@@ -1,5 +1,9 @@
 <template>
   <div class="monster monster-detail">
+    <comp-icon-monster name="MonsterDetail.IconMonster"
+      :monster="monster" />
+
+    <!-- 
     <div class="monster-icon">
       <div class="icon monster" 
         :data-cardid="monster.monsterId" 
@@ -14,7 +18,8 @@
         </div>
         <div class="id">{{ monster.monsterId }}</div>
       </div>
-    </div>
+    </div> 
+    -->
     <div class="monster-basic-info">
       <div class="monster-name">{{ monster.name }}</div>
       <div class="monster-info">

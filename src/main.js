@@ -22,6 +22,10 @@ Vue.config.productionTip = false;
 
 Vue.use(ElementUI);
 
+import GlobalComponents from './components/GlobalComponents.js';
+
+Vue.use(GlobalComponents);
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
@@ -29,18 +33,3 @@ new Vue({
   components: { App },
   template: '<App/>'
 });
-
-import CompIconAwaken          from './components/monster/IconAwaken.vue';
-import SearchAttr              from './components/monster/SearchAttr.vue';
-import CompSearchAwakenSkill   from './components/monster/SearchAwakenSkill.vue';
-import CompSearchCollabo       from './components/monster/SearchCollabo.vue';
-import CompSearchRare          from './components/monster/SearchRare.vue';
-import CompSearchType          from './components/monster/SearchType.vue';
-
-Vue.component('CompIconAwaken', CompIconAwaken);
-
-Vue.component('CompSearchAttr', SearchAttr);
-Vue.component('CompSearchAwakenSkill', CompSearchAwakenSkill);
-Vue.component('CompSearchCollabo', CompSearchCollabo);
-Vue.component('CompSearchRare', CompSearchRare);
-Vue.component('CompSearchType', CompSearchType);
