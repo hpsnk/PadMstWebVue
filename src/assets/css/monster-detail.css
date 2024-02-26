@@ -24,7 +24,7 @@ div.monster-detail {
  * monster icon 
  */
 .monster-detail .monster-icon {
-	display: block;
+	display: inline-block;
 	height: 100px;
 	width: 100px;
 }

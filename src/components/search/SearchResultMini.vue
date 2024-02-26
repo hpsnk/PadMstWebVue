@@ -2,6 +2,9 @@
   | components search result mini
  -->
 <template>
+  <div class="monster monster-detail">
+    <comp-icon-monster :monster="monster" v-for="(monster, index) in displayData.monsters" :key="index" />
+  </div>
 </template>
 
 <script>
@@ -10,6 +13,7 @@ export default {
   props: {
     name: String,
     monsters: Array,
+    displayData: Object,
   },
   data() {
     return {

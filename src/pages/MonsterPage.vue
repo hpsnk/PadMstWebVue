@@ -167,54 +167,8 @@
 
           <!--検索結果-->
           <div class="col-md-6 col-sm-12"  v-if="searched">
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">
-                  <i class="fas fa-list"></i> 検索結果
-                </h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body" v-if="searched">
-                
-                <el-row v-if="searched">
-                  <el-col>
-                    <el-pagination
-                      layout="sizes, -> ,prev, pager, next"
-                      :page-sizes="[10, 30, 50, 100]"
-                      :page-size="displayData.pageSize"
-                      :total="displayData.total"
-                      :current-page="displayData.currentPage"
-                      @current-change="handleCurrentChange"
-                      @size-change="handlePageSizeChange"
-                    >
-                    </el-pagination>
-                  </el-col>
-                </el-row>
-
-                <table id="datatables_monster" class="table table-bordered table-hover table-monster" v-if="searched">
-                  <thead>
-                    <tr>
-                      <!--0-->
-                      <th>id</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr v-for="(monster, index) in displayData.monsters" :key="index">
-                      <td>
-                        <CompMonsterDetail :monster="monster" />
-                      </td>
-                    </tr>
-                  </tbody>
-                  <tfoot>
-                    <tr>
-                      <!--0-->
-                      <th>id</th>
-                    </tr>
-                  </tfoot>
-                </table>
-              </div>
-              <!-- /.card-body -->
-            </div>
+            <comp-search-result-mini 
+              :displayData="displayData" />
           </div>
 
         </div>
