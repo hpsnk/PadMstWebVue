@@ -167,8 +167,7 @@
 
           <!--検索結果-->
           <div class="col-md-6 col-sm-12"  v-if="searched">
-            <comp-search-result-mini 
-              :displayData="displayData" />
+            <comp-search-result :displayData="displayData" />
           </div>
 
         </div>

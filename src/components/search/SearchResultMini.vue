@@ -12,7 +12,7 @@ export default {
   name: "SearchResultMini.vue",
   props: {
     name: String,
-    monsters: Array,
+    // monsters: Array,
     displayData: Object,
   },
   data() {

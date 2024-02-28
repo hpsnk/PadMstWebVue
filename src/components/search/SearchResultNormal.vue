@@ -3,21 +3,6 @@
  -->
 <template>
   <div>
-    <el-row>
-      <el-col>
-        <el-pagination
-          layout="sizes, -> ,prev, pager, next"
-          :page-sizes="[10, 30, 50, 100]"
-          :page-size="displayData.pageSize"
-          :total="displayData.total"
-          :current-page="displayData.currentPage"
-          @current-change="handleCurrentChange"
-          @size-change="handlePageSizeChange"
-        >
-        </el-pagination>
-      </el-col>
-    </el-row>
-
     <table id="datatables_monster" class="table table-bordered table-hover table-monster">
       <thead>
         <tr>
@@ -37,12 +22,15 @@
 </template>
 
 <script>
+import CompMonsterDetail from "../monster/detail.vue";
 export default {
   name: "SearchResultNormal.vue",
   props: {
     name: String,
-    monsters: Array,
     displayData: Object,
+  },
+  components: {
+    CompMonsterDetail,
   },
   data() {
     return {
