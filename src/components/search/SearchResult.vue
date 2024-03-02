@@ -7,14 +7,9 @@
       <h3 class="card-title">
         <i class="fas fa-list"></i> 検索結果
       </h3>
-    </div>
-    <!-- /.card-header -->
-    <div class="card-body">
-      
-      <el-row>
-        <el-col>
-          <el-pagination
-            layout="sizes, -> ,prev, pager, next"
+      <div class="card-tools">
+        <el-pagination
+            layout="-> ,sizes"
             :page-sizes="[10, 30, 50, 100]"
             :page-size="displayData.pageSize"
             :total="displayData.total"
@@ -23,13 +18,34 @@
             @size-change="handlePageSizeChange"
           >
           </el-pagination>
-        </el-col>
-      </el-row>
+      </div>
+    </div>
+    
+    <!-- body -->
+    <div class="card-body">
+      <!--mini-->
+      <div class="row">
+        <comp-search-result-mini :displayData="displayData" />
+      </div>
 
-      <comp-search-result-mini :displayData="displayData" />
+      <!--normal-->
+      <div class="row">
+        <comp-search-result-normal :displayData="displayData" />
+      </div>
+    </div>
 
-      <comp-search-result-normal :displayData="displayData" />
-
+    <!-- footer -->
+    <div class="card-footer">
+      <el-pagination
+          layout="-> ,prev, pager, next"
+          :page-sizes="[10, 30, 50, 100]"
+          :page-size="displayData.pageSize"
+          :total="displayData.total"
+          :current-page="displayData.currentPage"
+          @current-change="handleCurrentChange"
+          @size-change="handlePageSizeChange"
+        >
+      </el-pagination>
     </div>
   </div>
 </template>
@@ -190,4 +206,5 @@ export default {
 
 <style scoped>
 @import "../../assets/css/monster-search.css";
+@import "../../assets/css/monster-detail.css";
 </style>

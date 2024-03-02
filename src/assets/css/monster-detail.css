@@ -20,6 +20,10 @@ div.monster-detail {
 	background-color: rgba(121, 91, 51, 100);
 }
 
+div.monster-detail.monster-detail-mini {
+	height: 100%;
+}
+
 /*----------------------------
  * monster icon 
  */

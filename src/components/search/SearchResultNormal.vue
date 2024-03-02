@@ -2,22 +2,10 @@
   | components search result normal
  -->
 <template>
-  <div>
-    <table id="datatables_monster" class="table table-bordered table-hover table-monster">
-      <thead>
-        <tr>
-          <!--0-->
-          <th>id</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(monster, index) in displayData.monsters" :key="index">
-          <td>
-            <CompMonsterDetail :monster="monster" />
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="monster monster-detail monster-detail-normal">
+    <CompMonsterDetail :monster="monster" 
+      v-for="(monster, index) in displayData.monsters" :key="'div.monster.detail.' + index"
+    />
   </div>
 </template>
 

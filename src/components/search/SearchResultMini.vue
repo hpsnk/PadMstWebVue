@@ -2,8 +2,9 @@
   | components search result mini
  -->
 <template>
-  <div class="monster monster-detail">
-    <comp-icon-monster :monster="monster" v-for="(monster, index) in displayData.monsters" :key="index" />
+  <div class="monster monster-detail monster-detail-mini">
+    <comp-icon-monster :monster="monster" 
+      v-for="(monster, index) in displayData.monsters" :key="index" />
   </div>
 </template>
 
@@ -29,4 +30,5 @@ export default {
 
 <style scoped>
 @import "../../assets/css/monster-search.css";
+@import "../../assets/css/monster-detail.css";
 </style>
