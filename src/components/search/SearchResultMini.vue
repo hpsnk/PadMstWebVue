@@ -4,7 +4,7 @@
 <template>
   <div class="monster monster-detail monster-detail-mini">
     <comp-icon-monster :monster="monster" 
-      v-for="(monster, index) in displayData.monsters" :key="index" />
+      v-for="(monster, index) in displayData.monsters" :key="'div.monster.mini.' + index" />
   </div>
 </template>
 

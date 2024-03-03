@@ -5,10 +5,26 @@
   <div class="card">
     <div class="card-header">
       <h3 class="card-title">
-        <i class="fas fa-list"></i> 検索結果
+        <el-switch
+          v-model="isMini"
+          active-text="Icon"
+          inactive-text="Detail">
+        </el-switch>
       </h3>
       <div class="card-tools">
         <el-pagination
+          layout="-> ,prev, pager, next"
+          :page-sizes="[10, 30, 50, 100]"
+          :page-size="displayData.pageSize"
+          :total="displayData.total"
+          :current-page="displayData.currentPage"
+          @current-change="handleCurrentChange"
+          @size-change="handlePageSizeChange"
+        >
+        </el-pagination>
+
+
+        <el-pagination v-if="false"
             layout="-> ,sizes"
             :page-sizes="[10, 30, 50, 100]"
             :page-size="displayData.pageSize"
@@ -24,12 +40,12 @@
     <!-- body -->
     <div class="card-body">
       <!--mini-->
-      <div class="row">
+      <div class="row" v-if="isMini">
         <comp-search-result-mini :displayData="displayData" />
       </div>
 
       <!--normal-->
-      <div class="row">
+      <div class="row" v-if="!isMini">
         <comp-search-result-normal :displayData="displayData" />
       </div>
     </div>
@@ -59,9 +75,10 @@ export default {
   },
   data() {
     return {
-      types: [],
-      typeCondAnd: false,
-      loading: true,
+      isMini: true,
+      // types: [],
+      // typeCondAnd: false,
+      // loading: true,
     };
   },
   methods: {

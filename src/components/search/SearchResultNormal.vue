@@ -4,7 +4,7 @@
 <template>
   <div class="monster monster-detail monster-detail-normal">
     <CompMonsterDetail :monster="monster" 
-      v-for="(monster, index) in displayData.monsters" :key="'div.monster.detail.' + index"
+      v-for="(monster, index) in displayData.monsters" :key="'div.monster.normal.' + index"
     />
   </div>
 </template>
