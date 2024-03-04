@@ -11,6 +11,7 @@
 
 <script>
 export default {
+  name: "IconAwaken.vue",
   props: {
     name: String,
     awakenskillId: Number,
@@ -23,9 +24,6 @@ export default {
     return {
       active: false,
     };
-  },
-  mounted() {
-    console.log("mounted.");
   },
 };
 </script>

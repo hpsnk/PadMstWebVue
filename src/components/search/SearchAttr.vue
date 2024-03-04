@@ -15,9 +15,6 @@
 </template>
 
 <script>
-import api    from "../../common/api";
-import logger from "../../common/logger";
-
 export default {
   name: "SearchAttr.vue",
   props: {
@@ -34,9 +31,9 @@ export default {
     };
   },
   created() {
-    logger.trace("created start.", this);
+    this.logger.trace("created start.", this);
     
-    api.listAttr().then((resData) => {
+    this.PadMstApi.listAttr().then((resData) => {
         this.attrs = resData.data;
         this.loading.attr = false;
       }).catch((err) => {
@@ -44,11 +41,11 @@ export default {
         console.log(err);
       });
 
-    logger.trace("created end.", this);
+    this.logger.trace("created end.", this);
   },
   methods: {
     switchActive(event, attr) {
-      logger.trace("switchActive.", this);
+      this.logger.trace("switchActive.", this);
 
       // console.log("switchActive");
       if (attr.active) {
@@ -66,7 +63,7 @@ export default {
       this.$emit("click");
     },
     reset() {
-      logger.trace("reset.", this);
+      this.logger.trace("reset.", this);
 
       this.attrs.forEach((attr) => {
         attr.active = false;
@@ -77,7 +74,7 @@ export default {
       this.$forceUpdate();
     },
     getActiveValue() {
-      logger.trace("getActiveValue.", this);
+      this.logger.trace("getActiveValue.", this);
 
       return this.attrs.filter(elem => {
         return elem.active;

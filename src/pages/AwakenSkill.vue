@@ -47,7 +47,7 @@
                         <template slot-scope="scope">
                             <comp-icon-awaken name="MonsterDetail.awakenskill"
                                 :awakenskillId="scope.row.awakenskillId"
-                                :key="index"
+                                :key="scope.row.awakenskillId"
                             />
                         </template>
                     </el-table-column>
@@ -75,14 +75,13 @@
 </template>
 
 <script>
-import api from '../common/api'
-import CompIconAwaken from "../components/monster/IconAwaken.vue";
+// import CompIconAwaken from "../components/monster/IconAwaken.vue";
 
 export default {
-  name: "AwakenSkillPage",
-  components: {
-    CompIconAwaken,
-  },
+  name: "AwakenSkill.vue",
+  // components: {
+  //   CompIconAwaken,
+  // },
   data() {
     return {
         awakenskills: [],
@@ -91,7 +90,7 @@ export default {
     mounted() {
         console.log("AwakenSkillPage.mounted.start");
         
-        api.listAwakenSkill().then((resData)=>{
+        this.PadMstApi.listAwakenSkill().then((resData)=>{
             console.log("success");
             console.log(resData.data);
             console.log(resData.data.data);

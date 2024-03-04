@@ -1,9 +1,10 @@
 //----------------------------------------------------
 // api.js 
 //----------------------------------------------------
+import Vue from 'vue';
+var vue = new Vue();
 
 import Config from './config.js'
-import logger from './logger.js'
 
 import axios from "axios";
 import qs from 'qs';
@@ -21,18 +22,15 @@ export default {
     name: "api.js",
     //
     listAwakenSkill: function(params) {
-        logger.trace("listAwakenSkill", this);
+        vue.logger.trace("listAwakenSkill", this);
         // console.log(" api.js->listAwakenSkill");
         return _axios.get("/awakenskill/list", params)
     },
     //
     listMonster: function(params) {
-        logger.trace("listMonster", this);
-        // console.log(" api.js->listMonster");
-        // console.log(params);
-        // console.log(" params format");
-        // logger.debug("params", this);
-        logger.debug(qs.stringify(params, { indices: true }), this);
+        vue.logger.trace("listMonster", this);
+
+        vue.logger.debug(qs.stringify(params, { indices: true }), this);
 
         return _axios.get("/monster/list", {
             params,
@@ -45,19 +43,19 @@ export default {
     },
     //
     listCollabo: function(params) {
-        logger.trace("listCollabo", this);
+        vue.logger.trace("listCollabo", this);
         // console.log(" api.js->listCollabo");
         return _axios.get("/collabo/list", params)
     },
     // 属性
     listAttr: function(params) {
-        logger.trace("listAttr", this);
+        vue.logger.trace("listAttr", this);
         // console.log(" api.js->listAttr");
         return _axios.get("/attr/list", params)
     },
     // タイプ
     listType: function(params) {
-        logger.trace("listType", this);
+        vue.logger.trace("listType", this);
         // console.log(" api.js->listType");
         return _axios.get("/type/list", params)
     },

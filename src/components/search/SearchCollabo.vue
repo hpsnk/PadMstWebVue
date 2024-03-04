@@ -22,11 +22,8 @@
 </template>
 
 <script>
-import api    from "../../common/api";
-import logger from "../../common/logger";
-
 export default {
-  name: "SearchCollabo",
+  name: "SearchCollabo.vue",
   props: {
     name: String,
   },
@@ -38,19 +35,19 @@ export default {
     };
   },
   created() {
-    logger.trace("created start.", this);
+    this.logger.trace("created start.", this);
     
-    api.listCollabo().then((resData)=>{
-            // console.log("  loadCollabo success.");
-            // console.log(resData.data);
-            this.collabos = resData.data;
-            this.loading = false;
-        }).catch((err)=>{
-            console.error("  loadCollabo failed.");
-            console.log(err);
-        });
+    this.PadMstApi.listCollabo().then((resData)=>{
+      // console.log("  loadCollabo success.");
+      // console.log(resData.data);
+      this.collabos = resData.data;
+      this.loading = false;
+    }).catch((err)=>{
+      console.error("  loadCollabo failed.");
+      console.log(err);
+    });
 
-        logger.trace("created end.", this);
+    this.logger.trace("created end.", this);
   },
   methods: {
     updateValue() {

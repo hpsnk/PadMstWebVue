@@ -1,21 +1,30 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue from 'vue'
-import App from './App'
-import router from './router'
+import Vue from 'vue';
+import App from './App';
+import router from './router';
 
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 
-import Config from './common/config.js'
-Vue.prototype.Config = Config
+import Config from './common/config.js';
+Vue.prototype.Config = Config;
 
-import api from './common/api'
+// api
+import api from './common/api';
 Vue.prototype.PadMstApi = api
 
-Vue.config.productionTip = false
+// logger
+import logger from './common/logger';
+Vue.prototype.logger = logger;
 
-Vue.use(ElementUI)
+Vue.config.productionTip = false;
+
+Vue.use(ElementUI);
+
+import GlobalComponents from './components/GlobalComponents.js';
+
+Vue.use(GlobalComponents);
 
 /* eslint-disable no-new */
 new Vue({
@@ -23,4 +32,4 @@ new Vue({
   router,
   components: { App },
   template: '<App/>'
-})
+});

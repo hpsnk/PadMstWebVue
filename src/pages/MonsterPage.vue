@@ -51,38 +51,38 @@
                 </div>
 
                 <!-- 主属性 -->
-                <CompMonsterSearchAttr ref="compMainAttr"
+                <comp-search-attr ref="compMainAttr"
                   name="MonsterPage.mainAttr"
                   label="主属性" 
                   :hasNoneAttr="true"
                   @click="setMainAttr" />
 
                 <!-- サブ属性 -->
-                <CompMonsterSearchAttr ref="compSubAttr"
+                <comp-search-attr ref="compSubAttr"
                   name="MonsterPage.subAttr"
                   label="副属性" 
                   :hasNoneAttr="false" 
                   @click="setSubAttr" />
 
                 <!-- 第三属性 -->
-                <CompMonsterSearchAttr ref="compThirdAttr" 
+                <comp-search-attr ref="compThirdAttr" 
                   name="MonsterPage.thirdAttr"
                   label="第三属性" 
                   :hasNoneAttr="false" 
                   @click="setThirdAttr" />
 
                 <!-- レア -->
-                <CompMonsterSearchRare ref="compSearchRare"
+                <comp-search-rare ref="compSearchRare"
                   name="MonsterPage.rare" 
                   @click="setRare" />
 
                 <!-- タイプ -->
-                <CompMonsterSearchType ref="compSearchType" 
+                <comp-search-type ref="compSearchType" 
                   name="MonsterPage.type"
                   @click="setType" />
 
                 <!-- 覚醒スキル -->
-                <CompMonsterSearchAwakenSkill 
+                <comp-search-awaken-skill 
                   ref="compSearchAwakenSkill" 
                   name="MonsterPage.AwakenSkill"
                   @click="setAwakenSkill"
@@ -107,30 +107,52 @@
                   </el-select>
                 </div>
 
-                <CompMonsterSearchCollabo 
+                <comp-search-collabo 
                   ref="compSearchCollabo" 
                   name="MonsterPage.SearchCollabo"
                   @click="setCollabo"
                 />
 
-                <!-- スキルカテゴリ -->
-                <div class="form-group row" v-show="false">
-                  <label class="col-sm-2 col-form-label">スキル</label>
-                  <div class="col-sm-10">
-                    <select id="skillcategory" class="form-control select2bs4" multiple="multiple" data-placeholder="Select a State">
-                    <!-- <select class="form-control col-sm-10" > -->
-                      <option value="0">All</option>
-                    </select>
-                  </div>
-                </div>
+                <!-- スキル -->
+                <el-collapse>
+                  <el-collapse-item title="スキル" name="skill">
+                    <div class="form-group row">
+                      <label for="condFreeword" class="col-sm-2 col-form-label">キー</label>
+                      <div class="col-sm-10">
+                        <el-input ref="freeword" 
+                          v-model="searchMonsterParam.skill" placeholder="スキル キーワード" 
+                          @change="setFreeword"/>
+                      </div>
+                    </div>
+                    <!-- スキルカテゴリ -->
+                    <div class="form-group row" v-show="false">
+                      <label class="col-sm-2 col-form-label">スキル</label>
+                      <div class="col-sm-10">
+                        <select id="skillcategory" class="form-control select2bs4" multiple="multiple" data-placeholder="Select a State">
+                        <!-- <select class="form-control col-sm-10" > -->
+                          <option value="0">All</option>
+                        </select>
+                      </div>
+                    </div>
 
-                <!-- スキルターン -->
-                <div class="form-group row" v-show="false">
-                  <label for="skillturn" class="col-sm-2 col-form-label">スキルターン</label>
-                  <div class="col-sm-10">
-                    <input class="form-control" id="skillturn" placeholder="7">
-                  </div>
-                </div>
+                    <!-- スキルターン -->
+                    <div class="form-group row">
+                      <label for="skillturn" class="col-sm-2 col-form-label">ターン</label>
+                      <div class="col-sm-10">
+                        <input class="form-control" id="skillturn" placeholder="7">
+                      </div>
+                    </div>
+
+                  </el-collapse-item>
+                </el-collapse>
+
+                <!-- スキル -->
+                <el-collapse>
+                  <el-collapse-item title="レーダスキル" name="leaderskill">
+
+                  </el-collapse-item>
+                </el-collapse>
+
 
                 <!--ボタン-->
                 <div class="form-group row">
@@ -151,54 +173,10 @@
 
           <!--検索結果-->
           <div class="col-md-6 col-sm-12"  v-if="searched">
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">
-                  <i class="fas fa-list"></i> 検索結果
-                </h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body" v-if="searched">
-                
-                <el-row v-if="searched">
-                  <el-col>
-                    <el-pagination
-                      layout="sizes, -> ,prev, pager, next"
-                      :page-sizes="[10, 30, 50, 100]"
-                      :page-size="displayData.pageSize"
-                      :total="displayData.total"
-                      :current-page="displayData.currentPage"
-                      @current-change="handleCurrentChange"
-                      @size-change="handlePageSizeChange"
-                    >
-                    </el-pagination>
-                  </el-col>
-                </el-row>
-
-                <table id="datatables_monster" class="table table-bordered table-hover table-monster" v-if="searched">
-                  <thead>
-                    <tr>
-                      <!--0-->
-                      <th>id</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr v-for="(monster, index) in displayData.monsters" :key="index">
-                      <td>
-                        <CompMonsterDetail :monster="monster" />
-                      </td>
-                    </tr>
-                  </tbody>
-                  <tfoot>
-                    <tr>
-                      <!--0-->
-                      <th>id</th>
-                    </tr>
-                  </tfoot>
-                </table>
-              </div>
-              <!-- /.card-body -->
-            </div>
+            <comp-search-result name="xxx.yyy.zzz" 
+              :displayData="displayData"
+              :searchMonsterParam="searchMonsterParam"
+              @onSwitchPage="handleCurrentChange" />
           </div>
 
         </div>
@@ -211,25 +189,8 @@
 </template>
 
 <script>
-import api    from "../common/api";
-import logger from "../common/logger";
-import CompMonsterDetail from "../components/monster/detail.vue";
-import CompMonsterSearchAttr from "@/components/monster/SearchAttr.vue";
-import CompMonsterSearchRare from "@/components/monster/SearchRare.vue";
-import CompMonsterSearchType from "@/components/monster/SearchType.vue";
-import CompMonsterSearchAwakenSkill from "@/components/monster/SearchAwakenSkill.vue";
-import CompMonsterSearchCollabo     from "@/components/monster/SearchCollabo.vue";
-
 export default {
-  name: "MonsterPage",
-  components: {
-    CompMonsterDetail,
-    CompMonsterSearchAttr,
-    CompMonsterSearchRare,
-    CompMonsterSearchType,
-    CompMonsterSearchAwakenSkill,
-    CompMonsterSearchCollabo,
-  },
+  name: "MonsterPage.vue",
   data() {
     return {
       loading: {
@@ -263,7 +224,7 @@ export default {
     };
   },
   mounted() {
-    logger.trace("mounted start.", this);
+    this.logger.trace("mounted start.", this);
     // console.log("[%s][%s]mounted start.", this.$options.name, this.name);
     // console.log("MonsterPage.mounted-->start.");
 
@@ -272,7 +233,7 @@ export default {
 
     // console.log("MonsterPage.mounted-->end.");
     // console.log("[%s]mounted end.", this.name);
-    logger.trace("mounted end.", this);
+    this.logger.trace("mounted end.", this);
   },
   methods: {
     resetPageAndSearch() {
@@ -281,31 +242,31 @@ export default {
       this.searchMonster();
     },
     setFreeword() {
-      logger.trace("setFreeword.", this);
+      this.logger.trace("setFreeword.", this);
       // console.log("MonsterSearch.setFreeword!");
       // console.log("  " + this.searchMonsterParam.freeword);
       this.resetPageAndSearch();
     },
     setMainAttr() {
-      logger.trace("setMainAttr.", this);
+      this.logger.trace("setMainAttr.", this);
       // console.log("MonsterSearch.setMainAttr!");
       this.searchMonsterParam.mainAttr = this.$refs.compMainAttr.getActiveValue();
       this.resetPageAndSearch();
     },
     setSubAttr() {
-      logger.trace("setSubAttr.", this);
+      this.logger.trace("setSubAttr.", this);
       // console.log("MonsterSearch.setSubAttr!");
       this.searchMonsterParam.subAttr = this.$refs.compSubAttr.getActiveValue();
       this.resetPageAndSearch();
     },
     setThirdAttr() {
-      logger.trace("setThirdAttr.", this);
+      this.logger.trace("setThirdAttr.", this);
       // console.log("MonsterSearch.setThirdAttr!");
       this.searchMonsterParam.thirdAttr = this.$refs.compThirdAttr.getActiveValue();
       this.resetPageAndSearch();
     },
     setAwakenSkill() {
-      logger.trace("setAwakenSkill.", this);
+      this.logger.trace("setAwakenSkill.", this);
       // console.log("MonsterSearch.setAwakenSkill!");
       let valAwakenSkill = this.$refs.compSearchAwakenSkill.getActiveValue();
       
@@ -315,13 +276,13 @@ export default {
       this.resetPageAndSearch();
     },
     setRare() {
-      logger.trace("setRare.", this);
+      this.logger.trace("setRare.", this);
       // console.log("MonsterSearch.setRare!");
       this.searchMonsterParam.rare = this.$refs.compSearchRare.getActiveValue();
       this.resetPageAndSearch();
     },
     setType() {
-      logger.trace("setType.", this);
+      this.logger.trace("setType.", this);
       // console.log("MonsterSearch.setType!");
       let valType = this.$refs.compSearchType.getActiveValue();
       this.searchMonsterParam.type        = valType.type;
@@ -329,13 +290,13 @@ export default {
       this.resetPageAndSearch();
     },
     setCollabo() {
-      logger.trace("setCollabo.", this);
+      this.logger.trace("setCollabo.", this);
       // console.log("MonsterSearch.setCollabo!");
       this.searchMonsterParam.collabo = this.$refs.compSearchCollabo.getActiveValue();
       this.resetPageAndSearch();
     },
     loadCollabo() {
-      api.listCollabo().then((resData)=>{
+      this.PadMstApi.listCollabo().then((resData)=>{
             // console.log("  loadCollabo success.");
             // console.log(resData.data);
             this.displayData.collabos = resData.data;
@@ -354,7 +315,7 @@ export default {
       this.searched = true;
       this.loading.monster = true;
 
-      api.listMonster(this.searchMonsterParam).then((resData) => {
+      this.PadMstApi.listMonster(this.searchMonsterParam).then((resData) => {
           this.displayData.monsters = resData.data.data;
           console.log(this.displayData.monsters);
           // this.displayData.monsters.forEach(monster=> {
@@ -369,7 +330,7 @@ export default {
         });
     },
     handleResetSearchMonster() {
-      logger.trace("handleResetSearchMonster.", this);
+      this.logger.trace("handleResetSearchMonster.", this);
       // console.log("  clear search form!");
 
       // freeword
@@ -405,9 +366,7 @@ export default {
     handlePageSizeChange(pageSize) {
       this.displayData.pageSize = pageSize;
     },
-    handleCurrentChange(page) {
-      this.displayData.currentPage = page;
-      this.searchMonsterParam.start = (page - 1) * this.searchMonsterParam.length;
+    handleCurrentChange() {
       this.searchMonster();
     },
   }
