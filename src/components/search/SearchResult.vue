@@ -72,6 +72,7 @@ export default {
   props: {
     name: String,
     displayData: Object,
+    searchMonsterParam: Object,
   },
   data() {
     return {
@@ -213,9 +214,17 @@ export default {
       this.displayData.pageSize = pageSize;
     },
     handleCurrentChange(page) {
+      this.logger.debug("swithc to page " + page, this);
+
       this.displayData.currentPage = page;
+
+      console.log(this.searchMonsterParam);
+
       this.searchMonsterParam.start = (page - 1) * this.searchMonsterParam.length;
-      this.searchMonster();
+
+      this.$emit("onSwitchPage");
+
+      // this.searchMonster();
     },
   }
 };
