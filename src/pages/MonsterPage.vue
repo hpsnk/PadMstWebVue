@@ -120,8 +120,9 @@
                       <label for="condFreeword" class="col-sm-2 col-form-label">キー</label>
                       <div class="col-sm-10">
                         <el-input ref="freeword" 
-                          v-model="searchMonsterParam.skill" placeholder="スキル キーワード" 
-                          @change="setFreeword"/>
+                          placeholder="スキル キーワード" 
+                          v-model="searchMonsterParam.skillFreeword" 
+                          @change="skillFreeword"/>
                       </div>
                     </div>
                     <!-- スキルカテゴリ -->
@@ -146,9 +147,19 @@
                   </el-collapse-item>
                 </el-collapse>
 
-                <!-- スキル -->
+                <!-- リーダースキル -->
                 <el-collapse>
-                  <el-collapse-item title="レーダスキル" name="leaderskill">
+                  <el-collapse-item title="リーダースキル" name="leaderskill">
+                    <div class="form-group row">
+
+                      <label for="condLeaderskillFreeword" class="col-sm-2 col-form-label">キー</label>
+                      <div class="col-sm-10">
+                        <el-input ref="freeword" 
+                          placeholder="リーダースキル キーワード" 
+                          v-model="searchMonsterParam.leaderskillFreeword" 
+                          @change="setLeaderskillFreeword"/>
+                      </div>
+                    </div>
 
                   </el-collapse-item>
                 </el-collapse>
@@ -199,18 +210,20 @@ export default {
       },
       searched: false,
       searchMonsterParam: {
-        freeword: "",
-        mainAttr: [],
-        subAttr: [],
-        thirdAttr: [],
-        rare: undefined,
-        type: [],
-        typeCondAnd: false,
-        awakenSkill: [],
-        awakenSkillCondAnd: false,
-        collabo: '',
-        start: 0,
-        length: 10,
+        freeword            : undefined,
+        mainAttr            : [],
+        subAttr             : [],
+        thirdAttr           : [],
+        rare                : undefined,
+        type                : [],
+        typeCondAnd         : false,
+        awakenSkill         : [],
+        awakenSkillCondAnd  : false,
+        collabo             : undefined,
+        skillFreeword       : undefined,
+        leaderskillFreeword : undefined,
+        start               : 0,
+        length              : 10,
       },
       displayData: {
         pageSizes: this.Config.paging.select,
@@ -295,6 +308,14 @@ export default {
       this.searchMonsterParam.collabo = this.$refs.compSearchCollabo.getActiveValue();
       this.resetPageAndSearch();
     },
+    skillFreeword() {
+      this.logger.trace("skillFreeword.", this);
+      this.resetPageAndSearch();
+    },
+    setLeaderskillFreeword() {
+      this.logger.trace("setLeaderskillFreeword.", this);
+      this.resetPageAndSearch();
+    },
     loadCollabo() {
       this.PadMstApi.listCollabo().then((resData)=>{
             // console.log("  loadCollabo success.");
@@ -358,7 +379,11 @@ export default {
       this.searchMonsterParam.awakenSkill = [];
       this.searchMonsterParam.awakenSkillCondAnd = false;
       // コラボ
-      this.searchMonsterParam.collabo = '';
+      this.searchMonsterParam.collabo = undefined;
+      // スキル
+      this.searchMonsterParam.skillFreeword = undefined;
+      // リーダースキル
+      this.searchMonsterParam.leaderskillFreeword = undefined;
 
       this.displayData.monsters = [];
       this.searched = false;
