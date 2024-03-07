@@ -194,6 +194,13 @@
                 <p>Monster</p>
               </a>
             </li>
+            <!---->
+            <li class="nav-item">
+              <a href="#/awakenskill" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Awaken Skill</p>
+              </a>
+            </li>
             <!--Team-->
             <li class="nav-item">
               <a href="#/team" class="nav-link">
@@ -213,13 +220,6 @@
               <a href="#/skill" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Skill</p>
-              </a>
-            </li>
-            <!---->
-            <li class="nav-item">
-              <a href="#/awakenskill" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Awaken Skill</p>
               </a>
             </li>
             <!---->
