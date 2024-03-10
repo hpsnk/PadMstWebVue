@@ -283,8 +283,9 @@ export default {
       // console.log("MonsterSearch.setAwakenSkill!");
       let valAwakenSkill = this.$refs.compSearchAwakenSkill.getActiveValue();
       
-      this.searchMonsterParam.awakenSkill        = valAwakenSkill.awakenSkill;
-      this.searchMonsterParam.awakenSkillCondAnd = valAwakenSkill.condAnd;
+      this.searchMonsterParam.awakenSkill            = valAwakenSkill.awakenSkill;
+      this.searchMonsterParam.awakenSkillCondAnd     = valAwakenSkill.condAnd;
+      this.searchMonsterParam.awakenSkillSortByCount = valAwakenSkill.awakenSkillSortByCount;
 
       this.resetPageAndSearch();
     },
