@@ -22,6 +22,40 @@
 
     <!-- Main content -->
     <div class="content">
+
+      <div class="container-fluid">
+        <div class="row">
+
+          <!-- Team -->
+          <div class="col-md-6 col-sm-6">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="fas fa-list"></i> 検索結果
+                </h3>
+                <div class="card-tools">
+
+                  <el-radio-group v-model="teamType">
+                    <el-radio-button :label=1>1P</el-radio-button>
+                    <el-radio-button :label=2>2P</el-radio-button>
+                    <el-radio-button :label=3>3P</el-radio-button>
+                  </el-radio-group>
+
+                </div>
+              </div>
+
+              <!-- /.card-header -->
+              <div class="card-body">
+
+              </div>
+              <!-- /.card-body -->
+            </div>
+          </div>
+
+        </div>
+        <!-- /.row -->
+      </div>
+
     </div><!-- /.content -->
   </div>
 </template>
@@ -36,6 +70,7 @@ export default {
   // },
   data() {
     return {
+      teamType: 1,
     }
   },
   mounted() {
