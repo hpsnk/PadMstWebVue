@@ -214,11 +214,11 @@ export default {
       this.displayData.pageSize = pageSize;
     },
     handleCurrentChange(page) {
-      this.logger.debug("swithc to page " + page, this);
+      this.logger.debug("handlePageSizeChange. switch to page " + page, this);
 
       this.displayData.currentPage = page;
 
-      console.log(this.searchMonsterParam);
+      // console.log(this.searchMonsterParam);
 
       this.searchMonsterParam.start = (page - 1) * this.searchMonsterParam.length;
 
