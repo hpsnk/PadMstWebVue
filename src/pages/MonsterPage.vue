@@ -226,31 +226,25 @@ export default {
     },
     setFreeword() {
       this.logger.trace("setFreeword.", this);
-      // console.log("MonsterSearch.setFreeword!");
-      // console.log("  " + this.searchMonsterParam.freeword);
       this.resetPageAndSearch();
     },
     setMainAttr() {
       this.logger.trace("setMainAttr.", this);
-      // console.log("MonsterSearch.setMainAttr!");
       this.searchMonsterParam.mainAttr = this.$refs.compMainAttr.getActiveValue();
       this.resetPageAndSearch();
     },
     setSubAttr() {
       this.logger.trace("setSubAttr.", this);
-      // console.log("MonsterSearch.setSubAttr!");
       this.searchMonsterParam.subAttr = this.$refs.compSubAttr.getActiveValue();
       this.resetPageAndSearch();
     },
     setThirdAttr() {
       this.logger.trace("setThirdAttr.", this);
-      // console.log("MonsterSearch.setThirdAttr!");
       this.searchMonsterParam.thirdAttr = this.$refs.compThirdAttr.getActiveValue();
       this.resetPageAndSearch();
     },
     setAwakenSkill() {
       this.logger.trace("setAwakenSkill.", this);
-      // console.log("MonsterSearch.setAwakenSkill!");
       let valAwakenSkill = this.$refs.compSearchAwakenSkill.getActiveValue();
       
       this.searchMonsterParam.awakenSkill            = valAwakenSkill.awakenSkill;
@@ -261,13 +255,11 @@ export default {
     },
     setRare() {
       this.logger.trace("setRare.", this);
-      // console.log("MonsterSearch.setRare!");
       this.searchMonsterParam.rare = this.$refs.compSearchRare.getActiveValue();
       this.resetPageAndSearch();
     },
     setType() {
       this.logger.trace("setType.", this);
-      // console.log("MonsterSearch.setType!");
       let valType = this.$refs.compSearchType.getActiveValue();
       this.searchMonsterParam.type        = valType.type;
       this.searchMonsterParam.typeCondAnd = valType.typeCondAnd;
@@ -275,7 +267,6 @@ export default {
     },
     setCollabo() {
       this.logger.trace("setCollabo.", this);
-      // console.log("MonsterSearch.setCollabo!");
       this.searchMonsterParam.collabo = this.$refs.compSearchCollabo.getActiveValue();
       this.resetPageAndSearch();
     },
@@ -310,7 +301,6 @@ export default {
     },
     handleResetSearchMonster() {
       this.logger.trace("handleResetSearchMonster.", this);
-      // console.log("  clear search form!");
 
       // freeword
       this.$refs.freeword = "";
@@ -337,6 +327,7 @@ export default {
       this.searchMonsterParam.awakenSkill = [];
       this.searchMonsterParam.awakenSkillCondAnd = false;
       // コラボ
+      this.$refs.compSearchCollabo.reset();
       this.searchMonsterParam.collabo = undefined;
       // スキル
       this.searchMonsterParam.skillFreeword = undefined;

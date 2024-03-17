@@ -35,7 +35,7 @@
                 </h3>
                 <div class="card-tools">
 
-                  <el-radio-group v-model="teamType">
+                  <el-radio-group v-model="teamType" size="mini">
                     <el-radio-button :label=1>1P</el-radio-button>
                     <el-radio-button :label=2>2P</el-radio-button>
                     <el-radio-button :label=3>3P</el-radio-button>
@@ -46,7 +46,7 @@
 
               <!-- /.card-header -->
               <div class="card-body">
-
+                <comp-team-1-p/>
               </div>
               <!-- /.card-body -->
             </div>
@@ -61,13 +61,13 @@
 </template>
 
 <script>
-// import CompIconAwaken from "../components/monster/IconAwaken.vue";
+import CompTeam1P from "../components/team/Team1P.vue";
 
 export default {
   name: "TeamPage.vue",
-  // components: {
-  //   CompIconAwaken,
-  // },
+  components: {
+    CompTeam1P,
+  },
   data() {
     return {
       teamType: 1,
