@@ -22,6 +22,7 @@
       </div>
     </div>
 
+    <!--  -->
     <div class="monster-icon-info">
       <div class="monster-icon-type">
         <span v-if="monster.typeId!=-1"

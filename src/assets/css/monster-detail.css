@@ -3,7 +3,47 @@
  * monster detail 
  *-------------------------------
  */
- .table-monster {
+ div.monster-icon-info {
+	position: relative;
+	background-color: blue;
+ }
+
+div.monster-icon-info .monster-icon-type {
+	display: inline-block;
+	width: 100px;
+	background-color: aqua;
+}
+/* 覚醒スキル */
+div.monster-icon-info .askill-info {
+	position: absolute;
+	top     : 0px;
+	left    : 100px;
+}
+div.monster-icon-info .askill-info .awoken-icon {
+	margin-right: 3px;
+}
+/*
+ * 超覚醒
+ *----------------------------------
+ */
+.monster-detail .super-askill-info {
+	position: absolute;
+	top     : 40px;
+	left    : 100px;
+}
+.monster-detail .super-askill-info .awoken-icon {
+	margin-right: 3px;
+}
+
+
+
+
+
+
+
+
+
+.table-monster {
     height: 500px;
     overflow: auto;
 }
@@ -117,27 +157,7 @@ div.monster-detail.monster-detail-mini {
 	top: 50px;
 }
 
-.monster-detail .askill-info {
-	position: absolute;
-	top: 20px;
-	left: 160px;
-}
 
-.monster-detail .askill-info .icon {
-	width: 20px;
-	height: 20px;
-}
-
-.monster-detail .super-askill-info {
-	position: absolute;
-	top: 45px;
-	left: 160px;
-}
-
-.monster-detail .super-askill-info .icon {
-	width: 20px;
-	height: 20px;
-}
 
 
 /*
