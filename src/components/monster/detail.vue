@@ -1,10 +1,13 @@
 <template>
   <div class="monster monster-detail">
-    <comp-icon-monster name="MonsterDetail.IconMonster"
-      :monster="monster" />
-
-    <div class="monster-basic-info">
+    <!--Detail1-->
+    <div class="monster-name-info">
       <div class="monster-name">{{ monster.name }}</div>
+    </div>
+
+    <!--Detail2-->
+    <div class="monster-basic-info">
+      <comp-icon-monster name="MonsterDetail.IconMonster" :monster="monster" />
       <div class="monster-info">        
         <div class="hp">
           <div class="tag">HP:</div>
@@ -22,7 +25,7 @@
       </div>
     </div>
 
-    <!--  -->
+    <!--Detail3-->
     <div class="monster-icon-info">
       <div class="monster-icon-type">
         <span v-if="monster.typeId!=-1"
@@ -60,9 +63,8 @@
       </div>
     </div>
 
-
-    <!--スキル-->
-    <div class="skill" v-if="false">
+    <!--Detail4 : スキル-->
+    <div class="skill">
       <div class="name" @click="findBySkill(monster)">{{monster.skill != undefined ?  monster.skill.name : ''}}</div>
       <div class="turn" v-if="monster.skill != undefined && monster.skill.turn != undefined">
         {{monster.skill != undefined ?  monster.skill.turn : ''}}
@@ -71,8 +73,9 @@
         {{monster.skill != undefined ?  monster.skill.gameDesc : ''}}
       </div>
     </div>
-    <!--リーダースキル-->
-    <div class="leaderskill" v-if="false">
+
+    <!--Detail5 : リーダースキル-->
+    <div class="leaderskill">
       <div class="name">{{monster.leaderskill != undefined ?  monster.leaderskill.name : ''}}</div>
       <div class="desc">{{monster.leaderskill != undefined ?  monster.leaderskill.gameDesc : ''}}</div>
     </div>
