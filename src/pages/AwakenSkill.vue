@@ -87,21 +87,21 @@ export default {
         awakenskills: [],
     }
   },
-    mounted() {
-        console.log("AwakenSkillPage.mounted.start");
-        
-        this.PadMstApi.listAwakenSkill().then((resData)=>{
-            console.log("success");
-            console.log(resData.data);
-            console.log(resData.data.data);
-            this.awakenskills = resData.data.data;
-        }).catch((err)=>{
-            console.log("error");
-            console.log(err);
-        });
+  mounted() {
+    console.log("AwakenSkillPage.mounted.start");
+      
+    this.PadMstApi.listAwakenSkill().then((resData)=>{
+      console.log("success");
+      console.log(resData.data);
+      console.log(resData.data.data);
+      this.awakenskills = resData.data.data;
+    }).catch((err)=>{
+        console.log("error");
+        console.log(err);
+    });
 
-        console.log("AwakenSkillPage.mounted.end");
-    },
+    console.log("AwakenSkillPage.mounted.end");
+  },
 }
 </script>
 

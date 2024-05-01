@@ -29,5 +29,5 @@ export default {
 </script>
 
 <style scoped>
-@import "../../assets/css/monster-search.css";
+@import "../../assets/css/monster-detail.css";
 </style>

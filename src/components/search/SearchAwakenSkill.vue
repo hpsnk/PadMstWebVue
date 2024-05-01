@@ -6,12 +6,17 @@
     <label class="col-sm-2 col-form-label">覚醒</label>
     <div class="col-sm-10">
       <div class="row">
+        <!-- 条件 and/or -->
         <el-switch
           v-model="condAnd"
           active-text="AND"
           inactive-text="OR"
           @change="updateValue()">
         </el-switch>
+        <!-- 条件 多い順 -->
+        <el-checkbox 
+          v-model="awakenSkillSortByCount"
+          @change="updateValue()">多い順</el-checkbox>
       </div>
       <div class="row">
         <!-- <el-tooltip 
@@ -41,6 +46,7 @@ export default {
     return {
       awakenSkills: [],
       condAnd: false,
+      awakenSkillSortByCount: false,
       loading: true,
     };
   },
@@ -102,6 +108,7 @@ export default {
           return elem.awakenskillId;
         }),
         condAnd: this.condAnd,
+        awakenSkillSortByCount : this.awakenSkillSortByCount,
       }
     },
   },

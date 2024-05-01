@@ -1,0 +1,150 @@
+/*
+ * team.css
+ */
+.icon-team-monster {
+	height: 80px;
+	width: 80px;
+    margin-left: 5px;
+}
+
+.team-assist-mark {
+    height: 50px;
+    text-align: center;
+    font-size: 1cm;
+}
+
+
+
+
+
+
+
+
+
+
+/* �ϐ���` */
+:root {
+    --img-size                       : 50px;                  /* A      */
+    --icon-size                      : 52px;                  /* A+2px  */
+
+    --icon_margin-left               : 20px;                  /* B      */
+    --team-self_margin-left          : 20px;                  /* C      */
+    --team-friend_margin-left        : 122px;                 /* A+B+C+2px */
+    --row-assist_margin              : 15px;
+}
+
+.team-2p {
+    padding: 0px;	
+}
+
+.p1-leader {
+    float: left;
+}
+
+.p2-leader {
+    float: right;
+}
+
+.img-monster {
+    flex-flow: row  nowrap;
+    height   : var(--img-size);
+    width    : var(--img-size);
+}
+
+.icon-monster {
+    /* margin-left: var(--icon_margin-left); */
+    border: 1px grey dashed;
+	border-radius: 5px;
+}
+
+.icon-monster.focus {
+    border: 2px red dashed;
+    box-shadow: 0 0 5px 5px pink;
+}
+
+img {
+    vertical-align: inherit!important;
+}
+
+.team-row {
+    height:var(--icon-size);
+    /* font-size:0; */
+}
+
+.team-self {
+    /* margin-left: var(--team-self_margin-left); */
+}
+
+.team-self-assist {
+    margin-bottom: var(--row-assist_margin);
+}
+
+.team-self-assist-arrow {
+}
+
+.team-self-main {
+}
+
+.team-friend {
+    margin-left: var(--team-friend_margin-left);
+}
+
+.team-friend-main {
+    margin-top:  20px;
+}
+
+.team-friend-assist {
+    margin-top: var(--row-assist_margin);
+}
+
+.icon-awakenskill-info span::before {
+    content: "×";
+}
+
+.icon-awakenskill-info i {
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    background-size: 20px 20px;
+}
+
+.icon-awakenskill-info .count {
+    height: 40px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+.team-row.team-assist {
+    margin-top:  100px;
+}
+
+.team-detail {
+    display: none;
+}
+
+.team-1p {
+    background-color: blue;
+}
+.team-2p {
+    background-color: crimson;
+}
+.team-3p {
+    background-color: orchid;
+}
+
+.team-row.team-p1 {
+    margin-top:  30px;
+}
+
+.team-row.team-p2 {
+    margin-top:  30px;
+}
+
+.team-row.team-p3 {
+    margin-top:  30px;
+}
+
+.team-2p .team-p2 {
+    margin-left: 62px;
+}

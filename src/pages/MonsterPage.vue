@@ -88,25 +88,7 @@
                   @click="setAwakenSkill"
                 />
 
-                <!-- コラボ(element-ui) -->
-                <div class="form-group row">
-                  <label class="col-sm-2 col-form-label">コラボ</label>
-                  <el-select class="col-sm-10"
-                    v-model="searchMonsterParam.collabo" 
-                    v-loading="loading.collabo"
-                    placeholder="カテゴリ" 
-                    collapse-tags
-                    @change="collaboChanged"
-                    >
-                    <el-option
-                      v-for="collabo in displayData.collabos"
-                      :key="collabo.collaboId"
-                      :label="collabo.name ? collabo.collaboId + ' : ' + collabo.name : collabo.collaboId"
-                      :value="collabo.collaboId"
-                    />
-                  </el-select>
-                </div>
-
+                <!-- コラボ -->
                 <comp-search-collabo 
                   ref="compSearchCollabo" 
                   name="MonsterPage.SearchCollabo"
@@ -120,8 +102,9 @@
                       <label for="condFreeword" class="col-sm-2 col-form-label">キー</label>
                       <div class="col-sm-10">
                         <el-input ref="freeword" 
-                          v-model="searchMonsterParam.skill" placeholder="スキル キーワード" 
-                          @change="setFreeword"/>
+                          placeholder="スキル キーワード" 
+                          v-model="searchMonsterParam.skillFreeword" 
+                          @change="skillFreeword"/>
                       </div>
                     </div>
                     <!-- スキルカテゴリ -->
@@ -146,9 +129,19 @@
                   </el-collapse-item>
                 </el-collapse>
 
-                <!-- スキル -->
+                <!-- リーダースキル -->
                 <el-collapse>
-                  <el-collapse-item title="レーダスキル" name="leaderskill">
+                  <el-collapse-item title="リーダースキル" name="leaderskill">
+                    <div class="form-group row">
+
+                      <label for="condLeaderskillFreeword" class="col-sm-2 col-form-label">キー</label>
+                      <div class="col-sm-10">
+                        <el-input ref="freeword" 
+                          placeholder="リーダースキル キーワード" 
+                          v-model="searchMonsterParam.leaderskillFreeword" 
+                          @change="setLeaderskillFreeword"/>
+                      </div>
+                    </div>
 
                   </el-collapse-item>
                 </el-collapse>
@@ -176,7 +169,7 @@
             <comp-search-result name="xxx.yyy.zzz" 
               :displayData="displayData"
               :searchMonsterParam="searchMonsterParam"
-              @onSwitchPage="handleCurrentChange" />
+              @onSwitchPage="searchMonster" />
           </div>
 
         </div>
@@ -199,18 +192,20 @@ export default {
       },
       searched: false,
       searchMonsterParam: {
-        freeword: "",
-        mainAttr: [],
-        subAttr: [],
-        thirdAttr: [],
-        rare: undefined,
-        type: [],
-        typeCondAnd: false,
-        awakenSkill: [],
-        awakenSkillCondAnd: false,
-        collabo: '',
-        start: 0,
-        length: 10,
+        freeword            : undefined,
+        mainAttr            : [],
+        subAttr             : [],
+        thirdAttr           : [],
+        rare                : undefined,
+        type                : [],
+        typeCondAnd         : false,
+        awakenSkill         : [],
+        awakenSkillCondAnd  : false,
+        collabo             : undefined,
+        skillFreeword       : undefined,
+        leaderskillFreeword : undefined,
+        start               : 0,
+        length              : 10,
       },
       displayData: {
         pageSizes: this.Config.paging.select,
@@ -218,72 +213,53 @@ export default {
         currentPage: 1,
         total: 0,
         types: [],
-        collabos: [],
         monsters: [],
       },
     };
   },
-  mounted() {
-    this.logger.trace("mounted start.", this);
-    // console.log("[%s][%s]mounted start.", this.$options.name, this.name);
-    // console.log("MonsterPage.mounted-->start.");
-
-    // コラボ
-    this.loadCollabo();
-
-    // console.log("MonsterPage.mounted-->end.");
-    // console.log("[%s]mounted end.", this.name);
-    this.logger.trace("mounted end.", this);
-  },
   methods: {
     resetPageAndSearch() {
+      this.logger.trace("resetPageAndSearch.", this);
       this.searchMonsterParam.start = 0;
       this.displayData.currentPage = 1;
       this.searchMonster();
     },
     setFreeword() {
       this.logger.trace("setFreeword.", this);
-      // console.log("MonsterSearch.setFreeword!");
-      // console.log("  " + this.searchMonsterParam.freeword);
       this.resetPageAndSearch();
     },
     setMainAttr() {
       this.logger.trace("setMainAttr.", this);
-      // console.log("MonsterSearch.setMainAttr!");
       this.searchMonsterParam.mainAttr = this.$refs.compMainAttr.getActiveValue();
       this.resetPageAndSearch();
     },
     setSubAttr() {
       this.logger.trace("setSubAttr.", this);
-      // console.log("MonsterSearch.setSubAttr!");
       this.searchMonsterParam.subAttr = this.$refs.compSubAttr.getActiveValue();
       this.resetPageAndSearch();
     },
     setThirdAttr() {
       this.logger.trace("setThirdAttr.", this);
-      // console.log("MonsterSearch.setThirdAttr!");
       this.searchMonsterParam.thirdAttr = this.$refs.compThirdAttr.getActiveValue();
       this.resetPageAndSearch();
     },
     setAwakenSkill() {
       this.logger.trace("setAwakenSkill.", this);
-      // console.log("MonsterSearch.setAwakenSkill!");
       let valAwakenSkill = this.$refs.compSearchAwakenSkill.getActiveValue();
       
-      this.searchMonsterParam.awakenSkill        = valAwakenSkill.awakenSkill;
-      this.searchMonsterParam.awakenSkillCondAnd = valAwakenSkill.condAnd;
+      this.searchMonsterParam.awakenSkill            = valAwakenSkill.awakenSkill;
+      this.searchMonsterParam.awakenSkillCondAnd     = valAwakenSkill.condAnd;
+      this.searchMonsterParam.awakenSkillSortByCount = valAwakenSkill.awakenSkillSortByCount;
 
       this.resetPageAndSearch();
     },
     setRare() {
       this.logger.trace("setRare.", this);
-      // console.log("MonsterSearch.setRare!");
       this.searchMonsterParam.rare = this.$refs.compSearchRare.getActiveValue();
       this.resetPageAndSearch();
     },
     setType() {
       this.logger.trace("setType.", this);
-      // console.log("MonsterSearch.setType!");
       let valType = this.$refs.compSearchType.getActiveValue();
       this.searchMonsterParam.type        = valType.type;
       this.searchMonsterParam.typeCondAnd = valType.typeCondAnd;
@@ -291,20 +267,16 @@ export default {
     },
     setCollabo() {
       this.logger.trace("setCollabo.", this);
-      // console.log("MonsterSearch.setCollabo!");
       this.searchMonsterParam.collabo = this.$refs.compSearchCollabo.getActiveValue();
       this.resetPageAndSearch();
     },
-    loadCollabo() {
-      this.PadMstApi.listCollabo().then((resData)=>{
-            // console.log("  loadCollabo success.");
-            // console.log(resData.data);
-            this.displayData.collabos = resData.data;
-            this.loading.collabo = false;
-        }).catch((err)=>{
-            console.error("  loadCollabo failed.");
-            console.log(err);
-        });
+    skillFreeword() {
+      this.logger.trace("skillFreeword.", this);
+      this.resetPageAndSearch();
+    },
+    setLeaderskillFreeword() {
+      this.logger.trace("setLeaderskillFreeword.", this);
+      this.resetPageAndSearch();
     },
     collaboChanged(collaboId) {
       console.log("  collaboId=%d.", collaboId);
@@ -312,15 +284,13 @@ export default {
       this.searchMonster();
     },
     searchMonster() {
+      this.logger.trace("searchMonster.", this);
+
       this.searched = true;
       this.loading.monster = true;
 
       this.PadMstApi.listMonster(this.searchMonsterParam).then((resData) => {
           this.displayData.monsters = resData.data.data;
-          console.log(this.displayData.monsters);
-          // this.displayData.monsters.forEach(monster=> {
-          //   console.log(monster.monsterId + "-->" + Math.ceil(monster.monsterId/100) + ":" + (monster.monsterId-1)%10 + "," + Math.floor((monster.monsterId-1)/10));
-          // });
           this.displayData.total = resData.data.recordsFiltered;
           this.loading.monster = false;
         })
@@ -331,7 +301,6 @@ export default {
     },
     handleResetSearchMonster() {
       this.logger.trace("handleResetSearchMonster.", this);
-      // console.log("  clear search form!");
 
       // freeword
       this.$refs.freeword = "";
@@ -358,16 +327,15 @@ export default {
       this.searchMonsterParam.awakenSkill = [];
       this.searchMonsterParam.awakenSkillCondAnd = false;
       // コラボ
-      this.searchMonsterParam.collabo = '';
+      this.$refs.compSearchCollabo.reset();
+      this.searchMonsterParam.collabo = undefined;
+      // スキル
+      this.searchMonsterParam.skillFreeword = undefined;
+      // リーダースキル
+      this.searchMonsterParam.leaderskillFreeword = undefined;
 
       this.displayData.monsters = [];
       this.searched = false;
-    },
-    handlePageSizeChange(pageSize) {
-      this.displayData.pageSize = pageSize;
-    },
-    handleCurrentChange() {
-      this.searchMonster();
     },
   }
 };
