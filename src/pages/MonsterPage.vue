@@ -96,56 +96,29 @@
                 />
 
                 <!-- スキル -->
-                <el-collapse>
-                  <el-collapse-item title="スキル" name="skill">
-                    <div class="form-group row">
-                      <label for="condFreeword" class="col-sm-2 col-form-label">キー</label>
-                      <div class="col-sm-10">
-                        <el-input ref="freeword" 
-                          placeholder="スキル キーワード" 
-                          v-model="searchMonsterParam.skillFreeword" 
-                          @change="skillFreeword"/>
-                      </div>
-                    </div>
-                    <!-- スキルカテゴリ -->
-                    <div class="form-group row" v-show="false">
-                      <label class="col-sm-2 col-form-label">スキル</label>
-                      <div class="col-sm-10">
-                        <select id="skillcategory" class="form-control select2bs4" multiple="multiple" data-placeholder="Select a State">
-                        <!-- <select class="form-control col-sm-10" > -->
-                          <option value="0">All</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <!-- スキルターン -->
-                    <div class="form-group row">
-                      <label for="skillturn" class="col-sm-2 col-form-label">ターン</label>
-                      <div class="col-sm-10">
-                        <input class="form-control" id="skillturn" placeholder="7">
-                      </div>
-                    </div>
-
-                  </el-collapse-item>
-                </el-collapse>
+                <comp-search-skill
+                  ref="compSearchSkill" 
+                  name="MonsterPage.SearchSkill"
+                />
 
                 <!-- リーダースキル -->
-                <el-collapse>
-                  <el-collapse-item title="リーダースキル" name="leaderskill">
-                    <div class="form-group row">
+                <div class="form-group row">
+                  <el-collapse>
+                    <el-collapse-item title="リーダースキル" name="leaderskill">
+                      <div class="form-group row">
 
-                      <label for="condLeaderskillFreeword" class="col-sm-2 col-form-label">キー</label>
-                      <div class="col-sm-10">
-                        <el-input ref="freeword" 
-                          placeholder="リーダースキル キーワード" 
-                          v-model="searchMonsterParam.leaderskillFreeword" 
-                          @change="setLeaderskillFreeword"/>
+                        <label for="condLeaderskillFreeword" class="col-sm-2 col-form-label">キー</label>
+                        <div class="col-sm-10">
+                          <el-input ref="freeword" 
+                            placeholder="リーダースキル キーワード" 
+                            v-model="searchMonsterParam.leaderskillFreeword" 
+                            @change="setLeaderskillFreeword"/>
+                        </div>
                       </div>
-                    </div>
 
-                  </el-collapse-item>
-                </el-collapse>
-
+                    </el-collapse-item>
+                  </el-collapse>
+                </div>
 
                 <!--ボタン-->
                 <div class="form-group row">
