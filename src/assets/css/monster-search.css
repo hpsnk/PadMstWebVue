@@ -21,6 +21,19 @@
 	margin-right: 5px;
 }
 
+/*
+ * skill
+ * ------------------------------
+ */
+.skill-tag {
+	margin-right: 5px;
+	color: blue;
+	/* 
+	text-decoration-line: underline;
+	text-decoration-color: blue; 
+	*/
+}
+
 
 /*
  * ------------------------------

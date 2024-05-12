@@ -99,6 +99,7 @@
                 <comp-search-skill
                   ref="compSearchSkill" 
                   name="MonsterPage.SearchSkill"
+                  @click="setSkill"
                 />
 
                 <!-- リーダースキル -->
@@ -243,6 +244,14 @@ export default {
       this.searchMonsterParam.collabo = this.$refs.compSearchCollabo.getActiveValue();
       this.resetPageAndSearch();
     },
+    setSkill() {
+      this.logger.trace("setSkill.", this);
+      // todo
+      let valSkill = this.$refs.compSearchSkill.getActiveValue();
+      console.log(valSkill);
+      this.searchMonsterParam.skillFreeword = valSkill.freeword;
+      this.resetPageAndSearch();
+    },
     skillFreeword() {
       this.logger.trace("skillFreeword.", this);
       this.resetPageAndSearch();
@@ -303,6 +312,7 @@ export default {
       this.$refs.compSearchCollabo.reset();
       this.searchMonsterParam.collabo = undefined;
       // スキル
+      this.$refs.compSearchSkill.reset();
       this.searchMonsterParam.skillFreeword = undefined;
       // リーダースキル
       this.searchMonsterParam.leaderskillFreeword = undefined;
