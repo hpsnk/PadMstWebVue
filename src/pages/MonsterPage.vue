@@ -23,7 +23,7 @@
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
-        <div class="row">
+        <div class="row monster-search">
 
           <!-- 検索条件 -->
           <div class="col-md-6 col-sm-12">
@@ -39,7 +39,7 @@
                   </button>
                 </div>
               </div>
-              <div class="card-body">
+              <div class="card-body search-condition-area">
                 <!-- Freeword -->
                 <div class="form-group row">
                   <label for="condFreeword" class="col-sm-2 col-form-label">Freeword</label>
@@ -120,18 +120,16 @@
                     </el-collapse-item>
                   </el-collapse>
                 </div>
-
+              </div>
+              
+              <div class="card-footer">
                 <!--ボタン-->
-                <div class="form-group row">
-                  <el-form-item>
-                    <el-button type="primary" round @click="searchMonster">
-                      検索
-                    </el-button>
-                    <el-button type="info" round @click="handleResetSearchMonster"
-                      >クリア</el-button>
-                  </el-form-item>
+                <div class="row">
+                  <!-- <el-form-item> -->
+                    <el-button type="primary" round @click="searchMonster">検索</el-button>
+                    <el-button type="info" round @click="handleResetSearchMonster">クリア</el-button>
+                  <!-- </el-form-item> -->
                 </div>
-
               </div>
               
             </div>

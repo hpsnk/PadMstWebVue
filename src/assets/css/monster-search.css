@@ -1,3 +1,8 @@
+.monster-search .search-condition-area {
+	height: 300px;
+	overflow: auto;
+}
+
 .mask {
 	top: 0px;
 	filter: alpha(opacity=60);
