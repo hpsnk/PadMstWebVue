@@ -10,6 +10,7 @@ import CompSearchCollabo       from './search/SearchCollabo.vue';
 import CompSearchRare          from './search/SearchRare.vue';
 import CompSearchType          from './search/SearchType.vue';
 import CompSearchSkill         from './search/SearchSkill.vue';
+import CompSearchLeaderSkill   from './search/SearchLeaderSkill.vue';
 
 import CompSearchResult        from './search/SearchResult.vue';
 import CompSearchResultMini    from './search/SearchResultMini.vue';
@@ -26,7 +27,8 @@ export default {
         Vue.component('CompSearchCollabo', CompSearchCollabo);
         Vue.component('CompSearchRare', CompSearchRare);
         Vue.component('CompSearchType', CompSearchType);
-        Vue.component('CompSearchSkill', CompSearchSkill);        
+        Vue.component('CompSearchSkill', CompSearchSkill);
+        Vue.component('CompSearchLeaderSkill', CompSearchLeaderSkill);
 
         Vue.component('CompSearchResult', CompSearchResult);
         Vue.component('CompSearchResultMini', CompSearchResultMini);

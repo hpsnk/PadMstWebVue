@@ -103,6 +103,12 @@
                 />
 
                 <!-- リーダースキル -->
+                <comp-search-leader-skill
+                  ref="compSearchLeaderSkill" 
+                  name="MonsterPage.SearchLeaderSkill"
+                  @click="setLeaderSkill"
+                />
+<!-- 
                 <div class="form-group row">
                   <el-collapse>
                     <el-collapse-item title="リーダースキル" name="leaderskill">
@@ -119,7 +125,8 @@
 
                     </el-collapse-item>
                   </el-collapse>
-                </div>
+                </div> 
+-->
               </div>
               
               <div class="card-footer">
