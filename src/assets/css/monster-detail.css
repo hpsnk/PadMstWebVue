@@ -4,6 +4,10 @@
  *-------------------------------
  */
 
+ .monster.monster-detail.monster-detail-normal {
+	height: 300px;
+	overflow: auto;
+ }
  
 /* ---------------------------------------------------------------- */
 /* .monster-detail                                                  */

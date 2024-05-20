@@ -3,9 +3,6 @@
  -->
 <template>
   <div class="form-group row">
-    <el-collapse>
-      <el-collapse-item title="覚醒" name="awakenskill">
-
     <label class="col-sm-2 col-form-label">覚醒</label>
     <div class="col-sm-10">
       <div class="row">
@@ -36,11 +33,6 @@
         <!-- </el-tooltip> -->
       </div>
     </div>
-
-      </el-collapse-item>
-    </el-collapse>
-
-
   </div>
 </template>
 

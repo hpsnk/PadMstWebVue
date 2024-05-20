@@ -81,13 +81,6 @@
                   name="MonsterPage.type"
                   @click="setType" />
 
-                <!-- 覚醒スキル -->
-                <comp-search-awaken-skill 
-                  ref="compSearchAwakenSkill" 
-                  name="MonsterPage.AwakenSkill"
-                  @click="setAwakenSkill"
-                />
-
                 <!-- コラボ -->
                 <comp-search-collabo 
                   ref="compSearchCollabo" 
@@ -95,19 +88,26 @@
                   @click="setCollabo"
                 />
 
-                <!-- スキル -->
-                <comp-search-skill
-                  ref="compSearchSkill" 
-                  name="MonsterPage.SearchSkill"
-                  @click="setSkill"
-                />
+                <el-collapse>
+                  
+                  <!-- 覚醒スキル -->
+                  <el-collapse-item title="覚醒" name="awakenskill">
+                    <comp-search-awaken-skill ref="compSearchAwakenSkill" name="MonsterPage.AwakenSkill" @click="setAwakenSkill"/>
+                  </el-collapse-item>
 
-                <!-- リーダースキル -->
-                <comp-search-leader-skill
-                  ref="compSearchLeaderSkill" 
-                  name="MonsterPage.SearchLeaderSkill"
-                  @click="setLeaderSkill"
-                />
+                  <!-- スキル -->
+                  <el-collapse-item title="スキル" name="skill">
+                    <comp-search-skill ref="compSearchSkill" name="MonsterPage.SearchSkill" @click="setSkill"/>
+                  </el-collapse-item>
+                
+                  <!-- リーダースキル -->
+                  <el-collapse-item title="リーダースキル" name="leaderskill">
+                    <comp-search-leader-skill ref="compSearchLeaderSkill" name="MonsterPage.SearchLeaderSkill" @click="setLeaderSkill"/>
+                  </el-collapse-item>
+
+                </el-collapse>
+
+
 <!-- 
                 <div class="form-group row">
                   <el-collapse>

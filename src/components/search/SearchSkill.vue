@@ -1,9 +1,9 @@
+
+<!-- スキル -->
+
 <template>
   <div class="form-group row">
     <div class="col-sm-12">
-      <!-- スキル -->
-      <el-collapse>
-        <el-collapse-item title="スキル" name="skill">
           <!-- freeword -->
           <div class="form-group row">
             <label for="condFreeword" class="col-sm-2 col-form-label">キー</label>
@@ -36,8 +36,6 @@
           </div>
          
 
-        </el-collapse-item>
-      </el-collapse>
     </div>
   </div>
 </template>
