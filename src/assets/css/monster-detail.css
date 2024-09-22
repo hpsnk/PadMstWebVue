@@ -47,13 +47,13 @@ div.monster-icon-info {
 	position: absolute;
 	top: 130px;
 	width: 100%;
-	background-color: blue;
+	/* background-color: blue; */
  }
 
 div.monster-icon-info .monster-icon-type {
 	display: inline-block;
 	width: 100px;
-	background-color: aqua;
+	/* background-color: aqua; */
 }
 
 /* 覚醒 */
