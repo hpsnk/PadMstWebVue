@@ -4,11 +4,12 @@
     <div id="mainAttr" class="col-sm-10" v-loading="loading.attr">
       <span v-for="(attr, index) in attrs" :key="index">
         <span @click="switchActive($event, attr)"
-          class="icon icon-attr"
-          :class="{'mask' : !attr.active}"
+          class="icon icon-attr attr"
+          :class="{'icon-mask' : !attr.active}"
           :data-attr-icon="attr.id"
           v-if="!attr.special || (hasNoneAttr && attr.special)"
-        />
+        >
+        </span>
       </span>
     </div>
   </div>

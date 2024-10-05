@@ -51,7 +51,7 @@ div.monster-icon-info {
  }
 
 div.monster-icon-info .monster-icon-type {
-	display: inline-block;
+	/* display: inline-block; */
 	width: 100px;
 	/* background-color: aqua; */
 }

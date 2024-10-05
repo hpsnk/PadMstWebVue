@@ -19,18 +19,18 @@
           @change="updateValue()">多い順</el-checkbox>
       </div>
       <div class="row">
-        <!-- <el-tooltip 
+        <el-tooltip 
           v-for="(awakenSkill, index) in awakenSkills" :key="index"
-          :content="type.name" 
-          placement="top"> -->
-          <span 
-            v-for="(awakenSkill, index) in awakenSkills" :key="index"
+          :content="awakenSkill.name" 
+          placement="top">
+          <span
             class="awakenSkill awoken-icon"
-            :class="{'mask' : !awakenSkill.active}"
+            :class="{'icon-mask' : !awakenSkill.active}"
             :data-awoken-icon="awakenSkill.awakenskillId"
             @click="switchActive($event, awakenSkill)"
-          />
-        <!-- </el-tooltip> -->
+          >
+          </span>
+        </el-tooltip>
       </div>
     </div>
   </div>

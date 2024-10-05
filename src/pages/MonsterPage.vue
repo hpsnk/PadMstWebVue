@@ -91,7 +91,7 @@
                 <el-collapse>
                   
                   <!-- 覚醒スキル -->
-                  <el-collapse-item title="覚醒" name="awakenskill">
+                  <el-collapse-item title="覚醒" name="awakenskill" class="aaa">
                     <comp-search-awaken-skill ref="compSearchAwakenSkill" name="MonsterPage.AwakenSkill" @click="setAwakenSkill"/>
                   </el-collapse-item>
 
@@ -259,6 +259,12 @@ export default {
     },
     skillFreeword() {
       this.logger.trace("skillFreeword.", this);
+      this.resetPageAndSearch();
+    },
+    setLeaderSkill() {
+      this.logger.trace("setLeaderSkill.", this);
+      // todo
+      
       this.resetPageAndSearch();
     },
     setLeaderskillFreeword() {
