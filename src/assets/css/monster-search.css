@@ -1,5 +1,5 @@
 .monster-search .search-condition-area {
-	height: 300px;
+	height: 400px;
 	overflow: auto;
 }
 
@@ -26,13 +26,30 @@
 	margin-right: 5px;
 }
 
-.search-condition-area .awakenSkill.awoken-icon {
-	display: block;
-	margin-right: 15px;
+/* ------------------ */
+/* 覚醒               */
+/* ------------------ */
+.row-awakenSkill {
+	display: grid;
+	grid-template-columns: repeat(9, 1fr);
+	gap: 10px;
+}
+.row-awakenSkill span {
+	display: inline-block;
+	/* width: 100%; */
+	margin: 0;
+	padding: 5px;
 }
 
-/* 
-.aaa>div>.el-collapse-item__header {
-	color: red;
+.search-condition-area .awakenSkill.awoken-icon {
+	margin-right: 5px;
+	margin-top:   5px;
 }
-*/
+
+.search-condition-area .awakenSkill.awoken-icon:nth-child(10n) {
+	background-color: blue;
+	display:      inline-block;
+	break-before: always;
+	break-after:  always;
+	break-inside: auto;
+}

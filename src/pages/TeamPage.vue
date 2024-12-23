@@ -27,7 +27,7 @@
         <div class="row">
 
           <!-- Team -->
-          <div class="col-md-6 col-sm-6">
+          <div class="col-sm-4">
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">
@@ -52,6 +52,17 @@
             </div>
           </div>
 
+          <!-- Monster Search Condition-->
+          <div class="col-sm-4">
+            <comp-search-condition/>
+          </div>
+
+          <!-- Monster Search Result-->
+          <div class="col-sm-4" v-if="searched">
+            <comp-search-result
+              name="TeamPage.SearchResult" 
+              :displayData="displayData" />
+          </div>
         </div>
         <!-- /.row -->
       </div>
@@ -61,16 +72,19 @@
 </template>
 
 <script>
-import CompTeam1P from "../components/team/Team1P.vue";
-
 export default {
   name: "TeamPage.vue",
-  components: {
-    CompTeam1P,
-  },
   data() {
     return {
       teamType: 1,
+      displayData: {
+        pageSizes: this.Config.paging.select,
+        pageSize: 10,
+        currentPage: 1,
+        total: 0,
+        types: [],
+        monsters: [],
+      },
     }
   },
   mounted() {

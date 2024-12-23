@@ -35,3 +35,12 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 ----
 
 [vue+datatables注意事项](https://deepinout.com/vue-js/vue-js-questions/450_vuejs_implementing_vuejs_datatables_properly.html)
+
+
+----
+
+## Next Action
+
+* 按觉醒检索的等效计算
+* 关联宠物检索(进化树)
+* team page

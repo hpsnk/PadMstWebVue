@@ -144,7 +144,7 @@
           </div>
 
           <!--検索結果-->
-          <div class="col-md-6 col-sm-12"  v-if="searched">
+          <div class="col-md-6 col-sm-12" v-if="searched">
             <comp-search-result name="xxx.yyy.zzz" 
               :displayData="displayData"
               :searchMonsterParam="searchMonsterParam"
