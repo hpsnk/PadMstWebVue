@@ -35,9 +35,40 @@ function outputLog(nLogLevel, strLevel, strMessage, obj) {
         return;
     }
 
-    console.log("[%s][%s][%s]%s", 
+    // 1 log level
+    // 2 source
+    // 3 component info
+    // 4 log message
+
+    console.log("%s[%s][%s][%s]%s", 
+        getDisplayDateTime(),
         strLevel, 
         obj.$options == undefined || obj.$options.name == undefined  ? "" : obj.$options.name, 
         obj.name == undefined ? "" : obj.name, 
         strMessage);
 }
+
+function rightString(str, length) {
+    return str.substring(str.length - length);
+}
+
+function getDisplayDateTime() {
+    let now = new Date();
+  
+    let strYear = "" + now.getFullYear();
+    let strMonth = rightString("00" + (now.getMonth() + 1), 2);
+    let strDate = rightString("00" + now.getDate(), 2);
+    let strHour = rightString("00" + now.getHours(), 2);
+    let strMinute = rightString("00" + now.getMinutes(), 2);
+    let strSecond = rightString("00" + now.getSeconds(), 2);
+    let strMilliseconds = "" + now.getMilliseconds();
+  
+    return "[" + strYear + "/" +
+      strMonth + "/" +
+      strDate + "][" +
+      strHour + ":" +
+      strMinute + ":" +
+      strSecond + "." +
+      strMilliseconds + "]";
+  }
+  

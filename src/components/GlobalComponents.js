@@ -17,6 +17,8 @@ import CompSearchResult        from './search/SearchResult.vue';
 import CompSearchResultMini    from './search/SearchResultMini.vue';
 import CompSearchResultNormal  from './search/SearchResultNormal.vue';
 
+import CompMonsterSearch       from './MonsterSearch.vue';
+
 import CompTeam1P              from "./team/Team1P.vue";
 
 export default {
@@ -36,6 +38,8 @@ export default {
         Vue.component('CompSearchResult',             CompSearchResult);
         Vue.component('CompSearchResultMini',         CompSearchResultMini);
         Vue.component('CompSearchResultNormal',       CompSearchResultNormal);
+        
+        Vue.component('CompMonsterSearch',            CompMonsterSearch);
 
         Vue.component('CompTeam1P',                   CompTeam1P);
 

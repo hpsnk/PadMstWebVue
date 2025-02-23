@@ -52,19 +52,28 @@
             </div>
           </div>
 
+
           <!-- Monster Search Condition-->
           <div class="col-sm-4">
-            <comp-search-condition/>
+            <comp-search-condition
+              name="MonsterSearch.SearchCondition" 
+              ref="compSearchCondition" 
+              :searchData="searchData"
+              />
           </div>
 
           <!-- Monster Search Result-->
-          <div class="col-sm-4" v-if="searched">
+          <div class="col-sm-4" v-if="searchData.searched">
             <comp-search-result
-              name="TeamPage.SearchResult" 
-              :displayData="displayData" />
+              name="MonsterSearch.SearchResult" 
+              ref="compSearchResult" 
+              :displayData="searchData.result"
+              :searchMonsterParam="searchData.param"
+              :searchData="searchData" 
+              @onSwitchPage="doSearchMonster" />
           </div>
+
         </div>
-        <!-- /.row -->
       </div>
 
     </div><!-- /.content -->
@@ -77,22 +86,46 @@ export default {
   data() {
     return {
       teamType: 1,
-      displayData: {
-        pageSizes: this.Config.paging.select,
-        pageSize: 10,
-        currentPage: 1,
-        total: 0,
-        types: [],
-        monsters: [],
+      loading: {
+        collabo: true,
+        monster: false,
+      },
+      searchData: {
+        searched: false,        
+        param: {
+          freeword            : undefined,
+          mainAttr            : [],
+          subAttr             : [],
+          thirdAttr           : [],
+          rare                : undefined,
+          type                : [],
+          typeCondAnd         : false,
+          awakenSkill         : [],
+          awakenSkillCondAnd  : false,
+          collabo             : undefined,
+          skillFreeword       : undefined,
+          leaderskillFreeword : undefined,
+          start               : 0,
+          length              : 10,
+        },
+        result: {
+          pageSizes: this.Config.paging.select,
+          pageSize: 10,
+          currentPage: 1,
+          total: 0,
+          types: [],
+          monsters: [],
+        },
       },
     }
   },
   mounted() {
     this.logger.trace("mounted.", this);
   },
+  methods: {
+    doSearchMonster() {
+      this.$refs.compSearchCondition.searchMonster();
+    },
+  },
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-</style>

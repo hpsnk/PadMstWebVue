@@ -31,7 +31,8 @@
             <div class="col-sm-10">
               <el-input ref="skillturn" 
                 placeholder="スキル ターン" 
-                v-model="skillturn" />
+                v-model="skillturn" 
+                @change="setSkillTurn"/>
             </div>
           </div>
          
@@ -48,8 +49,8 @@ export default {
   },
   data() {
     return {
-      freeword: "",
-      skillturn: "",
+      freeword: undefined,
+      skillturn: undefined,
       tags: [],
     };
   },
@@ -68,11 +69,15 @@ export default {
   },
   methods: {
     reset() {
-      this.freeword = "";
-      this.skillturn = "";
+      this.freeword = undefined;
+      this.skillturn = undefined;
     },
     setFreeword() {
       this.logger.trace("setFreeword.", this);
+      this.$emit("click");
+    },
+    setSkillTurn() {
+      this.logger.trace("setSkillTurn.", this);
       this.$emit("click");
     },
     useSkillTag(event, tag) {
@@ -89,44 +94,6 @@ export default {
         skillturn : this.skillturn,
       };
     },
-    // switchActive(event, attr) {
-    //   this.logger.trace("switchActive.", this);
-
-    //   // console.log("switchActive");
-    //   if (attr.active) {
-    //     attr.active = false;
-    //   } else {
-    //     attr.active = true;
-    //   }
-      
-    //   //强制渲染
-    //   this.$forceUpdate();
-
-    //   // console.log("---->" + attr.active);
-    //   // console.log(this.attrs);
-
-    //   this.$emit("click");
-    // },
-    // reset() {
-    //   this.logger.trace("reset.", this);
-
-    //   this.attrs.forEach((attr) => {
-    //     attr.active = false;
-    //   });
-    //   // this.attrCondAnd = false;
-      
-    //   //强制渲染
-    //   this.$forceUpdate();
-    // },
-    // getActiveValue() {
-    //   this.logger.trace("getActiveValue.", this);
-
-    //   return this.attrs.filter(elem => {
-    //     return elem.active;
-    //   }).map(elem => {
-    //     return elem.id;
-    //   });
-    // },
   },
 };
 </script>

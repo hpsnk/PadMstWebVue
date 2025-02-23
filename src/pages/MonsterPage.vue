@@ -182,6 +182,7 @@ export default {
         awakenSkillCondAnd  : false,
         collabo             : undefined,
         skillFreeword       : undefined,
+        skillturn           : undefined,
         leaderskillFreeword : undefined,
         start               : 0,
         length              : 10,
@@ -255,6 +256,7 @@ export default {
       let valSkill = this.$refs.compSearchSkill.getActiveValue();
       console.log(valSkill);
       this.searchMonsterParam.skillFreeword = valSkill.freeword;
+      this.searchMonsterParam.skillturn     = valSkill.skillturn;
       this.resetPageAndSearch();
     },
     skillFreeword() {
@@ -325,6 +327,7 @@ export default {
       // スキル
       this.$refs.compSearchSkill.reset();
       this.searchMonsterParam.skillFreeword = undefined;
+      this.searchMonsterParam.skillturn     = undefined;
       // リーダースキル
       this.searchMonsterParam.leaderskillFreeword = undefined;
 

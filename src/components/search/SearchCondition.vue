@@ -4,7 +4,7 @@
 <template>
   <!-- 検索条件 -->
   <div>
-    <el-form ref="searchMonsterForm" :model="searchMonsterParam">
+    <el-form ref="searchMonsterForm" :model="searchData.param">
       <div class="card card-primary card-outline">
         <div class="card-header">
           <h5 class="card-title">
@@ -22,7 +22,7 @@
           <div class="form-group row">
             <label for="condFreeword" class="col-sm-2 col-form-label">Freeword</label>
             <div class="col-sm-10">
-              <el-input ref="freeword" v-model="searchMonsterParam.freeword" placeholder="No, 名前" @change="setFreeword"/>
+              <el-input ref="freeword" v-model="searchData.param.freeword" placeholder="No, 名前" @change="setFreeword"/>
             </div>
           </div>
 
@@ -100,90 +100,80 @@
 <script>
 export default {
   name: "SearchCondition.vue",
+  props: {
+    name:       String,
+    searchData: Object,
+  },
+  created() {
+    this.logger.trace("1.created.", this);
+  },
+  mounted() {
+    this.logger.trace("2.mounted.", this);
+  },
   data() {
     return {
       loading: {
         collabo: true,
         monster: false,
       },
-      searched: false,
-      searchMonsterParam: {
-        freeword            : undefined,
-        mainAttr            : [],
-        subAttr             : [],
-        thirdAttr           : [],
-        rare                : undefined,
-        type                : [],
-        typeCondAnd         : false,
-        awakenSkill         : [],
-        awakenSkillCondAnd  : false,
-        collabo             : undefined,
-        skillFreeword       : undefined,
-        leaderskillFreeword : undefined,
-        start               : 0,
-        length              : 10,
-      },
-      displayData: {
-        pageSizes: this.Config.paging.select,
-        pageSize: 10,
-        currentPage: 1,
-        total: 0,
-        types: [],
-        monsters: [],
-      },
     };
   },
   methods: {
+    getSearchDate() {
+      return this.data;
+    },
     resetPageAndSearch() {
       this.logger.trace("resetPageAndSearch.", this);
-      this.searchMonsterParam.start = 0;
-      this.displayData.currentPage = 1;
+
+      this.searchData.param.start = 0;
+      this.searchData.result.currentPage = 1;
       this.searchMonster();
     },
     setFreeword() {
       this.logger.trace("setFreeword.", this);
+      
       this.resetPageAndSearch();
     },
     setMainAttr() {
       this.logger.trace("setMainAttr.", this);
-      this.searchMonsterParam.mainAttr = this.$refs.compMainAttr.getActiveValue();
+      this.searchData.param.mainAttr = this.$refs.compMainAttr.getActiveValue();
       this.resetPageAndSearch();
     },
     setSubAttr() {
       this.logger.trace("setSubAttr.", this);
-      this.searchMonsterParam.subAttr = this.$refs.compSubAttr.getActiveValue();
+      this.searchData.param.subAttr = this.$refs.compSubAttr.getActiveValue();
       this.resetPageAndSearch();
     },
     setThirdAttr() {
       this.logger.trace("setThirdAttr.", this);
-      this.searchMonsterParam.thirdAttr = this.$refs.compThirdAttr.getActiveValue();
+      this.searchData.param.thirdAttr = this.$refs.compThirdAttr.getActiveValue();
       this.resetPageAndSearch();
     },
     setAwakenSkill() {
       this.logger.trace("setAwakenSkill.", this);
       let valAwakenSkill = this.$refs.compSearchAwakenSkill.getActiveValue();
       
-      this.searchMonsterParam.awakenSkill            = valAwakenSkill.awakenSkill;
-      this.searchMonsterParam.awakenSkillCondAnd     = valAwakenSkill.condAnd;
-      this.searchMonsterParam.awakenSkillSortByCount = valAwakenSkill.awakenSkillSortByCount;
+      this.searchData.param.awakenSkill            = valAwakenSkill.awakenSkill;
+      this.searchData.param.awakenSkillCondAnd     = valAwakenSkill.condAnd;
+      this.searchData.param.awakenSkillSortByCount = valAwakenSkill.awakenSkillSortByCount;
 
       this.resetPageAndSearch();
     },
     setRare() {
       this.logger.trace("setRare.", this);
-      this.searchMonsterParam.rare = this.$refs.compSearchRare.getActiveValue();
+      this.searchData.param.rare = this.$refs.compSearchRare.getActiveValue();
       this.resetPageAndSearch();
     },
     setType() {
       this.logger.trace("setType.", this);
       let valType = this.$refs.compSearchType.getActiveValue();
-      this.searchMonsterParam.type        = valType.type;
-      this.searchMonsterParam.typeCondAnd = valType.typeCondAnd;
+      this.searchData.param.type        = valType.type;
+      this.searchData.param.typeCondAnd = valType.typeCondAnd;
       this.resetPageAndSearch();
     },
     setCollabo() {
       this.logger.trace("setCollabo.", this);
-      this.searchMonsterParam.collabo = this.$refs.compSearchCollabo.getActiveValue();
+      this.searchData.param.collabo = this.$refs.compSearchCollabo.getActiveValue();
       this.resetPageAndSearch();
     },
     setSkill() {
@@ -191,7 +181,7 @@ export default {
       // todo
       let valSkill = this.$refs.compSearchSkill.getActiveValue();
       console.log(valSkill);
-      this.searchMonsterParam.skillFreeword = valSkill.freeword;
+      this.searchData.param.skillFreeword = valSkill.freeword;
       this.resetPageAndSearch();
     },
     skillFreeword() {
@@ -210,18 +200,18 @@ export default {
     },
     collaboChanged(collaboId) {
       console.log("  collaboId=%d.", collaboId);
-      this.searchMonsterParam.collabo = collaboId;
+      this.searchData.param.collabo = collaboId;
       this.searchMonster();
     },
     searchMonster() {
       this.logger.trace("searchMonster.", this);
 
-      this.searched = true;
+      this.searchData.searched = true;
       this.loading.monster = true;
 
-      this.PadMstApi.listMonster(this.searchMonsterParam).then((resData) => {
-          this.displayData.monsters = resData.data.data;
-          this.displayData.total = resData.data.recordsFiltered;
+      this.PadMstApi.listMonster(this.searchData.param).then((resData) => {
+          this.searchData.result.monsters = resData.data.data;
+          this.searchData.result.total = resData.data.recordsFiltered;
           this.loading.monster = false;
         })
         .catch((err) => {
@@ -234,39 +224,39 @@ export default {
 
       // freeword
       this.$refs.freeword = "";
-      this.searchMonsterParam.freeword = "";
+      this.searchData.param.freeword = "";
       
       // メイン属性
       this.$refs.compMainAttr.reset();
-      this.searchMonsterParam.mainAttr = [];
+      this.searchData.param.mainAttr = [];
       // サブ属性
       this.$refs.compSubAttr.reset();
-      this.searchMonsterParam.subAttr = [];
+      this.searchData.param.subAttr = [];
       // 第三属性
       this.$refs.compThirdAttr.reset();
-      this.searchMonsterParam.thirdAttr = [];
+      this.searchData.param.thirdAttr = [];
       // レア
       this.$refs.compSearchRare.reset();
-      this.searchMonsterParam.rare = undefined;
+      this.searchData.param.rare = undefined;
       // タイプ
       this.$refs.compSearchType.reset();
-      this.searchMonsterParam.type = [];
-      this.searchMonsterParam.typeCondAnd = false;
+      this.searchData.param.type = [];
+      this.searchData.param.typeCondAnd = false;
       // 覚醒
       this.$refs.compSearchAwakenSkill.reset();
-      this.searchMonsterParam.awakenSkill = [];
-      this.searchMonsterParam.awakenSkillCondAnd = false;
+      this.searchData.param.awakenSkill = [];
+      this.searchData.param.awakenSkillCondAnd = false;
       // コラボ
       this.$refs.compSearchCollabo.reset();
-      this.searchMonsterParam.collabo = undefined;
+      this.searchData.param.collabo = undefined;
       // スキル
       this.$refs.compSearchSkill.reset();
-      this.searchMonsterParam.skillFreeword = undefined;
+      this.searchData.param.skillFreeword = undefined;
       // リーダースキル
-      this.searchMonsterParam.leaderskillFreeword = undefined;
+      this.searchData.param.leaderskillFreeword = undefined;
 
-      this.displayData.monsters = [];
-      this.searched = false;
+      this.searchData.result.monsters = [];
+      this.searchData.searched = false;
     },
   }
 };
