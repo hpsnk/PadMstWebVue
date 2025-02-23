@@ -3,7 +3,7 @@
 // exports.API_SERVER_HOST = "http://localhost:3000";
 
 export default {
-    API_SERVER_HOST: "http://192.168.71.211:3000",
+    API_SERVER_HOST: "http://localhost:3000",
     paging: {
         select: [
             {

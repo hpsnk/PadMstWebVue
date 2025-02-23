@@ -18,19 +18,19 @@
           v-model="awakenSkillSortByCount"
           @change="updateValue()">多い順</el-checkbox>
       </div>
-      <div class="row">
-        <!-- <el-tooltip 
+      <div class="row row-awakenSkill">
+        <el-tooltip 
           v-for="(awakenSkill, index) in awakenSkills" :key="index"
-          :content="type.name" 
-          placement="top"> -->
-          <span 
-            v-for="(awakenSkill, index) in awakenSkills" :key="index"
+          :content="awakenSkill.name" 
+          placement="top">
+          <span
             class="awakenSkill awoken-icon"
-            :class="{'mask' : !awakenSkill.active}"
+            :class="{'icon-mask' : !awakenSkill.active}"
             :data-awoken-icon="awakenSkill.awakenskillId"
             @click="switchActive($event, awakenSkill)"
-          />
-        <!-- </el-tooltip> -->
+          >
+          </span>
+        </el-tooltip>
       </div>
     </div>
   </div>
@@ -56,7 +56,9 @@ export default {
     this.PadMstApi.listAwakenSkill().then((resData)=>{
           // console.log("  load AwakenSkill success.");
           // console.log(resData.data);
-          this.awakenSkills = resData.data.data;
+          this.awakenSkills = resData.data.data.sort(function (a, b) {
+            return a.index - b.index;
+        });
 
           // console.log(this.awakenSkills);
 

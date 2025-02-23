@@ -23,7 +23,7 @@
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
-        <div class="row">
+        <div class="row monster-search">
 
           <!-- 検索条件 -->
           <div class="col-md-6 col-sm-12">
@@ -39,7 +39,7 @@
                   </button>
                 </div>
               </div>
-              <div class="card-body">
+              <div class="card-body search-condition-area">
                 <!-- Freeword -->
                 <div class="form-group row">
                   <label for="condFreeword" class="col-sm-2 col-form-label">Freeword</label>
@@ -81,13 +81,6 @@
                   name="MonsterPage.type"
                   @click="setType" />
 
-                <!-- 覚醒スキル -->
-                <comp-search-awaken-skill 
-                  ref="compSearchAwakenSkill" 
-                  name="MonsterPage.AwakenSkill"
-                  @click="setAwakenSkill"
-                />
-
                 <!-- コラボ -->
                 <comp-search-collabo 
                   ref="compSearchCollabo" 
@@ -95,69 +88,55 @@
                   @click="setCollabo"
                 />
 
-                <!-- スキル -->
                 <el-collapse>
+                  
+                  <!-- 覚醒スキル -->
+                  <el-collapse-item title="覚醒" name="awakenskill" class="aaa">
+                    <comp-search-awaken-skill ref="compSearchAwakenSkill" name="MonsterPage.AwakenSkill" @click="setAwakenSkill"/>
+                  </el-collapse-item>
+
+                  <!-- スキル -->
                   <el-collapse-item title="スキル" name="skill">
-                    <div class="form-group row">
-                      <label for="condFreeword" class="col-sm-2 col-form-label">キー</label>
-                      <div class="col-sm-10">
-                        <el-input ref="freeword" 
-                          placeholder="スキル キーワード" 
-                          v-model="searchMonsterParam.skillFreeword" 
-                          @change="skillFreeword"/>
-                      </div>
-                    </div>
-                    <!-- スキルカテゴリ -->
-                    <div class="form-group row" v-show="false">
-                      <label class="col-sm-2 col-form-label">スキル</label>
-                      <div class="col-sm-10">
-                        <select id="skillcategory" class="form-control select2bs4" multiple="multiple" data-placeholder="Select a State">
-                        <!-- <select class="form-control col-sm-10" > -->
-                          <option value="0">All</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <!-- スキルターン -->
-                    <div class="form-group row">
-                      <label for="skillturn" class="col-sm-2 col-form-label">ターン</label>
-                      <div class="col-sm-10">
-                        <input class="form-control" id="skillturn" placeholder="7">
-                      </div>
-                    </div>
-
+                    <comp-search-skill ref="compSearchSkill" name="MonsterPage.SearchSkill" @click="setSkill"/>
                   </el-collapse-item>
-                </el-collapse>
-
-                <!-- リーダースキル -->
-                <el-collapse>
+                
+                  <!-- リーダースキル -->
                   <el-collapse-item title="リーダースキル" name="leaderskill">
-                    <div class="form-group row">
-
-                      <label for="condLeaderskillFreeword" class="col-sm-2 col-form-label">キー</label>
-                      <div class="col-sm-10">
-                        <el-input ref="freeword" 
-                          placeholder="リーダースキル キーワード" 
-                          v-model="searchMonsterParam.leaderskillFreeword" 
-                          @change="setLeaderskillFreeword"/>
-                      </div>
-                    </div>
-
+                    <comp-search-leader-skill ref="compSearchLeaderSkill" name="MonsterPage.SearchLeaderSkill" @click="setLeaderSkill"/>
                   </el-collapse-item>
+
                 </el-collapse>
 
 
-                <!--ボタン-->
+<!-- 
                 <div class="form-group row">
-                  <el-form-item>
-                    <el-button type="primary" round @click="searchMonster">
-                      検索
-                    </el-button>
-                    <el-button type="info" round @click="handleResetSearchMonster"
-                      >クリア</el-button>
-                  </el-form-item>
-                </div>
+                  <el-collapse>
+                    <el-collapse-item title="リーダースキル" name="leaderskill">
+                      <div class="form-group row">
 
+                        <label for="condLeaderskillFreeword" class="col-sm-2 col-form-label">キー</label>
+                        <div class="col-sm-10">
+                          <el-input ref="freeword" 
+                            placeholder="リーダースキル キーワード" 
+                            v-model="searchMonsterParam.leaderskillFreeword" 
+                            @change="setLeaderskillFreeword"/>
+                        </div>
+                      </div>
+
+                    </el-collapse-item>
+                  </el-collapse>
+                </div> 
+-->
+              </div>
+              
+              <div class="card-footer">
+                <!--ボタン-->
+                <div class="row">
+                  <!-- <el-form-item> -->
+                    <el-button type="primary" round @click="searchMonster">検索</el-button>
+                    <el-button type="info" round @click="handleResetSearchMonster">クリア</el-button>
+                  <!-- </el-form-item> -->
+                </div>
               </div>
               
             </div>
@@ -165,7 +144,7 @@
           </div>
 
           <!--検索結果-->
-          <div class="col-md-6 col-sm-12"  v-if="searched">
+          <div class="col-md-6 col-sm-12" v-if="searched">
             <comp-search-result name="xxx.yyy.zzz" 
               :displayData="displayData"
               :searchMonsterParam="searchMonsterParam"
@@ -203,6 +182,7 @@ export default {
         awakenSkillCondAnd  : false,
         collabo             : undefined,
         skillFreeword       : undefined,
+        skillturn           : undefined,
         leaderskillFreeword : undefined,
         start               : 0,
         length              : 10,
@@ -270,8 +250,23 @@ export default {
       this.searchMonsterParam.collabo = this.$refs.compSearchCollabo.getActiveValue();
       this.resetPageAndSearch();
     },
+    setSkill() {
+      this.logger.trace("setSkill.", this);
+      // todo
+      let valSkill = this.$refs.compSearchSkill.getActiveValue();
+      console.log(valSkill);
+      this.searchMonsterParam.skillFreeword = valSkill.freeword;
+      this.searchMonsterParam.skillturn     = valSkill.skillturn;
+      this.resetPageAndSearch();
+    },
     skillFreeword() {
       this.logger.trace("skillFreeword.", this);
+      this.resetPageAndSearch();
+    },
+    setLeaderSkill() {
+      this.logger.trace("setLeaderSkill.", this);
+      // todo
+      
       this.resetPageAndSearch();
     },
     setLeaderskillFreeword() {
@@ -330,7 +325,9 @@ export default {
       this.$refs.compSearchCollabo.reset();
       this.searchMonsterParam.collabo = undefined;
       // スキル
+      this.$refs.compSearchSkill.reset();
       this.searchMonsterParam.skillFreeword = undefined;
+      this.searchMonsterParam.skillturn     = undefined;
       // リーダースキル
       this.searchMonsterParam.leaderskillFreeword = undefined;
 

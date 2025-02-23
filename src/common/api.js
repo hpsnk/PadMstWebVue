@@ -59,6 +59,11 @@ export default {
         // console.log(" api.js->listType");
         return _axios.get("/type/list", params)
     },
+    // skill tag
+    listSkillTag: function(params) {
+        vue.logger.trace("listSkillTag", this);
+        return _axios.get("/skill/listTag", params)
+    },
 
 
 

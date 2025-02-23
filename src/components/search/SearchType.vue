@@ -6,6 +6,7 @@
     <label class="col-sm-2 col-form-label">タイプ</label>
     <div class="col-sm-10">
       <div class="row">
+        <!-- 条件 and/or -->
         <el-switch
           v-model="typeCondAnd"
           active-text="AND"
@@ -20,7 +21,7 @@
           placement="top">
           <span 
             class="type type-icon"
-            :class="{'mask' : !type.active}"
+            :class="{'icon-mask' : !type.active}"
             :data-type-icon="type.typeId"
             @click="switchActive($event, type)"
           >

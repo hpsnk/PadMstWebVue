@@ -23,7 +23,6 @@
         >
         </el-pagination>
 
-
         <el-pagination v-if="false"
             layout="-> ,sizes"
             :page-sizes="[10, 30, 50, 100]"
@@ -70,9 +69,16 @@
 export default {
   name: "SearchResult.vue",
   props: {
-    name: String,
-    displayData: Object,
+    name:               String,
+    displayData:        Object,
     searchMonsterParam: Object,
+    searchData:         Object,
+  },
+  created() {
+    this.logger.trace("1.created.", this);
+  },
+  mounted() {
+    this.logger.trace("2.mounted.", this);
   },
   data() {
     return {
