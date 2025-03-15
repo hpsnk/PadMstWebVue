@@ -118,20 +118,20 @@ div.monster-detail.monster-detail-mini {
 	/* background-color: blue; */
 }
 
-.monster-detail .monster-icon .icon .id {
+.monster-detail .monster-icon .icon .monsterId {
 	display: block;
 	color: red;
-	font-size: 12px;
+	font-size: 16px;
 	font-weight: 50px;
 	line-height: 17px;
 	height: 17px;
 	text-shadow: black 0px 0px 2px, black -1px -1px 1px, black 1px 1px 1px;
 	position: absolute;
 	left: 5px;
-	bottom: 5px;
+	bottom: 15px;
 }
 
-.monster-detail .monster-icon .icon .id::before {
+.monster-detail .monster-icon .icon .monsterId::before {
 	content: "No.";
 }
 

@@ -14,7 +14,7 @@
         <div class="attr" :data-attr="monster.subAttr" />
         <div class="attr" :data-attr="monster.thirdAttr" />
       </div>
-      <div class="id">{{ monster.monsterId }}</div>
+      <div class="monsterId">{{ monster.monsterId }}</div>
     </div>
   </div>
 </template>
