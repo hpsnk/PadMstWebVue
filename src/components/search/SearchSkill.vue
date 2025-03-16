@@ -28,9 +28,13 @@
       <div class="form-group row">
         <div class="col-sm-2"></div>
         <div class="col-sm-10">
-          <span class="skill-tag" v-for="(tag, index) in tags" :key="index" @click="useSkillTag($event, tag)">
+          <el-tag v-for="(tag, index) in tags" :key="index" @click="useSkillTag($event, tag)" 
+            type="success"
+            effect="light"
+            size="mini"
+            class="skill-tag">
             #{{tag.name}}
-          </span>
+          </el-tag>
         </div>
       </div>
 

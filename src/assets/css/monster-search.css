@@ -53,3 +53,10 @@
 	break-after:  always;
 	break-inside: auto;
 }
+
+/* skill tag */
+/* スキルタグ */
+.search-condition-area .skill-tag {
+	margin-right: 5px;
+	margin-bottom: 2px;
+}
