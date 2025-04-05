@@ -4,10 +4,12 @@
  *-------------------------------
  */
 
+/* monster detail mini里不需要垂直滚动条
  .monster.monster-detail.monster-detail-normal {
 	height: 300px;
 	overflow: auto;
- }
+ } 
+*/
  
 /* ---------------------------------------------------------------- */
 /* .monster-detail                                                  */
@@ -269,4 +271,8 @@ div.monster-detail.monster-detail-mini {
 	height: 40px;
 	width: 100%;
 	bottom: 0px;
+}
+
+.padmst-card-body {
+	padding: 0px;
 }

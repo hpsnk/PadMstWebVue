@@ -134,19 +134,19 @@ export default {
       
       this.resetPageAndSearch();
     },
-    setMainAttr() {
+    setMainAttr(activeAttrs) {
       this.logger.trace("setMainAttr.", this);
-      this.searchData.param.mainAttr = this.$refs.compMainAttr.getActiveValue();
+      this.searchData.param.mainAttr = activeAttrs;
       this.resetPageAndSearch();
     },
-    setSubAttr() {
+    setSubAttr(activeAttrs) {
       this.logger.trace("setSubAttr.", this);
-      this.searchData.param.subAttr = this.$refs.compSubAttr.getActiveValue();
+      this.searchData.param.subAttr = activeAttrs;
       this.resetPageAndSearch();
     },
-    setThirdAttr() {
+    setThirdAttr(activeAttrs) {
       this.logger.trace("setThirdAttr.", this);
-      this.searchData.param.thirdAttr = this.$refs.compThirdAttr.getActiveValue();
+      this.searchData.param.thirdAttr = activeAttrs;
       this.resetPageAndSearch();
     },
     setAwakenSkill() {

@@ -65,9 +65,6 @@ export default {
         return _axios.get("/skill/listTag", params)
     },
 
-
-
-
     //
     listLeaderSkillCategory: function (params) {
         console.log(" api.js->listLeaderSkillCategory");

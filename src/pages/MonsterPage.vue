@@ -1,24 +1,23 @@
 <template>
   <div>
     <!-- Content Header (Page header) -->
+<!-- 
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0">モンスター</h1>
           </div>
-          <!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item active">Starter Page</li>
             </ol>
           </div>
-          <!-- /.col -->
         </div>
-        <!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div><!-- /.content-header -->
+      </div>
+    </div>
+-->
 
     <!-- Main content -->
     <div class="content">
@@ -106,37 +105,49 @@
                   </el-collapse-item>
 
                 </el-collapse>
-
-
-<!-- 
-                <div class="form-group row">
-                  <el-collapse>
-                    <el-collapse-item title="リーダースキル" name="leaderskill">
-                      <div class="form-group row">
-
-                        <label for="condLeaderskillFreeword" class="col-sm-2 col-form-label">キー</label>
-                        <div class="col-sm-10">
-                          <el-input ref="freeword" 
-                            placeholder="リーダースキル キーワード" 
-                            v-model="searchMonsterParam.leaderskillFreeword" 
-                            @change="setLeaderskillFreeword"/>
-                        </div>
-                      </div>
-
-                    </el-collapse-item>
-                  </el-collapse>
-                </div> 
--->
               </div>
               
               <div class="card-footer">
                 <!--ボタン-->
-                <div class="row">
-                  <!-- <el-form-item> -->
-                    <el-button type="primary" round @click="searchMonster">検索</el-button>
-                    <el-button type="info" round @click="handleResetSearchMonster">クリア</el-button>
-                  <!-- </el-form-item> -->
-                </div>
+                <el-row type="flex" justify="space-between">
+                  <!-- 排序 -->
+                  <el-row>
+                    <!-- 排序对象 -->
+                    <el-select v-model="searchMonsterParam.sortBy" size="mini" placeholder="Sort">
+                      <!-- MP -->
+                      <el-option label="MP" value="2">
+                        <span style="float: left">MP</span>
+                      </el-option>
+                      <!-- HP -->
+                      <el-option label="HP" value="3">
+                        <span style="float: left">HP</span>
+                      </el-option>
+                      <!-- ATK -->
+                      <el-option label="ATK" value="4">
+                        <span style="float: left">ATK</span>
+                      </el-option>
+                      <!-- RCV -->
+                      <el-option label="RCV" value="5">
+                        <span style="float: left">RCV</span>
+                      </el-option>
+                    </el-select>
+                    <!-- 排序条件 -->
+                    <el-switch
+                      v-model="searchMonsterParam.sortKbn"
+                      active-text="降序"
+                      active-value=2
+                      inactive-text="升序"
+                      inactive-value=1
+                    >
+                    </el-switch>
+                  </el-row>
+
+                  <el-row>
+                    <el-button type="primary" size="mini" round @click="searchMonster">検索</el-button>
+                    <el-button type="info"    size="mini" round @click="handleResetSearchMonster">クリア</el-button>
+                  </el-row>
+
+                </el-row>
               </div>
               
             </div>
@@ -144,11 +155,24 @@
           </div>
 
           <!--検索結果-->
+          <!-- 
           <div class="col-md-6 col-sm-12" v-if="searched">
             <comp-search-result name="xxx.yyy.zzz" 
               :displayData="displayData"
               :searchMonsterParam="searchMonsterParam"
               @onSwitchPage="searchMonster" />
+          </div>
+          -->
+
+          <div class="col-md-6 col-sm-12" v-if="searched">
+            <monster-mini-card
+              :displayData="displayData"
+              :searchMonsterParam="searchMonsterParam"
+              :hasDetail=true
+              @size-change="handlePageSizeChange"
+              @page-change="handlePageChange"
+              @select-monster="handleSelectMonster"
+            />
           </div>
 
         </div>
@@ -161,15 +185,20 @@
 </template>
 
 <script>
+import MonsterDetailCard from '../ui/MonsterDetailCard.vue';
+import MonsterMiniCard from '../ui/MonsterMiniCard.vue';
 export default {
+  components: { MonsterDetailCard, MonsterMiniCard },
   name: "MonsterPage.vue",
   data() {
     return {
+      selectedMonstr        : undefined,
+      sortBy                : undefined,
       loading: {
-        collabo: true,
-        monster: false,
+        collabo             : true,
+        monster             : false,
       },
-      searched: false,
+      searched              : false,
       searchMonsterParam: {
         freeword            : undefined,
         mainAttr            : [],
@@ -184,6 +213,8 @@ export default {
         skillFreeword       : undefined,
         skillturn           : undefined,
         leaderskillFreeword : undefined,
+        sortBy              : undefined,
+        sortKbn             : undefined,
         start               : 0,
         length              : 10,
       },
@@ -208,19 +239,19 @@ export default {
       this.logger.trace("setFreeword.", this);
       this.resetPageAndSearch();
     },
-    setMainAttr() {
+    setMainAttr(activeAttrIds) {
       this.logger.trace("setMainAttr.", this);
-      this.searchMonsterParam.mainAttr = this.$refs.compMainAttr.getActiveValue();
+      this.searchMonsterParam.mainAttr = activeAttrIds;
       this.resetPageAndSearch();
     },
-    setSubAttr() {
+    setSubAttr(activeAttrIds) {
       this.logger.trace("setSubAttr.", this);
-      this.searchMonsterParam.subAttr = this.$refs.compSubAttr.getActiveValue();
+      this.searchMonsterParam.subAttr = activeAttrIds;
       this.resetPageAndSearch();
     },
-    setThirdAttr() {
+    setThirdAttr(activeAttrIds) {
       this.logger.trace("setThirdAttr.", this);
-      this.searchMonsterParam.thirdAttr = this.$refs.compThirdAttr.getActiveValue();
+      this.searchMonsterParam.thirdAttr = activeAttrIds;
       this.resetPageAndSearch();
     },
     setAwakenSkill() {
@@ -298,8 +329,8 @@ export default {
       this.logger.trace("handleResetSearchMonster.", this);
 
       // freeword
-      this.$refs.freeword = "";
-      this.searchMonsterParam.freeword = "";
+      this.$refs.freeword                         = undefined;
+      this.searchMonsterParam.freeword            = undefined;
       
       // メイン属性
       this.$refs.compMainAttr.reset();
@@ -330,10 +361,37 @@ export default {
       this.searchMonsterParam.skillturn     = undefined;
       // リーダースキル
       this.searchMonsterParam.leaderskillFreeword = undefined;
+      // page      
+      this.searchMonsterParam.start               = 0;
+      this.searchMonsterParam.length              = 10;
+      //
+      this.searchMonsterParam.sortBy              = undefined;
+      this.searchMonsterParam.sortKbn             = undefined;
 
       this.displayData.monsters = [];
+      this.displayData.currentPage = 1;
       this.searched = false;
+
+      this.selectedMonstr = undefined;
     },
+    handlePageSizeChange(pageSize) {
+      this.logger.trace(`MonsterPage.handlePageSizeChange:${pageSize}.`, this);
+    },
+    handlePageChange(page) {
+      this.logger.trace(`MonsterPage.handlePageChange:${page}.`, this);
+      this.displayData.currentPage = page;
+      this.searchMonster();
+    },
+    handleSelectMonster(monsterId) {
+      this.logger.trace(`MonsterPage.handleSelectMonster:${monsterId}.`, this);
+
+      // 按monsterId筛选monster
+      let objMonster = this.displayData.monsters.find(monster => {
+          return monster.monsterId == monsterId;
+      });
+      
+      this.selectedMonstr = objMonster;
+    }
   }
 };
 </script>

@@ -1,4 +1,15 @@
-<template>
+<!-- 
+  | SearchAttr
+  | 
+  | [Attributes]
+  |   参数                   类型               说明
+  |   hasNoneAttr           boolean            无属性
+  | 
+  | [Event]
+  |   事件名称               回调参数
+  |   click                 Array[int]: attr ids
+ -->
+ <template>
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">{{ label }}</label>
     <div id="mainAttr" class="col-sm-10" v-loading="loading.attr">
@@ -61,7 +72,13 @@ export default {
       // console.log("---->" + attr.active);
       // console.log(this.attrs);
 
-      this.$emit("click");
+      let activeAttrs = this.attrs.filter(elem => {
+        return elem.active;
+      }).map(elem => {
+        return elem.id;
+      });
+
+      this.$emit("click", activeAttrs);
     },
     reset() {
       this.logger.trace("reset.", this);
@@ -74,15 +91,15 @@ export default {
       //强制渲染
       this.$forceUpdate();
     },
-    getActiveValue() {
-      this.logger.trace("getActiveValue.", this);
+    // getActiveValue() {
+    //   this.logger.trace("getActiveValue.", this);
 
-      return this.attrs.filter(elem => {
-        return elem.active;
-      }).map(elem => {
-        return elem.id;
-      });
-    },
+    //   return this.attrs.filter(elem => {
+    //     return elem.active;
+    //   }).map(elem => {
+    //     return elem.id;
+    //   });
+    // },
   },
 };
 </script>

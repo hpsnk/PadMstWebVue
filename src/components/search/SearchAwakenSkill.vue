@@ -19,17 +19,19 @@
           @change="updateValue()">多い順</el-checkbox>
       </div>
       <div class="row row-awakenSkill">
-        <el-tooltip 
-          v-for="(awakenSkill, index) in awakenSkills" :key="index"
-          :content="awakenSkill.name" 
-          placement="top">
+        <el-tooltip
+          v-for="(awakenSkill, index) in awakenSkills"
+          :key="index"
+          :content="showTooltip ? awakenSkill.name : ''"
+          :disabled="!showTooltip"
+          placement="top"
+        >
           <span
             class="awakenSkill awoken-icon"
-            :class="{'icon-mask' : !awakenSkill.active}"
+            :class="{'icon-mask': !awakenSkill.active}"
             :data-awoken-icon="awakenSkill.awakenskillId"
             @click="switchActive($event, awakenSkill)"
-          >
-          </span>
+          ></span>
         </el-tooltip>
       </div>
     </div>
@@ -41,6 +43,10 @@ export default {
   name: "SearchAwakenSkill.vue",
   props: {
     name: String,
+    showTooltip: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {

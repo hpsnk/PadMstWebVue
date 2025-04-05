@@ -1,10 +1,21 @@
 <!-- 
   | components search result mini
+  | 
+  | [Attributes]
+  |   参数                   类型               说明
+  | 
+  | [Event]
+  |   事件名称               回调参数
+  |   click-monster      int: monsterId
  -->
 <template>
   <div class="monster monster-detail monster-detail-mini">
-    <comp-icon-monster :monster="monster" 
-      v-for="(monster, index) in displayData.monsters" :key="'div.monster.mini.' + index" />
+    <comp-icon-monster 
+      :monster="monster" 
+      v-for="(monster, index) in displayData.monsters" 
+      :key="'div.monster.mini.' + index" 
+      @click="handleClickMonster"
+    />
   </div>
 </template>
 
@@ -24,6 +35,10 @@ export default {
     };
   },
   methods: {
+    handleClickMonster(monsterId) {
+      // 发动事件
+      this.$emit('click-monster', monsterId);
+    }
   },
 };
 </script>

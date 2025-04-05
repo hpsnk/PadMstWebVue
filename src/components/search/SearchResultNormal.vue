@@ -10,15 +10,11 @@
 </template>
 
 <script>
-import CompMonsterDetail from "../monster/detail.vue";
 export default {
   name: "SearchResultNormal.vue",
   props: {
     name: String,
     displayData: Object,
-  },
-  components: {
-    CompMonsterDetail,
   },
   data() {
     return {
