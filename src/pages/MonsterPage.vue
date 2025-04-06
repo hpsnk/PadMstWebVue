@@ -26,7 +26,7 @@
 
           <!-- 検索条件 -->
           <div class="col-md-6 col-sm-12">
-            <el-form ref="searchMonsterForm" :model="searchMonsterParam">
+            <!-- <el-form ref="searchMonsterForm" :model="searchMonsterParam"> -->
             <div class="card card-primary card-outline">
               <div class="card-header">
                 <h5 class="card-title">
@@ -151,7 +151,7 @@
               </div>
               
             </div>
-            </el-form>
+            <!-- </el-form> -->
           </div>
 
           <!--検索結果-->

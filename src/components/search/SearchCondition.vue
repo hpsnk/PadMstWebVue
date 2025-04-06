@@ -1,5 +1,10 @@
 <!-- 
   | components search condition
+  | 
+  | [Event]
+  |   事件名称               回调参数
+  |   search-monster        object: search monster result
+  |   clear-search          ???
  -->
 <template>
   <!-- 検索条件 -->
@@ -203,16 +208,25 @@ export default {
       this.searchData.param.collabo = collaboId;
       this.searchMonster();
     },
+    searchMonsterByPage(pageNo) {
+      this.searchData.currentPage    = pageNo;
+      this.searchMonster();
+    },
     searchMonster() {
       this.logger.trace("searchMonster.", this);
 
       this.searchData.searched = true;
+
       this.loading.monster = true;
 
       this.PadMstApi.listMonster(this.searchData.param).then((resData) => {
           this.searchData.result.monsters = resData.data.data;
-          this.searchData.result.total = resData.data.recordsFiltered;
+          this.searchData.result.total    = resData.data.recordsFiltered;
+
           this.loading.monster = false;
+
+          // 发动事件
+          this.$emit('search-monster', this.searchData.result);
         })
         .catch((err) => {
           console.error("  searchMonster failed.");
@@ -262,7 +276,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 @import "../../assets/css/monster-search.css";
 </style>

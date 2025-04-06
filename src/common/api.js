@@ -5,6 +5,7 @@ import Vue from 'vue';
 var vue = new Vue();
 
 import Config from './config.js'
+import Const  from './const.js'
 
 import axios from "axios";
 import qs from 'qs';

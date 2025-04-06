@@ -7,41 +7,41 @@
       components Team 1P
     </div>
 
-        <div class="row">
-          monster self assist
-        </div>
+    <div class="row">
+      monster self assist
+    </div>
 
-        <div class="row team-row team-self team-self-assist">
-          <div class="padmst-icon icon-monster icon-team-monster assist-1p p1 empty" data-type="self-assist" data-index="1" @click="setActive"></div>
-          <div class="padmst-icon icon-monster icon-team-monster assist-1p p2 empty" data-type="self-assist" data-index="2" @click="setActive"></div>
-          <div class="padmst-icon icon-monster icon-team-monster assist-1p p3 empty" data-type="self-assist" data-index="3" @click="setActive"></div>
-          <div class="padmst-icon icon-monster icon-team-monster assist-1p p4 empty" data-type="self-assist" data-index="4" @click="setActive"></div>
-          <div class="padmst-icon icon-monster icon-team-monster assist-1p p5 empty" data-type="self-assist" data-index="5" @click="setActive"></div>
-          <div class="padmst-icon icon-monster icon-team-monster assist-1p p6 empty" data-type="self-assist" data-index="6" @click="setActive"></div>
-        </div>
+    <div class="row team-row team-self team-self-assist">
+      <div class="padmst-icon icon-monster icon-team-monster assist-1p p1 empty" data-type="self-assist" data-index="1" @click="setActive"></div>
+      <div class="padmst-icon icon-monster icon-team-monster assist-1p p2 empty" data-type="self-assist" data-index="2" @click="setActive"></div>
+      <div class="padmst-icon icon-monster icon-team-monster assist-1p p3 empty" data-type="self-assist" data-index="3" @click="setActive"></div>
+      <div class="padmst-icon icon-monster icon-team-monster assist-1p p4 empty" data-type="self-assist" data-index="4" @click="setActive"></div>
+      <div class="padmst-icon icon-monster icon-team-monster assist-1p p5 empty" data-type="self-assist" data-index="5" @click="setActive"></div>
+      <div class="padmst-icon icon-monster icon-team-monster assist-1p p6 empty" data-type="self-assist" data-index="6" @click="setActive"></div>
+    </div>
 
-        <div class="row team-row team-self team-self-assist-mark">
-          <span class="icon-team-monster team-assist-mark">↓</span>
-          <span class="icon-team-monster team-assist-mark">↓</span>
-          <span class="icon-team-monster team-assist-mark">↓</span>
-          <span class="icon-team-monster team-assist-mark">↓</span>
-          <span class="icon-team-monster team-assist-mark">↓</span>
-          <span class="icon-team-monster team-assist-mark">↓</span>
-        </div>
+    <div class="row team-row team-self team-self-assist-mark">
+      <span class="icon-team-monster team-assist-mark">↓</span>
+      <span class="icon-team-monster team-assist-mark">↓</span>
+      <span class="icon-team-monster team-assist-mark">↓</span>
+      <span class="icon-team-monster team-assist-mark">↓</span>
+      <span class="icon-team-monster team-assist-mark">↓</span>
+      <span class="icon-team-monster team-assist-mark">↓</span>
+    </div>
 
-        <!-- <div class="row">
-          monster self main
-        </div> -->
-        <!-- <div class="row team-row team-self team-self-main"> -->
-        <div class="row row-team team-self team-self-main">
-          <div class="padmst-icon icon-monster icon-team-monster member-1p p1 empty" data-type="self-main" data-index="1" @click="setActive"></div>
-          <div class="padmst-icon icon-monster icon-team-monster member-1p p2 empty" data-type="self-main" data-index="2" @click="setActive"></div>
-          <div class="padmst-icon icon-monster icon-team-monster member-1p p3 empty" data-type="self-main" data-index="3" @click="setActive"></div>
-          <div class="padmst-icon icon-monster icon-team-monster member-1p p4 empty" data-type="self-main" data-index="4" @click="setActive"></div>
-          <div class="padmst-icon icon-monster icon-team-monster member-1p p5 empty" data-type="self-main" data-index="5" @click="setActive"></div>
-          <div class="padmst-icon icon-monster icon-team-monster member-1p p6 empty" data-type="self-main" data-index="6" @click="setActive"></div>
-        </div>
-      </div>
+    <!-- <div class="row">
+      monster self main
+    </div> -->
+    <!-- <div class="row team-row team-self team-self-main"> -->
+    <div class="row row-team team-self team-self-main">
+      <div class="padmst-icon icon-monster icon-team-monster member-1p p1 empty" data-type="self-main" data-index="1" @click="setActive"></div>
+      <div class="padmst-icon icon-monster icon-team-monster member-1p p2 empty" data-type="self-main" data-index="2" @click="setActive"></div>
+      <div class="padmst-icon icon-monster icon-team-monster member-1p p3 empty" data-type="self-main" data-index="3" @click="setActive"></div>
+      <div class="padmst-icon icon-monster icon-team-monster member-1p p4 empty" data-type="self-main" data-index="4" @click="setActive"></div>
+      <div class="padmst-icon icon-monster icon-team-monster member-1p p5 empty" data-type="self-main" data-index="5" @click="setActive"></div>
+      <div class="padmst-icon icon-monster icon-team-monster member-1p p6 empty" data-type="self-main" data-index="6" @click="setActive"></div>
+    </div>
+  </div>
 
 </template>
 
@@ -59,7 +59,6 @@ export default {
   methods: {
     setActive() {
       this.logger.trace("setActive.", this);
-
     },
   },
 };
