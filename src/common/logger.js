@@ -61,7 +61,7 @@ function getDisplayDateTime() {
     let strHour = rightString("00" + now.getHours(), 2);
     let strMinute = rightString("00" + now.getMinutes(), 2);
     let strSecond = rightString("00" + now.getSeconds(), 2);
-    let strMilliseconds = "" + now.getMilliseconds();
+    let strMilliseconds = rightString("000" + now.getMilliseconds(), 3);
   
     return "[" + strYear + "/" +
       strMonth + "/" +
