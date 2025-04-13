@@ -1,5 +1,9 @@
 <!-- 
   | components monster search AwakenSkill
+  | 
+  | [Event]
+  |   事件名称               回调参数
+  |   click                 ???         todo
  -->
 <template>
   <div class="form-group row">
@@ -76,9 +80,6 @@ export default {
 
     this.logger.trace("created end.", this);
   },
-  // mounted() {
-  //   console.log("mounted.");
-  // },
   methods: {
     updateValue() {
       this.logger.trace("updateValue.", this);

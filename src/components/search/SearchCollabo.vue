@@ -1,5 +1,9 @@
 <!-- 
   | components monster search collabo
+  | 
+  | [Event]
+  |   事件名称               回调参数
+  |   select-collabo        int: collaboId
  -->
 <template>
   <div class="form-group row">
@@ -9,8 +13,8 @@
       v-loading="loading"
       placeholder="コラボ" 
       collapse-tags
-      @change="updateValue"
-      >
+      @change="handleSelectCollabo"
+    >
       <el-option
         v-for="collabo in collabos"
         :key="collabo.collaboId"
@@ -38,8 +42,6 @@ export default {
     this.logger.trace("created start.", this);
     
     this.PadMstApi.listCollabo().then((resData)=>{
-      // console.log("  loadCollabo success.");
-      // console.log(resData.data);
       this.collabos = resData.data;
       this.loading = false;
     }).catch((err)=>{
@@ -50,15 +52,15 @@ export default {
     this.logger.trace("created end.", this);
   },
   methods: {
-    updateValue() {
-      this.$emit("click");
+    handleSelectCollabo() {
+      this.$emit("select-collabo", this.collabo);
     },
     reset() {
       this.collabo = undefined;
     },
-    getActiveValue() {
-      return this.collabo;
-    },
+    // getActiveValue() {
+    //   return this.collabo;
+    // },
   },
 };
 </script>
