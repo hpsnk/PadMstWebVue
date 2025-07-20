@@ -4,15 +4,16 @@
 <template>
   <div>
     <!-- 武器 -->
-    <div class="row team-row team-self team-self-assist">      
+    <div class="row team-row team-self team-self-assist">
       <comp-icon-monster
         v-for="member in team.assist"
         :key="member.id"
         :id="member.id"
-        :empty="true"
+        :empty="member.empty"
+        :monster="member.monster"
         :selectable="true"
         :selected="selectedMemberId===member.id"
-        class="padmst-icon icon-monster icon-team-monster assist-1p" 
+        class="padmst-icon icon-monster icon-team-monster member-1p" 
         @select-change="handleSelectChange"
       />
     </div>
@@ -53,36 +54,42 @@ export default {
           {
             // p1
             id:         "assist-1p-p1",
+            empty     : true,
             monsterId:  undefined,
             monster   : undefined,
           },
           {
             // p2
             id:         "assist-1p-p2",
+            empty     : true,
             monsterId:  undefined,
             monster   : undefined,
           },
           {
             // p3
             id:         "assist-1p-p3",
+            empty     : true,
             monsterId:  undefined,
             monster   : undefined,
           },
           {
             // p4
             id:         "assist-1p-p4",
+            empty     : true,
             monsterId:  undefined,
             monster   : undefined,
           },
           {
             // p5
             id:         "assist-1p-p5",
+            empty     : true,
             monsterId:  undefined,
             monster   : undefined,
           },
           {
             // p6
             id:         "assist-1p-p6",
+            empty     : true,
             monsterId:  undefined,
             monster   : undefined,
           },
