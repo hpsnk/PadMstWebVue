@@ -53,14 +53,12 @@ export default {
   },
   methods: {
     handleSelectCollabo() {
+      this.logger.trace("set collabo : " + this.collabo, this);
       this.$emit("select-collabo", this.collabo);
     },
     reset() {
       this.collabo = undefined;
     },
-    // getActiveValue() {
-    //   return this.collabo;
-    // },
   },
 };
 </script>
