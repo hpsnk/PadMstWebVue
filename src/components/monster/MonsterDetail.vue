@@ -1,3 +1,14 @@
+<!-- 
+  | MonsterDetail
+  | 
+  | [Attributes]
+  |   参数                   类型               说明
+  | 
+  | [Event]
+  |   事件名称               回调参数
+  |   click-monster-icon    object: monster
+ -->
+
 <template>
   <div class="monster monster-detail">
     <!--Detail1-->
@@ -7,7 +18,11 @@
 
     <!--Detail2-->
     <div class="monster-basic-info">
-      <comp-icon-monster name="MonsterDetail.IconMonster" :monster="monster" />
+      <comp-icon-monster 
+        name="MonsterDetail.IconMonster" 
+        :monster="monster" 
+        @click="handleClickMonsterIcon"
+      />
       <div class="monster-info">        
         <div class="hp">
           <div class="tag">HP:</div>
@@ -65,7 +80,7 @@
 
     <!--Detail4 : スキル-->
     <div class="skill">
-      <div class="name" @click="findBySkill(monster)">{{monster.skill != undefined ?  monster.skill.name : ''}}</div>
+      <div class="name">{{monster.skill != undefined ?  monster.skill.name : ''}}</div>
       <div class="turn" v-if="monster.skill != undefined && monster.skill.turn != undefined">
         {{monster.skill != undefined ?  monster.skill.turn : ''}}
       </div>
@@ -83,13 +98,8 @@
 </template>
 
 <script>
-// import CompIconAwaken from "./IconAwaken.vue";
-
 export default {
-  name: "detail.vue",
-  // components: {
-  //   CompIconAwaken,
-  // },
+  name: "MonsterDetail.vue",
   props: {
     monster: Object,
   },
@@ -99,11 +109,15 @@ export default {
     };
   },
   methods: {
-    findBySkill(objMonster) {
-      console.log('[findBySkill]');
-      console.log(objMonster.skill);
-    }
-
+    // findBySkill(objMonster) {
+    //   console.log('[findBySkill]');
+    //   console.log(objMonster.skill);
+    // },
+    handleClickMonsterIcon() {
+      // this.logger.debug(`MonsterMiniCard.handleClickMonster:${monsterId}`, this);
+      // 发动事件
+      this.$emit('click-monster-icon', this.monster);
+    },
   },
 };
 </script>

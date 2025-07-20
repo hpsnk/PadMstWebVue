@@ -12,7 +12,7 @@ import CompSearchType          from './search/SearchType.vue';
 import CompSearchSkill         from './search/SearchSkill.vue';
 import CompSearchLeaderSkill   from './search/SearchLeaderSkill.vue';
 
-import CompMonsterDetail       from './monster/detail.vue';
+import CompMonsterDetail       from './monster/MonsterDetail.vue';
 
 import CompSearchCondition     from './search/SearchCondition.vue';
 import CompSearchResult        from './search/SearchResult.vue';

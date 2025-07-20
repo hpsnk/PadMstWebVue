@@ -1,25 +1,5 @@
 <template>
   <div>
-    <!-- Content Header (Page header) -->
-<!--      
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">Team</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Starter Page</li>
-            </ol>
-          </div>
-        </div>
-      </div>
-    </div>
--->
-
-    <!-- Main content -->
     <div class="content">
 
       <div class="container-fluid">
@@ -32,16 +12,14 @@
                 <h5 class="card-title">
                   <i class="fas fa-list"></i> Team
                 </h5>
-          <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-              <i class="fas fa-minus"></i>
-            </button>
-          </div>
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                </div>
               </div>
 
-              <!-- /.card-header -->
               <div class="card-body">
-
                 <div class="row">
                   <el-radio-group v-model="teamType" size="mini">
                     <el-radio-button :label=1>1P</el-radio-button>
@@ -50,7 +28,7 @@
                   </el-radio-group>
                 </div>
                 <div class="row">
-                  <comp-team-1-p/>
+                  <comp-team-1-p ref="team1p" />
                 </div>
               </div>
             </div>
@@ -63,7 +41,7 @@
               ref="compSearchCondition" 
               :searchData="searchData"
               />
-              <!-- 检索结果 -->
+            <!-- 检索结果 -->
             <monster-mini-card
               v-if="searchData.searched"
               :displayData="searchData.result"
@@ -71,6 +49,7 @@
               :hasDetail=true
               @page-change="handlePageChange"
               @size-change="handlePageSizeChange"
+              @select-monster="handleSelectMonster"
             />
           </div>
         </div>
@@ -129,6 +108,10 @@ export default {
     },
     handlePageSizeChange(pageSize) {
       this.logger.trace(`TeamPage.handlePageSizeChange:${pageSize}.`, this);
+    },
+    handleSelectMonster(objMonster) {
+      this.logger.trace(`TeamPage.handleSelectMonster, monsterId=${objMonster.monsterId}.`, this);
+      this.$refs.team1p.setMonster(objMonster);
     },
   },
 }
