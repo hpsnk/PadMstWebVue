@@ -11,9 +11,9 @@
 <template>
   <div class="monster monster-detail monster-detail-mini">
     <comp-icon-monster 
-      :monster="monster" 
       v-for="(monster, index) in displayData.monsters" 
       :key="'div.monster.mini.' + index" 
+      :monster="monster" 
       @click="handleClickMonster"
     />
   </div>

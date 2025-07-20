@@ -84,7 +84,7 @@
                 <comp-search-collabo 
                   ref="compSearchCollabo" 
                   name="MonsterPage.SearchCollabo"
-                  @click="setCollabo"
+                  @select-collabo="setCollabo"
                 />
 
                 <el-collapse>
@@ -276,9 +276,9 @@ export default {
       this.searchMonsterParam.typeCondAnd = valType.typeCondAnd;
       this.resetPageAndSearch();
     },
-    setCollabo() {
-      this.logger.trace("setCollabo.", this);
-      this.searchMonsterParam.collabo = this.$refs.compSearchCollabo.getActiveValue();
+    setCollabo(collaboId) {
+      this.logger.trace(`set collaboId:${collaboId}.`, this);
+      this.searchMonsterParam.collabo = collaboId;
       this.resetPageAndSearch();
     },
     setSkill() {

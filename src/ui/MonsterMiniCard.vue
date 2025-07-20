@@ -13,7 +13,7 @@
   |   事件名称               回调参数
   |   size-change           int: page size
   |   page-change           int: page number
-  |   select-monster        int: monsterId
+  |   select-monster        object: monster
  -->
  <template>
   <div class="card">
@@ -36,13 +36,14 @@
     <div class="card-body padmst-card-body">
       <comp-search-result-mini 
         :displayData="displayData" 
-        @click-monster="handleClickMonster"
+        @click-monster="handleClickMonsterMiniIcon"
       />
       <div v-if="hasDetail && selectedMonster != undefined">
         <el-divider></el-divider>
         <div class="monster monster-detail monster-detail-normal">
           <comp-monster-detail 
             :monster="selectedMonster"
+            @click-monster-icon="handleClickMonsterDetailIcon"
           />
         </div>
 
@@ -77,22 +78,24 @@ export default {
   },
   methods: {
     handlePageSizeChange(pageSize) {
+      this.logger.debug("handlePageSizeChange. New Size: " + pageSize, this);
+
       this.displayData.pageSize = pageSize;
 
       // 触发自定义事件，并传递参数
       this.$emit('size-change', this.displayData.pageSize);
     },
     handleCurrentChange(page) {
-      this.logger.debug("handlePageSizeChange. switch to page " + page, this);
+      this.logger.debug("handleCurrentChange. switch to page " + page, this);
 
       this.displayData.currentPage = page;
 
       this.searchMonsterParam.start = (page - 1) * this.searchMonsterParam.length;
 
-      this.$emit('page-change', this.searchMonsterParam.start);
+      this.$emit('page-change', page);
     },
-    handleClickMonster(monsterId) {
-      this.logger.debug(`MonsterMiniCard.handleClickMonster:${monsterId}`, this);
+    handleClickMonsterMiniIcon(monsterId) {
+      this.logger.debug(`MonsterMiniCard.handleClickMonsterMiniIcon:${monsterId}`, this);
 
       if (this.selectedMonster != undefined && this.selectedMonster.monsterId == monsterId) {
         this.selectedMonster = undefined;
@@ -105,9 +108,32 @@ export default {
         this.selectedMonster = objMonster;
 
         // 发动事件
-        this.$emit('select-monster', monsterId);
+        this.$emit('select-monster', objMonster);
       }
-    }
+    },
+    // handleClickMonster(monsterId) {
+    //   this.logger.debug(`MonsterMiniCard.handleClickMonster:${monsterId}`, this);
+
+    //   if (this.selectedMonster != undefined && this.selectedMonster.monsterId == monsterId) {
+    //     this.selectedMonster = undefined;
+    //   } else {
+    //     // 按monsterId筛选monster
+    //     let objMonster = this.displayData.monsters.find(monster => {
+    //         return monster.monsterId == monsterId;
+    //     });
+        
+    //     this.selectedMonster = objMonster;
+
+    //     // 发动事件
+    //     this.$emit('select-monster', objMonster);
+    //   }
+    // },
+    handleClickMonsterDetailIcon(objMonster) {
+      this.logger.debug(`MonsterMiniCard.handleClickMonsterDetailIcon:${objMonster.monsterId}`, this);
+
+        // 发动事件
+        this.$emit('select-monster', objMonster);
+    },
   }
 };
 </script>

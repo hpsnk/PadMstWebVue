@@ -17,9 +17,6 @@
     :class="{'focus': selected}"
     @click="handleSelectMonster"
   >
-    <div>{{this.isActive}}</div>
-    <div v-if="isEmpty">empty</div>
-    <div v-if="selected">selected</div>
     <div 
       v-if="!isEmpty && monster != undefined"
       class="icon monster" 
@@ -36,6 +33,7 @@
       </div>
       <div class="monsterId">{{ monster.monsterId }}</div>
     </div>
+    <div v-if="isEmpty">EMPTY!</div>
   </div>
 </template>
 
@@ -66,12 +64,14 @@ export default {
     isActive() {
       // this.logger.trace(`${this.id} isActive()=${this.selected}`, this);
       return this.selected;
+    },
+    isEmpty() {
+      return this.empty
     }
   },
   data() {
     return {
-      isEmpty : this.empty,
-    };
+    }
   },
   methods: {
     //

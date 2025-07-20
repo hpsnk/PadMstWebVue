@@ -15,7 +15,7 @@
     </div>
     <div class="card-body padmst-card-body">
       <div class="monster monster-detail monster-detail-normal">
-        <CompMonsterDetail 
+        <comp-monster-detail
           :monster="monster"
         />
       </div>
@@ -24,7 +24,6 @@
 </template>
 
 <script>
-// import CompMonsterDetail from "../components/monster/detail.vue";
 export default {
   name: "MonsterDetailCard.vue",
   props: {
